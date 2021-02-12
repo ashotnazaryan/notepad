@@ -1,3 +1,8 @@
 export const ROUTES = {
-  NOTES: 'notes'
+  TOOLS: {
+    name: 'tools',
+    SUBROUTES: {
+      name: 'notes'
+    }
+  }
 }

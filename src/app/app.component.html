@@ -1,1 +1,11 @@
-<router-outlet></router-outlet>
+<mat-toolbar color="primary">
+  <button mat-icon-button [matMenuTriggerFor]="tools" matTooltip="Tools" matTooltipPosition="right">
+    <mat-icon>settings</mat-icon>
+  </button>
+  <mat-menu #tools="matMenu">
+    <button mat-menu-item [routerLink]="notesLink">Notes</button>
+  </mat-menu>
+</mat-toolbar>
+<div class="main-content">
+  <router-outlet></router-outlet>
+</div>

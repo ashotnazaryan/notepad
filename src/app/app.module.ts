@@ -5,7 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
 
-import { NotesModule } from './modules/notes/notes.module';
+import { SharedModule } from '@shared/shared.module';
+import { ToolsModule } from './modules/tools/tools.module';
 import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.component';
 
 @NgModule({
@@ -17,7 +18,8 @@ import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.c
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    NotesModule,
+    SharedModule,
+    ToolsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

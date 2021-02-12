@@ -14,7 +14,7 @@ import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
   ]
 })
 export class PaperComponent implements OnInit {
-  @Input() size = 20;
+  @Input() size = 16;
   @Input() type = 'yellow';
 
   textAreaControl = new FormControl('');

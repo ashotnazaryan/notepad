@@ -21,15 +21,15 @@
         text="Save"
         (clicked)="save()">
       </app-button>
+      <app-upload-button 
+        (uploaded)="upload($event)">
+      </app-upload-button>
       <app-button 
         icon="clear" 
         text="Clear"
         color="accent"
         (clicked)="clear()">
       </app-button>
-      <app-upload-button 
-        (uploaded)="upload($event)">
-      </app-upload-button>
     </div>
   </form>
 </div>
