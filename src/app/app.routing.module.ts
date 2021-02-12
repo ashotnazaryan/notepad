@@ -7,7 +7,7 @@ import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.c
 const routes: Routes = [
   {
     path: '',
-    redirectTo: `/${ROUTES.TOOLS.name}`,
+    redirectTo: `${ROUTES.TOOLS.name}`,
     pathMatch: 'full'
   },
   {

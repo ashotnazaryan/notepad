@@ -8,7 +8,8 @@ import { ROUTES } from '@shared/constants/routes';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  notesLink = `${ROUTES.TOOLS.name}/${ROUTES.TOOLS.SUBROUTES.name}`;
+  notesLink = `${ROUTES.TOOLS.name}/${ROUTES.TOOLS.SUB_ROUTES.NOTES.name}`;
+  timeLink = `${ROUTES.TOOLS.name}/${ROUTES.TOOLS.SUB_ROUTES.TIME.name}`;
 
   constructor() {
 
