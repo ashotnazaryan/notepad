@@ -1,0 +1,26 @@
+app-button {
+  button {
+    padding      : 5px 10px !important;
+    min-width    : 100px !important;
+    height       : 40px !important;
+    border-radius: 2px !important;
+
+    .mat-button-wrapper {
+      @extend .flex;
+      @extend .flex-row;
+      @extend .align-items-center;
+      @extend .justify-content-between;
+      @extend .h-100;
+      line-height: initial;
+
+      .text {
+        @extend .button-text;
+      }
+
+      mat-icon {
+        @extend .position-relative;
+        margin-right: 3px;
+      }
+    }
+  }
+}

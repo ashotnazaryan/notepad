@@ -1,0 +1,11 @@
+<app-button>
+  <ng-template #customTemplate>
+    <div class="button-wrapper" (click)="fileInput.click()">
+      <label for="fileToUpload" class="flex flex-row align-items-center justify-content-between">
+        <mat-icon>upload_file</mat-icon>
+        <span class="button-wrapper__text">Upload</span>
+      </label>
+      <input #fileInput type="file" accept="accept" (change)="upload($event)">
+    </div>
+  </ng-template>
+</app-button>

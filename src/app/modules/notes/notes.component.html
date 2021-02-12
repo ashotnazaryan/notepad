@@ -1,0 +1,35 @@
+<div class="notes-container">
+  <mat-form-field>
+    <mat-label>Paper type</mat-label>
+    <mat-select 
+      placeholder="Choose paper type"
+      [value]="paperType"
+      (selectionChange)="handlePaperTypeChange($event)">
+      <mat-option *ngFor="let item of paperTypes" [value]="item.key">
+        {{item.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <form [formGroup]="form">
+    <app-paper 
+      [type]="paperType" 
+      formControlName="paper">
+    </app-paper>
+    <div class="actions flex flex-row align-items-center">
+      <app-button 
+        icon="save" 
+        text="Save"
+        (clicked)="save()">
+      </app-button>
+      <app-button 
+        icon="clear" 
+        text="Clear"
+        color="accent"
+        (clicked)="clear()">
+      </app-button>
+      <app-upload-button 
+        (uploaded)="upload($event)">
+      </app-upload-button>
+    </div>
+  </form>
+</div>

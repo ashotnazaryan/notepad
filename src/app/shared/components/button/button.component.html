@@ -1,0 +1,9 @@
+<button mat-flat-button [color]="color" (click)="handleClick()">
+  <ng-container *ngIf="customTemplate; else standard">
+    <ng-container *ngTemplateOutlet="customTemplate"></ng-container>
+  </ng-container>
+  <ng-template #standard>
+    <mat-icon>{{icon}}</mat-icon>
+    <span class="text">{{text}}</span>
+  </ng-template>
+</button>

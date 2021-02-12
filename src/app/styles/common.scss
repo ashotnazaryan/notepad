@@ -1,0 +1,51 @@
+.w-100 {
+  width: 100%;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.border-box {
+  box-sizing: border-box;
+}
+
+.d-block {
+  display: block;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+
+// TODO move to separate place
+.button-text {
+  font-size: 15px;
+  flex-grow: 1;
+  text-align: left;
+}

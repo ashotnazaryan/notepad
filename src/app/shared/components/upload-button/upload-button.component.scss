@@ -1,0 +1,21 @@
+@import 'src/app/styles/common';
+
+input[type='file'] {
+  display: none;
+}
+
+.button-wrapper {
+  @extend .flex;
+  @extend .flex-row;
+  @extend .align-items-center;
+  @extend .justify-content-center;
+
+  &__text {
+    @extend .button-text;
+  }
+}
+
+label {
+  cursor   : pointer;
+  min-width: 80px;
+}
