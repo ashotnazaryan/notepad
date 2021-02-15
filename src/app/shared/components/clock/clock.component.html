@@ -1,6 +1,6 @@
 <ng-container [ngSwitch]="size">
   <ng-container *ngIf="dateTime$ | async as dateTime">
     <h1 *ngSwitchCase="ClockSize.large">{{dateTime}}</h1>
-    <span *ngSwitchCase="ClockSize.small" class="font-size-12">{{dateTime}}</span>
+    <span *ngSwitchCase="ClockSize.small" class="font-size-15">{{dateTime}}</span>
   </ng-container>
 </ng-container>

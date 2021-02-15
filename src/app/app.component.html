@@ -13,13 +13,13 @@
   </mat-menu>
   <div class="flex flex-row flex-grow-1 justify-content-between align-items-center">
     <app-breadcrumbs 
-      [item]="modulePage$ | async">
+      [item]="(modulePage$ | async)!">
     </app-breadcrumbs>
     <div class="flex flex-row align-items-center">
       <app-clock [format]="clockFormat"></app-clock>
       <!-- TODO move to component -->
       <app-button
-        icon="language" 
+        icon="language"
         [text]="(currentLanguage$ | async)?.shortName"
         [matMenuTriggerFor]="lang">
       </app-button>

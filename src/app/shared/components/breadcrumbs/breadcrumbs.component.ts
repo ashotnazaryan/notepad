@@ -8,10 +8,7 @@ import { ModulePage } from '@shared/models';
   styleUrls: ['./breadcrumbs.component.scss']
 })
 export class BreadcrumbsComponent implements OnInit {
-  @Input() item: ModulePage = {
-    module: '',
-    page: ''
-  };
+  @Input() item!: ModulePage;
 
   constructor() { }
 

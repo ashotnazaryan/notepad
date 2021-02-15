@@ -24,9 +24,9 @@ export class AppComponent implements OnInit {
   timeLink = `${ROUTES.tools.route}/${ROUTES.tools.sub_routes.time.route}`;
   languages = languages;
   defaultLanguageKey = APP_CONFIGS.DEFAULT_LANGUAGE_KEY;
-  modulePage$: Observable<ModulePage> = this.store.select(fromRoot.selectModulePage);
-  currentLanguage$: Observable<Language> = this.store.select(fromRoot.selectLanguage);
-  clockFormat = 'hh:mm A';
+  modulePage$: Observable<ModulePage> = this.store.select(fromRoot.selectModulePage); // TODO use takeuntil
+  currentLanguage$: Observable<Language> = this.store.select(fromRoot.selectLanguage); // TODO use takeuntil
+  clockFormat = 'h:mm A';
 
   constructor(
     private router: Router,

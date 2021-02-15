@@ -16,7 +16,7 @@ export enum ClockSize {
 })
 export class ClockComponent implements OnInit {
   @Input() size: ClockSize = ClockSize.small;
-  @Input() format = APP_CONFIGS.DATE_TIME_FORMAT;
+  @Input() format = APP_CONFIGS.DATE_TIME_LONG_FORMAT;
 
   readonly ClockSize = ClockSize;
   dateTime$?: Observable<string>;

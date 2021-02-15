@@ -13,14 +13,14 @@ const initialState: State = {
   modulePage: {
     module: '',
     page: ''
-  },
+  }
 };
 
 export const reducer = createReducer(
   initialState,
   on(ModulePageActions.SetModulePage, (state, modulePage) => ({
     ...state,
-    modulePage,
+    modulePage
   }))
 );
 

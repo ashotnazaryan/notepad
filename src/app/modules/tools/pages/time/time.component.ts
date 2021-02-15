@@ -13,6 +13,7 @@ export class TimeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }
