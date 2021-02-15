@@ -1,0 +1,12 @@
+{
+  "GENERAL_BUTTONS_SAVE": "Сохранить",
+  "GENERAL_PAPER_TYPE": "Тип бумаги",
+  "GENERAL_BUTTONS_CLEAR": "Стереть",
+  "GENERAL_BUTTONS_UPLOAD": "Загрузить",
+  "GENERAL_TOOLTIPS_TOOLS": "Инструменты",
+  "GENERAL_PAGES_NOTES": "Заметки",
+  "GENERAL_PAGES_TIME": "Время",
+  "PAPER_TYPE_YELLOW": "Желтый",
+  "PAPER_TYPE_WHITE": "Белый",
+  "PAPER_TYPE_BLACK": "Черный"
+}

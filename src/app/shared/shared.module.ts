@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { MaterialModule} from './material/material.module';
 import { PaperComponent } from './components/paper/paper.component';
@@ -23,11 +24,13 @@ const components = [
   ],
   imports: [
     CommonModule,
+    TranslateModule,
     FormsModule,
     ReactiveFormsModule,
     MaterialModule
   ],
   exports: [
+    TranslateModule,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,

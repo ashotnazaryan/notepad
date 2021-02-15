@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { ModulePage } from '@shared/models/route';
+import { ModulePage } from '@shared/models';
 
 @Component({
   selector: 'app-breadcrumbs',
@@ -8,7 +8,10 @@ import { ModulePage } from '@shared/models/route';
   styleUrls: ['./breadcrumbs.component.scss']
 })
 export class BreadcrumbsComponent implements OnInit {
-  @Input() item?: ModulePage | null;
+  @Input() item: ModulePage = {
+    module: '',
+    page: ''
+  };
 
   constructor() { }
 

@@ -1,12 +1,12 @@
 <div class="notes-container">
   <mat-form-field>
-    <mat-label>Paper type</mat-label>
+    <mat-label>{{'GENERAL_PAPER_TYPE' | translate}}</mat-label>
     <mat-select
       placeholder="Choose paper type"
       [value]="paperType"
       (selectionChange)="handlePaperTypeChange($event)">
-      <mat-option *ngFor="let item of paperTypes" [value]="item.key">
-        {{item.name}}
+      <mat-option *ngFor="let item of paperTypes" [value]="item?.key">
+        {{item?.name}}
       </mat-option>
     </mat-select>
   </mat-form-field>
@@ -18,7 +18,7 @@
     <div class="actions flex flex-row align-items-center">
       <app-button
         icon="save" 
-        text="Save"
+        [text]="'GENERAL_BUTTONS_SAVE' | translate"
         (clicked)="save()">
       </app-button>
       <app-upload-button
@@ -26,7 +26,7 @@
       </app-upload-button>
       <app-button
         icon="clear" 
-        text="Clear"
+        [text]="'GENERAL_BUTTONS_CLEAR' | translate"
         color="accent"
         (clicked)="clear()">
       </app-button>

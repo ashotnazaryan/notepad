@@ -1,16 +1,34 @@
 <mat-toolbar color="primary">
-  <button mat-icon-button [matMenuTriggerFor]="tools" matTooltip="Tools" matTooltipPosition="right">
+  <!-- TODO move to component -->
+  <button 
+    mat-icon-button 
+    [matMenuTriggerFor]="tools" 
+    [matTooltip]="'GENERAL_TOOLTIPS_TOOLS' | translate" 
+    matTooltipPosition="right">
     <mat-icon>settings</mat-icon>
   </button>
   <mat-menu #tools="matMenu">
-    <button mat-menu-item [routerLink]="notesLink">Notes</button>
-    <button mat-menu-item [routerLink]="timeLink">Time</button>
+    <button mat-menu-item [routerLink]="notesLink">{{'GENERAL_PAGES_NOTES' | translate}}</button>
+    <button mat-menu-item [routerLink]="timeLink">{{'GENERAL_PAGES_TIME' | translate}}</button>
   </mat-menu>
   <div class="flex flex-row flex-grow-1 justify-content-between align-items-center">
     <app-breadcrumbs 
       [item]="modulePage$ | async">
     </app-breadcrumbs>
-    <app-clock></app-clock>
+    <div class="flex flex-row align-items-center">
+      <app-clock [format]="clockFormat"></app-clock>
+      <!-- TODO move to component -->
+      <app-button
+        icon="language" 
+        [text]="(currentLanguage$ | async)?.shortName"
+        [matMenuTriggerFor]="lang">
+      </app-button>
+      <mat-menu #lang="matMenu">
+        <ng-container *ngFor="let item of languages">
+          <button mat-menu-item (click)="changeLanguage(item)">{{item.name}}</button>
+        </ng-container>
+      </mat-menu>
+    </div>
   </div>
 </mat-toolbar>
 <div class="main-content">

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TranslateService } from '@ngx-translate/core';
 
 import { FileService } from '@core/services/file.service';
 import { Note } from './models/note';
@@ -16,23 +17,27 @@ export class NotesComponent implements OnInit {
   paperTypes: Array<Note> = [
     {
       key: 'yellow',
-      name: 'Yellow'
+      langKey: 'PAPER_TYPE_YELLOW',
+      name: this.translate.instant('PAPER_TYPE_YELLOW')
     },
     {
       key: 'white',
-      name: 'White'
+      langKey: 'PAPER_TYPE_WHITE',
+      name: this.translate.instant('PAPER_TYPE_WHITE')
     },
     {
       key: 'black',
-      name: 'Black'
+      langKey: 'PAPER_TYPE_BLACK',
+      name: this.translate.instant('PAPER_TYPE_BLACK')
     }
   ];
-  paperType = 'yellow';
+  paperType: Note['key'] = this.paperTypes[0].key;
 
   constructor(
     private fb: FormBuilder,
     private file: FileService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private translate: TranslateService
   ) {
     this.form = this.fb.group({
       paper: null
@@ -40,11 +45,12 @@ export class NotesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    // TODO find better way
+    this.handleLanguageChange();
   }
 
-  handlePaperTypeChange = (option: MatSelectChange): void => {
-    this.paperType = option.value;
+  handlePaperTypeChange = ({ value }: MatSelectChange): void => {
+    this.paperType = value;
   }
 
   save = (): void => {
@@ -71,6 +77,17 @@ export class NotesComponent implements OnInit {
 
   clear = (): void => {
     this.form.reset();
+  }
+
+  handleLanguageChange = (): void => {
+    this.translate.onLangChange.subscribe((data) => {
+      this.paperTypes = this.paperTypes.map((paperType) => {
+        return {
+          ...paperType,
+          name: data.translations[paperType.langKey]
+        }
+      })
+    });
   }
 
 }

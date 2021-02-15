@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ROUTES } from '@shared/constants/routes';
+import { ROUTES } from '@shared/constants';
 import { NotesComponent } from './pages/notes/notes.component';
 import { TimeComponent } from './pages/time/time.component';
 import { ToolsComponent } from './tools.component';

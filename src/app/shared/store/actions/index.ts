@@ -1,5 +1,7 @@
-import * as PageActions from './page.actions';
+import * as ModulePageActions from './module-page.actions';
+import * as LanguageActions from './language.actions';
 
 export {
-  PageActions,
+  ModulePageActions,
+  LanguageActions,
 };

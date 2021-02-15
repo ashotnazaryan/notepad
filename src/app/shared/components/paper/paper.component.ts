@@ -1,5 +1,7 @@
-import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core';
+import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+
+import { KeyName } from '@shared/models';
 
 @Component({
   selector: 'app-paper',
@@ -15,7 +17,7 @@ import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class PaperComponent implements OnInit {
   @Input() size = 16;
-  @Input() type = 'yellow';
+  @Input() type?: KeyName['key'];
 
   textAreaControl = new FormControl('');
   onChange: Function = () => { };

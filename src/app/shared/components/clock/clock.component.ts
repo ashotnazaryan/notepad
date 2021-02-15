@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 
+import { APP_CONFIGS } from '@core/config';
 import { DateService } from '@core/services/date.service';
 
 export enum ClockSize {
@@ -15,18 +16,19 @@ export enum ClockSize {
 })
 export class ClockComponent implements OnInit {
   @Input() size: ClockSize = ClockSize.small;
-  readonly ClockSize = ClockSize;
+  @Input() format = APP_CONFIGS.DATE_TIME_FORMAT;
 
+  readonly ClockSize = ClockSize;
   dateTime$?: Observable<string>;
 
   constructor(
-    dateService: DateService
+    private dateService: DateService
   ) {
-    this.dateTime$ = dateService.currentDateTime;
+
   }
 
   ngOnInit(): void {
-
+    this.dateTime$ = this.dateService.getCurrentDate(this.format);
   }
 
 }

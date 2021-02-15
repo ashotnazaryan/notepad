@@ -1,16 +1,18 @@
 export interface ModulePage {
-  module?: string;
-  page?: string;
+  module: string;
+  page: string;
 }
 
 export interface AppRoute {
   [key: string]: {
     route: string;
     name: string;
+    langKey: string;
     sub_routes: {
       [key: string]: {
         route: string;
         name: string;
+        langKey: string;
       }
     }
   }
