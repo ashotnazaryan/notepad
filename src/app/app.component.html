@@ -6,6 +6,12 @@
     <button mat-menu-item [routerLink]="notesLink">Notes</button>
     <button mat-menu-item [routerLink]="timeLink">Time</button>
   </mat-menu>
+  <div class="flex flex-row flex-grow-1 justify-content-between align-items-center">
+    <app-breadcrumbs 
+      [item]="modulePage$ | async">
+    </app-breadcrumbs>
+    <app-clock></app-clock>
+  </div>
 </mat-toolbar>
 <div class="main-content">
   <router-outlet></router-outlet>

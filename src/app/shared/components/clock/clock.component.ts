@@ -1,7 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 
 import { DateService } from '@core/services/date.service';
+
+export enum ClockSize {
+  small,
+  large
+}
 
 @Component({
   selector: 'app-clock',
@@ -9,6 +14,9 @@ import { DateService } from '@core/services/date.service';
   styleUrls: ['./clock.component.scss']
 })
 export class ClockComponent implements OnInit {
+  @Input() size: ClockSize = ClockSize.small;
+  readonly ClockSize = ClockSize;
+
   dateTime$?: Observable<string>;
 
   constructor(

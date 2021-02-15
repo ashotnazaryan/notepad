@@ -40,7 +40,8 @@
             ],
             "scripts": [],
             "allowedCommonJsDependencies": [
-              "rxjs"
+              "rxjs",
+              "lodash"
             ]
           },
           "configurations": {

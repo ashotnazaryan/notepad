@@ -13,15 +13,15 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: `${ROUTES.TOOLS.SUB_ROUTES.NOTES.name}`,
+        redirectTo: `${ROUTES.tools.sub_routes.notes.route}`,
         pathMatch: 'full'
       },
       {
-        path: `${ROUTES.TOOLS.SUB_ROUTES.NOTES.name}`,
+        path: `${ROUTES.tools.sub_routes.notes.route}`,
         component: NotesComponent
       },
       {
-        path: `${ROUTES.TOOLS.SUB_ROUTES.TIME.name}`,
+        path: `${ROUTES.tools.sub_routes.time.route}`,
         component: TimeComponent
       }
     ]

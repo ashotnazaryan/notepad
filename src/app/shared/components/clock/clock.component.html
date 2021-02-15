@@ -1,1 +1,4 @@
-<h1>{{dateTime$ | async}}</h1>
+<ng-container [ngSwitch]="size">
+  <h1 *ngSwitchCase="ClockSize.large">{{dateTime$ | async}}</h1>
+  <span *ngSwitchCase="ClockSize.small" class="font-size-12">{{dateTime$ | async}}</span>
+</ng-container>

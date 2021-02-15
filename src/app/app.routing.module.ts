@@ -7,11 +7,11 @@ import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.c
 const routes: Routes = [
   {
     path: '',
-    redirectTo: `${ROUTES.TOOLS.name}`,
+    redirectTo: `${ROUTES.tools.route}`,
     pathMatch: 'full'
   },
   {
-    path: `${ROUTES.TOOLS.name}`,
+    path: `${ROUTES.tools.route}`,
     loadChildren: () => import('@modules/tools/tools.module').then(m => m.ToolsModule)
   },
   {

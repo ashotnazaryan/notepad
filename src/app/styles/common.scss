@@ -6,6 +6,14 @@
   height: 100%;
 }
 
+.mx-10 {
+  margin: 0 10px;
+}
+
+.font-size-12 {
+  font-size: 12px;
+}
+
 .border-box {
   box-sizing: border-box;
 }
@@ -40,6 +48,10 @@
 
 .justify-content-between {
   justify-content: space-between;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
 }
 
 

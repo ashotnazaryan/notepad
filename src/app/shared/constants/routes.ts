@@ -1,12 +1,17 @@
-export const ROUTES = {
-  TOOLS: {
-    name: 'tools',
-    SUB_ROUTES: {
-      NOTES: {
-        name: 'notes'
+import { AppRoute } from "@shared/models/route";
+
+export const ROUTES: AppRoute = {
+  tools: {
+    route: 'tools',
+    name: 'Tools',
+    sub_routes: {
+      notes: {
+        route: 'notes',
+        name: 'Notes'
       },
-      TIME: {
-        name: 'time'
+      time: {
+        route: 'time',
+        name: 'Time'
       }
     }
   }
