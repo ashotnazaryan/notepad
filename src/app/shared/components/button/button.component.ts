@@ -1,5 +1,10 @@
 import { Component, ContentChild, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 
+export enum ButtonSize {
+  small,
+  large
+}
+
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
@@ -7,10 +12,13 @@ import { Component, ContentChild, EventEmitter, Input, OnInit, Output, TemplateR
 })
 export class ButtonComponent implements OnInit {
   @Input() color: string = 'primary';
+  @Input() size: ButtonSize = ButtonSize.large;
   @Input() icon?: string;
   @Input() text?: string;
   @Output() readonly clicked = new EventEmitter<void>();
   @ContentChild('customTemplate', { static: true }) customTemplate?: TemplateRef<any>;
+
+  readonly ButtonSize = ButtonSize;
 
   constructor() { }
 

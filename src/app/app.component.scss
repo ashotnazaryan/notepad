@@ -1,7 +1,21 @@
+@import 'src/app/styles/common';
+
 :host {
   display: block;
 }
 
-.main-content {
+.header-container {
+  &__widgets {
+    width: calc(100% - 40px);
+  }
+}
+
+.main-container {
   padding: 10px;
+}
+
+app-breadcrumbs {
+  max-width: 80%;
+  margin-right: 5px;
+  @extend .ellipsis-text;
 }

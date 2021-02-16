@@ -63,7 +63,7 @@ export const selectModulePage = createSelector(
 
 export const selectLanguage = createSelector(
   selectLanguageState,
-  fromLanguage.selectLanguage
+  fromLanguage.selectLanguageFn
 );
 
 export const selectRouter = createFeatureSelector<

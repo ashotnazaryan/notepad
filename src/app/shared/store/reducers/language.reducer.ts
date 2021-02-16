@@ -23,4 +23,4 @@ export const reducer = createReducer(
   }))
 );
 
-export const selectLanguage = (state: State) => state.language;
+export const selectLanguageFn = (state: State) => state.language;

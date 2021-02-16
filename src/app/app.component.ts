@@ -13,6 +13,7 @@ import * as fromRoot from '@shared/store/reducers';
 import { Language, ModulePage } from '@shared/models';
 import { getModulePage } from '@shared/utils';
 import { SetLanguage } from '@shared/store/actions/language.actions';
+import { ButtonSize } from '@shared/components/button/button.component';
 
 @Component({
   selector: 'app-root',
@@ -27,6 +28,8 @@ export class AppComponent implements OnInit {
   modulePage$: Observable<ModulePage> = this.store.select(fromRoot.selectModulePage); // TODO use takeuntil
   currentLanguage$: Observable<Language> = this.store.select(fromRoot.selectLanguage); // TODO use takeuntil
   clockFormat = 'h:mm A';
+  
+  readonly ButtonSize = ButtonSize;
 
   constructor(
     private router: Router,

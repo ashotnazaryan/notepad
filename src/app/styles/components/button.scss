@@ -22,5 +22,16 @@ app-button {
         margin-right: 3px;
       }
     }
+
+    &.small {
+      padding  : 3px 7px !important;
+      min-width: 60px !important;
+    }
   }
+}
+
+.button-text {
+  font-size: 15px;
+  flex-grow: 1;
+  text-align: left;
 }
