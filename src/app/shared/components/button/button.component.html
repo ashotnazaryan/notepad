@@ -1,13 +1,15 @@
-<button 
-  mat-flat-button 
-  [color]="color" 
-  [ngClass]="{'small': size === ButtonSize.small}" 
+<button
+  mat-flat-button
+  [color]="color"
+  [class.small]="size === ButtonSize.small"
+  [class.large]="size === ButtonSize.large"
+  [class.mat-icon-button]="size === ButtonSize.icon"
   (click)="handleClick()">
   <ng-container *ngIf="customTemplate; else standard">
     <ng-container *ngTemplateOutlet="customTemplate"></ng-container>
   </ng-container>
   <ng-template #standard>
     <mat-icon>{{icon}}</mat-icon>
-    <span class="text">{{text}}</span>
+    <span *ngIf="text" class="text">{{text}}</span>
   </ng-template>
 </button>

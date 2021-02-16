@@ -3,9 +3,11 @@
   "GENERAL_PAPER_TYPE": "Тип бумаги",
   "GENERAL_BUTTONS_CLEAR": "Стереть",
   "GENERAL_BUTTONS_UPLOAD": "Загрузить",
+  "GENERAL_BUTTONS_SELECT": "Выбрать",
   "GENERAL_TOOLTIPS_TOOLS": "Инструменты",
   "GENERAL_PAGES_NOTES": "Заметки",
   "GENERAL_PAGES_TIME": "Время",
+  "GENERAL_PAGES_GROCERY": "Покупки",
   "PAPER_TYPE_YELLOW": "Желтый",
   "PAPER_TYPE_WHITE": "Белый",
   "PAPER_TYPE_BLACK": "Черный"

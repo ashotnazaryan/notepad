@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/internal/Observable';
-import { filter } from 'rxjs/operators';
+import { filter, map, mergeMap, tap } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
 
@@ -14,6 +14,7 @@ import { Language, ModulePage } from '@shared/models';
 import { getModulePage } from '@shared/utils';
 import { SetLanguage } from '@shared/store/actions/language.actions';
 import { ButtonSize } from '@shared/components/button/button.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -23,40 +24,67 @@ import { ButtonSize } from '@shared/components/button/button.component';
 export class AppComponent implements OnInit {
   notesLink = `${ROUTES.tools.route}/${ROUTES.tools.sub_routes.notes.route}`;
   timeLink = `${ROUTES.tools.route}/${ROUTES.tools.sub_routes.time.route}`;
+  groceryLink = `${ROUTES.tools.route}/${ROUTES.tools.sub_routes.grocery.route}`;
   languages = languages;
   defaultLanguageKey = APP_CONFIGS.DEFAULT_LANGUAGE_KEY;
   modulePage$: Observable<ModulePage> = this.store.select(fromRoot.selectModulePage); // TODO use takeuntil
   currentLanguage$: Observable<Language> = this.store.select(fromRoot.selectLanguage); // TODO use takeuntil
   clockFormat = 'h:mm A';
-  
+  pageTitleKey: string = '';
+
   readonly ButtonSize = ButtonSize;
 
   constructor(
     private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private titleService: Title,
     private store: Store<fromRoot.State>,
     private translate: TranslateService
   ) {
     moment.locale(this.defaultLanguageKey);
-
-    router.events
-      .pipe(
-        filter((event) => event instanceof NavigationEnd),
-      )
-      .subscribe((event) => {
-        const modulePage = getModulePage(event);
-
-        this.store.dispatch(SetModulePage(modulePage));
-      });
   }
 
   ngOnInit(): void {
-    
+    this.handleRouting();
+
+    this.translate.onLangChange.subscribe((data) => {
+      this.titleService.setTitle(data.translations[this.pageTitleKey]);
+    });
   }
 
   changeLanguage = (language: Language): void => {
     moment.locale(language.key);
     this.translate.use(language.key);
     this.store.dispatch(SetLanguage(language));
+  }
+
+  private handleRouting = (): void => {
+    this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        tap((route) => {
+          const modulePage = getModulePage(route);
+
+          this.store.dispatch(SetModulePage(modulePage));
+        }),
+        map(() => this.activatedRoute),
+        map((route) => {
+          while (route.firstChild) {
+            route = route.firstChild;
+          }
+
+          return route;
+        }),
+        filter((route) => route.outlet === 'primary'),
+        mergeMap((route) => route.data)
+      )
+      .subscribe((data) => {
+        this.pageTitleKey = data.title;
+        
+        this.translate.get(data.title).subscribe((title: string) => {
+          this.titleService.setTitle(title);
+        });
+      });
   }
 
 }

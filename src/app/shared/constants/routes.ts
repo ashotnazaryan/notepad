@@ -15,6 +15,11 @@ export const ROUTES: AppRoute = {
         route: 'time',
         name: 'Time',
         langKey: 'GENERAL_PAGES_TIME',
+      },
+      grocery: {
+        route: 'grocery',
+        name: 'Grocery',
+        langKey: 'GENERAL_PAGES_GROCERY',
       }
     }
   }

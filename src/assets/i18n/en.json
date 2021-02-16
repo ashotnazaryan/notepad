@@ -3,9 +3,11 @@
   "GENERAL_PAPER_TYPE": "Paper type",
   "GENERAL_BUTTONS_CLEAR": "Clear",
   "GENERAL_BUTTONS_UPLOAD": "Upload",
+  "GENERAL_BUTTONS_SELECT": "Select",
   "GENERAL_TOOLTIPS_TOOLS": "Tools",
   "GENERAL_PAGES_NOTES": "Notes",
   "GENERAL_PAGES_TIME": "Time",
+  "GENERAL_PAGES_GROCERY": "Grocery",
   "PAPER_TYPE_YELLOW": "Yellow",
   "PAPER_TYPE_WHITE": "White",
   "PAPER_TYPE_BLACK": "Black"

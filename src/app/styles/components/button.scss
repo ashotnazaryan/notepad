@@ -1,7 +1,5 @@
 app-button {
   button {
-    padding      : 5px 10px !important;
-    min-width    : 100px !important;
     height       : 40px !important;
     border-radius: 2px !important;
 
@@ -23,15 +21,25 @@ app-button {
       }
     }
 
+    &.icon {
+      padding  : inherit !important;
+      min-width: inherit !important;
+    }
+
     &.small {
       padding  : 3px 7px !important;
       min-width: 60px !important;
+    }
+
+    &.large {
+      padding  : 5px 10px !important;
+      min-width: 100px !important;
     }
   }
 }
 
 .button-text {
-  font-size: 15px;
-  flex-grow: 1;
+  font-size : 15px;
+  flex-grow : 1;
   text-align: left;
 }

@@ -1,16 +1,17 @@
 <div class="header-container">
   <mat-toolbar color="primary">
     <!-- TODO move to component -->
-    <button 
-      mat-icon-button 
+    <app-button
+      icon="settings"
+      [size]="ButtonSize.icon"
       [matMenuTriggerFor]="tools" 
       [matTooltip]="'GENERAL_TOOLTIPS_TOOLS' | translate" 
       matTooltipPosition="right">
-      <mat-icon>settings</mat-icon>
-    </button>
+    </app-button>
     <mat-menu #tools="matMenu">
       <button mat-menu-item [routerLink]="notesLink">{{'GENERAL_PAGES_NOTES' | translate}}</button>
       <button mat-menu-item [routerLink]="timeLink">{{'GENERAL_PAGES_TIME' | translate}}</button>
+      <button mat-menu-item [routerLink]="groceryLink">{{'GENERAL_PAGES_GROCERY' | translate}}</button>
     </mat-menu>
     <div class="header-container__widgets flex flex-row flex-grow-1 justify-content-between align-items-center">
       <app-breadcrumbs 

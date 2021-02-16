@@ -1,6 +1,7 @@
 import { Component, ContentChild, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 
 export enum ButtonSize {
+  icon,
   small,
   large
 }

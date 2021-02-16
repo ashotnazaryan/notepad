@@ -27,7 +27,7 @@ export const ROOT_REDUCERS = new InjectionToken<
     [fromModulePage.modulePageFeatureKey]: fromModulePage.reducer,
     [fromLanguage.languageFeatureKey]: fromLanguage.reducer,
     router: fromRouter.routerReducer,
-  }),
+  })
 });
 
 export const logger = (reducer: ActionReducer<State>): ActionReducer<State> => {
