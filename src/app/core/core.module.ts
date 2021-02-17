@@ -1,10 +1,14 @@
 import { APP_INITIALIZER, Injector, NgModule } from '@angular/core';
-import { CommonModule, LOCATION_INITIALIZED } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { StoreModule } from '@ngrx/store';
 
 import { APP_CONFIGS } from './config';
+import { SharedModule } from '@shared/shared.module';
+import * as fromTools from '@modules/tools/store/reducers';
+import { HeaderComponent } from './components/header/header.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -18,10 +22,13 @@ export function appInitializerFactory(translate: TranslateService) {
 }
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    HeaderComponent
+  ],
   imports: [
     CommonModule,
     HttpClientModule,
+    SharedModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -29,9 +36,12 @@ export function appInitializerFactory(translate: TranslateService) {
         deps: [HttpClient]
       }
     }),
+    StoreModule.forFeature(fromTools.toolsFeatureKey, fromTools.reducers),
   ],
   exports: [
-    HttpClientModule
+    HttpClientModule,
+    SharedModule,
+    HeaderComponent
   ],
   providers: [
     {

@@ -21,10 +21,10 @@ import { GroceryDialogComponent } from './pages/grocery/components/grocery-dialo
     GroceryDialogComponent
   ],
   imports: [
+    ToolsRoutingModule,
     CommonModule,
     TranslateModule,
     SharedModule,
-    ToolsRoutingModule,
     StoreModule.forFeature(fromTools.toolsFeatureKey, fromTools.reducers),
   ],
   entryComponents: [

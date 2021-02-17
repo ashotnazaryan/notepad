@@ -13,10 +13,10 @@ import { GroceryNotificationsComponent } from './pages/grocery-notifications/gro
     GroceryNotificationsComponent
   ],
   imports: [
+    NotificationsRoutingModule,
     CommonModule,
     TranslateModule,
-    SharedModule,
-    NotificationsRoutingModule
+    SharedModule
   ]
 })
 export class NotificationsModule { }

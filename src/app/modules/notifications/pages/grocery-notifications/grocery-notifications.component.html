@@ -1,1 +1,17 @@
-<p>grocery-notifications works!</p>
+<ng-container *ngIf="groceries$ | async as groceries">
+  <mat-selection-list *ngIf="groceries.length" [multiple]="false">
+    <mat-list-option *ngFor="let item of groceries" [value]="item">
+      <div class="grocery-item flex flex-row align-items-center justify-content-between">
+        <div class="flex flex-row align-items-center">
+          <img [src]="item.icon" [alt]="item.value" />
+          <span class="mx-1 font-weight-bold">{{item.value}}</span>
+        </div>
+        <div class="flex flex-row align-items-center">
+          <mat-form-field floatLabel="never">
+            <input matInput disabled [ngModel]="item.notes" placeholder="{{'GROCERY_NOTES' | translate}}" (click)="$event.stopPropagation()">
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-list-option>
+  </mat-selection-list>
+</ng-container>

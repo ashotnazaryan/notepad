@@ -4,18 +4,6 @@
   display: block;
 }
 
-.header-container {
-  &__widgets {
-    width: calc(100% - 40px);
-  }
-}
-
 .main-container {
   padding: $baseSpacing*2;
-}
-
-app-breadcrumbs {
-  max-width: 80%;
-  margin-right: $baseSpacing;
-  @extend .ellipsis-text;
 }

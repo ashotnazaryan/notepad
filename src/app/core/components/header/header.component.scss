@@ -1,0 +1,13 @@
+@import 'src/app/styles/core';
+
+.header-container {
+  &__widgets {
+    width: calc(100% - 40px);
+  }
+}
+
+app-breadcrumbs {
+  max-width   : 80%;
+  margin-right: $baseSpacing;
+  @extend .ellipsis-text;
+}

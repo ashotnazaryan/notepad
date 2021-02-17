@@ -3,4 +3,5 @@ export interface Grocery {
   value: string;
   icon: string;
   selected?: boolean;
+  notes?: string;
 }

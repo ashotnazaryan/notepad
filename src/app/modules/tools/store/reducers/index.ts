@@ -29,7 +29,9 @@ export const selectToolsState = createFeatureSelector<State, ToolsState>(
 
 export const selectGroceryState = createSelector(
   selectToolsState,
-  (state) => state[fromGrocery.groceryFeatureKey]
+  (state) => {
+    return state[fromGrocery.groceryFeatureKey]
+  }
 );
 
 export const selectSelectedGroceryList = createSelector(

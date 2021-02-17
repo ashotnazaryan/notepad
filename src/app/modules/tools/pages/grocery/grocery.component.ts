@@ -66,8 +66,9 @@ export class GroceryComponent implements OnInit {
     this.groceries = this.groceries.filter(({ key }) => key !== grocery.key);
   }
 
-  remind = (): void => {
+  add = (): void => {
     this.store.dispatch(SetSelectedGroceryList({ selectedGroceryList: this.selectedGroceries }));
+    this.groceries = [];
   }
 
 }
