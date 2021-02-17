@@ -10,17 +10,11 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
-export function appInitializerFactory(translate: TranslateService, injector: Injector) {
-  return async () => {
-    await injector.get(LOCATION_INITIALIZED, Promise.resolve(null));
-
+export function appInitializerFactory(translate: TranslateService) {
+  return () => {
     translate.setDefaultLang(APP_CONFIGS.DEFAULT_LANGUAGE_KEY);
-    try {
-      await translate.use(APP_CONFIGS.DEFAULT_LANGUAGE_KEY).toPromise();
-    } catch (err) {
-
-    }
-  }
+    return translate.use(APP_CONFIGS.DEFAULT_LANGUAGE_KEY).toPromise();
+  };
 }
 
 @NgModule({

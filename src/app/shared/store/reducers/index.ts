@@ -58,7 +58,7 @@ export const selectLanguageState = createFeatureSelector<State, fromLanguage.Sta
 
 export const selectModulePage = createSelector(
   selectModulePageState,
-  fromModulePage.selectModulePage
+  fromModulePage.selectModulePageFn
 );
 
 export const selectLanguage = createSelector(

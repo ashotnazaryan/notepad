@@ -1,9 +1,11 @@
+@import 'src/app/styles/core';
+
 :host {
   display: block;
 }
 
 .actions {
   app-button, app-upload-button {
-    margin-right: 10px;
+    margin-right: $baseSpacing*2;
   }
 }

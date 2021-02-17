@@ -4,7 +4,7 @@
     <app-button
       icon="settings"
       [size]="ButtonSize.icon"
-      [matMenuTriggerFor]="tools" 
+      [matMenuTriggerFor]="tools"
       [matTooltip]="'GENERAL_TOOLTIPS_TOOLS' | translate" 
       matTooltipPosition="right">
     </app-button>
@@ -22,6 +22,7 @@
         <!-- TODO move to component -->
         <app-button
           icon="language"
+          color="primary"
           [size]="ButtonSize.small"
           [text]="(currentLanguage$ | async)?.shortName"
           [matMenuTriggerFor]="lang">
@@ -30,6 +31,19 @@
           <ng-container *ngFor="let item of languages">
             <button mat-menu-item (click)="changeLanguage(item)">{{item.name}}</button>
           </ng-container>
+        </mat-menu>
+        <app-button
+          icon="notifications_active"
+          [size]="ButtonSize.icon"
+          [matMenuTriggerFor]="notifications" 
+          matTooltipPosition="left"
+          [matTooltip]="'GENERAL_TOOLTIPS_NOTIFICATIONS' | translate"
+          matBadgeSize="small"
+          matBadge="{{notificationsCount$ | async}}"
+          matBadgeColor="warn">
+        </app-button>
+        <mat-menu #notifications="matMenu">
+          <button mat-menu-item [routerLink]="groceryNotificationsLink">{{'GENERAL_PAGES_GROCERY' | translate}}</button>
         </mat-menu>
       </div>
     </div>

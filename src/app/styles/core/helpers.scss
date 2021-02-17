@@ -1,3 +1,5 @@
+@import './spacings';
+
 .w-100 {
   width: 100%;
 }
@@ -6,12 +8,20 @@
   height: 100%;
 }
 
-.mx-10 {
-  margin: 0 10px;
+.mx-2 {
+  margin: 0 $baseSpacing*2;
+}
+
+.mx-1 {
+  margin: 0 $baseSpacing;
 }
 
 .font-size-15 {
   font-size: 15px;
+}
+
+.font-weight-bold {
+  font-weight: bold;
 }
 
 .border-box {
@@ -27,7 +37,7 @@
 }
 
 .flex {
-  display: flex;
+  display: flex !important;
 }
 
 .flex-column {
@@ -50,8 +60,20 @@
   justify-content: space-between;
 }
 
+.justify-content-end {
+  justify-content: flex-end;
+}
+
+.justify-content-start {
+  justify-content: flex-start;
+}
+
 .flex-grow-1 {
   flex-grow: 1;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
 }
 
 .ellipsis-text {

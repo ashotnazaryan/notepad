@@ -4,11 +4,20 @@
   "GENERAL_BUTTONS_CLEAR": "Стереть",
   "GENERAL_BUTTONS_UPLOAD": "Загрузить",
   "GENERAL_BUTTONS_SELECT": "Выбрать",
+  "GENERAL_BUTTONS_CLOSE": "Закрыть",
+  "GENERAL_BUTTONS_REMIND": "Напомнить",
+  "GENERAL_BUTTONS_ADD": "Добавить",
   "GENERAL_TOOLTIPS_TOOLS": "Инструменты",
+  "GENERAL_TOOLTIPS_REMOVE": "Удалить",
+  "GENERAL_TOOLTIPS_NOTIFICATIONS": "Уведомления",
+  "GENERAL_PAGES_TOOLS": "Инструменты",
+  "GENERAL_PAGES_NOTIFICATIONS": "Уведомления",
   "GENERAL_PAGES_NOTES": "Заметки",
   "GENERAL_PAGES_TIME": "Время",
   "GENERAL_PAGES_GROCERY": "Покупки",
   "PAPER_TYPE_YELLOW": "Желтый",
   "PAPER_TYPE_WHITE": "Белый",
-  "PAPER_TYPE_BLACK": "Черный"
+  "PAPER_TYPE_BLACK": "Черный",
+  "GROCERY_CHOOSE_CATEGORY": "Выберите категорию",
+  "GROCERY_NOTES": "Заметки"
 }

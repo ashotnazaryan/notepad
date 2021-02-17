@@ -12,11 +12,12 @@ export enum ButtonSize {
   styleUrls: ['./button.component.scss']
 })
 export class ButtonComponent implements OnInit {
-  @Input() color: string = 'primary';
+  @Input() disabled = false;
+  @Input() color: string = 'default';
   @Input() size: ButtonSize = ButtonSize.large;
   @Input() icon?: string;
   @Input() text?: string;
-  @Output() readonly clicked = new EventEmitter<void>();
+  @Output() readonly clicked = new EventEmitter<MouseEvent>();
   @ContentChild('customTemplate', { static: true }) customTemplate?: TemplateRef<any>;
 
   readonly ButtonSize = ButtonSize;
@@ -27,8 +28,8 @@ export class ButtonComponent implements OnInit {
     
   }
 
-  handleClick = () => {
-    this.clicked.emit();
+  handleClick = (event?: MouseEvent) => {
+    this.clicked.emit(event);
   }
 
 }

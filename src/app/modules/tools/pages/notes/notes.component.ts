@@ -45,7 +45,6 @@ export class NotesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // TODO find better way
     this.handleLanguageChange();
   }
 
@@ -81,12 +80,13 @@ export class NotesComponent implements OnInit {
 
   handleLanguageChange = (): void => {
     this.translate.onLangChange.subscribe((data) => {
+      // TODO find better way
       this.paperTypes = this.paperTypes.map((paperType) => {
         return {
           ...paperType,
           name: data.translations[paperType.langKey]
         }
-      })
+      });
     });
   }
 

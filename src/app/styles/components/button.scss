@@ -1,7 +1,6 @@
 app-button {
   button {
-    height       : 40px !important;
-    border-radius: 2px !important;
+    height: 40px !important;
 
     .mat-button-wrapper {
       @extend .flex;
@@ -17,23 +16,31 @@ app-button {
 
       mat-icon {
         @extend .position-relative;
-        margin-right: 3px;
+        line-height: inherit;
       }
     }
 
     &.icon {
-      padding  : inherit !important;
-      min-width: inherit !important;
+      padding: inherit !important;
+
+      .mat-button-wrapper {
+        @extend .flex;
+        @extend .flex-row;
+        @extend .align-items-center;
+        @extend .justify-content-center;
+      }
     }
 
     &.small {
-      padding  : 3px 7px !important;
-      min-width: 60px !important;
+      padding      : 3px 7px !important;
+      min-width    : 60px !important;
+      border-radius: 4px !important;
     }
 
     &.large {
-      padding  : 5px 10px !important;
-      min-width: 100px !important;
+      padding      : $baseSpacing $baseSpacing*2 !important;
+      min-width    : 100px !important;
+      border-radius: 4px !important;
     }
   }
 }
@@ -41,5 +48,4 @@ app-button {
 .button-text {
   font-size : 15px;
   flex-grow : 1;
-  text-align: left;
 }

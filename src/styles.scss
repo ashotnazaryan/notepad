@@ -1,8 +1,6 @@
 @import '~normalize.css';
-@import 'src/app/styles/common';
-@import 'src/app/styles/fonts';
-@import 'src/app/styles/theme';
-@import 'src/app/styles/components/_index';
+@import 'src/app/styles/core';
+@import 'src/app/styles/components';
 
 /* You can add global styles to this file, and also import other style files */
 html, body { height: 100%; }

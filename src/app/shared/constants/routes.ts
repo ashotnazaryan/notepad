@@ -4,7 +4,7 @@ export const ROUTES: AppRoute = {
   tools: {
     route: 'tools',
     name: 'Tools',
-    langKey: 'GENERAL_TOOLTIPS_TOOLS',
+    langKey: 'GENERAL_PAGES_TOOLS',
     sub_routes: {
       notes: {
         route: 'notes',
@@ -16,6 +16,18 @@ export const ROUTES: AppRoute = {
         name: 'Time',
         langKey: 'GENERAL_PAGES_TIME',
       },
+      grocery: {
+        route: 'grocery',
+        name: 'Grocery',
+        langKey: 'GENERAL_PAGES_GROCERY',
+      }
+    }
+  },
+  notifications: {
+    route: 'notifications',
+    name: 'Notifications',
+    langKey: 'GENERAL_PAGES_NOTIFICATIONS',
+    sub_routes: {
       grocery: {
         route: 'grocery',
         name: 'Grocery',
