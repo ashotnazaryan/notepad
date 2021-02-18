@@ -32,8 +32,8 @@ export class HeaderComponent implements OnInit {
   modulePage$: Observable<ModulePage> = this.store.select(fromRoot.selectModulePage); // TODO use takeuntil
   currentLanguage$: Observable<Language> = this.store.select(fromRoot.selectLanguage); // TODO use takeuntil
   clockFormat = 'h:mm A';
-  notificationsCount$: Observable<number> = this.store.select(fromTools.selectSelectedGroceryList)
-    .pipe(map((selectedGroceryList) => selectedGroceryList.length));
+  groceryNotificationsCount$: Observable<number> = this.store.select(fromTools.selectChosenGroceryList)
+    .pipe(map((chosenGroceryList) => chosenGroceryList.length));
 
   readonly ButtonSize = ButtonSize;
 

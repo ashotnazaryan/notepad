@@ -34,6 +34,11 @@ export const selectGroceryState = createSelector(
   }
 );
 
+export const selectChosenGroceryList = createSelector(
+  selectGroceryState,
+  fromGrocery.selectChosenGroceryListFn
+);
+
 export const selectSelectedGroceryList = createSelector(
   selectGroceryState,
   fromGrocery.selectSelectedGroceryListFn

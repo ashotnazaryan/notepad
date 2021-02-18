@@ -4,6 +4,7 @@ import { MatSelectChange } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { FileService } from '@core/services/file.service';
+import { NotificationComponent, NotificationType } from '@shared/components/notification/notification.component';
 import { KeyName } from '@shared/models';
 
 @Component({
@@ -64,13 +65,22 @@ export class NotesComponent implements OnInit {
           this.form.setValue({ paper: data });
         },
         (error) => {
-          this.snackBar.open(error, 'Close'); // TODO create a snackbar component
+          this.showNotification(NotificationType.error, error);
         }
       );
   }
 
   clear = (): void => {
     this.form.reset();
+  }
+
+  private showNotification = (type: NotificationType, message: string) => {
+    this.snackBar.openFromComponent(NotificationComponent, {
+      data: {
+        type,
+        message
+      }
+    });
   }
 
 }

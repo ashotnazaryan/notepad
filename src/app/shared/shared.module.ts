@@ -11,6 +11,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { ClockComponent } from './components/clock/clock.component';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import { GroceryListComponent } from './components/grocery-list/grocery-list.component';
+import { NotificationComponent } from './components/notification/notification.component';
 
 const components = [
   PaperComponent, 
@@ -19,6 +20,7 @@ const components = [
   ClockComponent,
   BreadcrumbsComponent,
   GroceryListComponent,
+  NotificationComponent,
 ];
 
 @NgModule({

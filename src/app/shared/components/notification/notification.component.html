@@ -1,0 +1,9 @@
+<div class="notification-container flex flex-row align-items-center justify-content-between">
+  <span>{{data.message | translate}}</span>
+  <app-button
+    [icon]="data.type === NotificationType.success ? 'check' : 'close'"
+    [size]="ButtonSize.icon"
+    [color]="data.type === NotificationType.success ? 'primary' : 'accent'"
+    (clicked)="handleClick()">
+  </app-button>
+</div>

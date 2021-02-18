@@ -2,12 +2,18 @@ import {
   Component,
   EventEmitter,
   Inject,
+  OnDestroy,
   OnInit,
   Output
 } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Observable } from 'rxjs/internal/Observable';
+import { Subject } from 'rxjs/internal/Subject';
+import { takeUntil } from 'rxjs/operators';
 
-import { Grocery } from '../../models/grocery';
+import * as fromTools from '@modules/tools/store/reducers';
+import { Grocery } from '@modules/tools/pages/grocery/models/grocery';
 
 export interface GroceryDialogData {
   title: string;
@@ -19,35 +25,40 @@ export interface GroceryDialogData {
   templateUrl: './grocery-dialog.component.html',
   styleUrls: ['./grocery-dialog.component.scss']
 })
-export class GroceryDialogComponent implements OnInit {
+export class GroceryDialogComponent implements OnInit, OnDestroy {
+  private unsubscribe$ = new Subject();
+
   @Output() readonly grocerySelected = new EventEmitter<Grocery>();
+
   groceries: Array<Grocery> = [];
+  selectedGroceries$: Observable<Array<Grocery>> = this.store.select(fromTools.selectSelectedGroceryList)
+    .pipe(
+      takeUntil(this.unsubscribe$)
+    );
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: GroceryDialogData,
     private dialogRef: MatDialogRef<GroceryDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: GroceryDialogData
+    private store: Store<fromTools.State>,
   ) {
 
   }
 
-  // set selectedGroceries(data: Array<Grocery>) {
-    // this.groceries.forEach((item) => {
-    //   const selectedItem = data.find(({ key }) => key === item.key);
-
-    //   item = {
-    //     ...item,
-    //     selected: selectedItem?.selected
-    //   }
-    // });
-  // }
-
   ngOnInit(): void {
     this.groceries = this.data.content;
+    this.selectedGroceries$.subscribe((data) => {
+      console.log("Selected groceries", data);
+    });
   }
 
   handleClick = (item: Grocery): void => {
     item.selected = !item.selected;
     this.grocerySelected.emit(item);
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
 }

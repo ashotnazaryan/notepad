@@ -41,7 +41,7 @@
           matTooltipPosition="left"
           [matTooltip]="'GENERAL_TOOLTIPS_NOTIFICATIONS' | translate"
           matBadgeSize="small"
-          matBadge="{{notificationsCount$ | async}}"
+          matBadge="{{groceryNotificationsCount$ | async}}"
           matBadgeColor="warn">
         </app-button>
         <mat-menu #notifications="matMenu">
