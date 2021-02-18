@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
 
 import * as fromTools from '@modules/tools/store/reducers';
 import { Grocery } from '@modules/tools/pages/grocery/models/grocery';

@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { TranslateService } from '@ngx-translate/core';
 
 import { FileService } from '@core/services/file.service';
-import { Note } from './models/note';
+import { KeyName } from '@shared/models';
 
 @Component({
   selector: 'app-notes',
@@ -14,30 +13,26 @@ import { Note } from './models/note';
 })
 export class NotesComponent implements OnInit {
   form: FormGroup;
-  paperTypes: Array<Note> = [
+  paperTypes: Array<KeyName> = [
     {
       key: 'yellow',
-      langKey: 'PAPER_TYPE_YELLOW',
-      name: this.translate.instant('PAPER_TYPE_YELLOW')
+      name: 'PAPER_TYPE_YELLOW'
     },
     {
       key: 'white',
-      langKey: 'PAPER_TYPE_WHITE',
-      name: this.translate.instant('PAPER_TYPE_WHITE')
+      name: 'PAPER_TYPE_WHITE'
     },
     {
       key: 'black',
-      langKey: 'PAPER_TYPE_BLACK',
-      name: this.translate.instant('PAPER_TYPE_BLACK')
+      name: 'PAPER_TYPE_BLACK'
     }
   ];
-  paperType: Note['key'] = this.paperTypes[0].key;
+  paperType: KeyName['key'] = this.paperTypes[0].key;
 
   constructor(
     private fb: FormBuilder,
     private file: FileService,
-    private snackBar: MatSnackBar,
-    private translate: TranslateService
+    private snackBar: MatSnackBar
   ) {
     this.form = this.fb.group({
       paper: null
@@ -45,7 +40,7 @@ export class NotesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.handleLanguageChange();
+    
   }
 
   handlePaperTypeChange = ({ value }: MatSelectChange): void => {
@@ -76,18 +71,6 @@ export class NotesComponent implements OnInit {
 
   clear = (): void => {
     this.form.reset();
-  }
-
-  handleLanguageChange = (): void => {
-    this.translate.onLangChange.subscribe((data) => {
-      // TODO find better way
-      this.paperTypes = this.paperTypes.map((paperType) => {
-        return {
-          ...paperType,
-          name: data.translations[paperType.langKey]
-        }
-      });
-    });
   }
 
 }

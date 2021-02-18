@@ -10,6 +10,7 @@ import { UploadButtonComponent } from './components/upload-button/upload-button.
 import { ButtonComponent } from './components/button/button.component';
 import { ClockComponent } from './components/clock/clock.component';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
+import { GroceryListComponent } from './components/grocery-list/grocery-list.component';
 
 const components = [
   PaperComponent, 
@@ -17,6 +18,7 @@ const components = [
   ButtonComponent,
   ClockComponent,
   BreadcrumbsComponent,
+  GroceryListComponent,
 ];
 
 @NgModule({

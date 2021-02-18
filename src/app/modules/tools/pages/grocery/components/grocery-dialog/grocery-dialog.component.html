@@ -1,7 +1,7 @@
 <div class="grocery-dialog-container flex flex-column justify-content-between">
   <h1 mat-dialog-title>{{data.title}}</h1>
   <div mat-dialog-content class="grocery-dialog-container__items flex flex-row flex-wrap">
-    <div *ngFor="let item of data.content" 
+    <div *ngFor="let item of groceries" 
       class="grocery-dialog-container__items__item flex flex-row align-items-center justify-content-center"
       [class.selected]="item.selected"
       (click)="handleClick(item)">

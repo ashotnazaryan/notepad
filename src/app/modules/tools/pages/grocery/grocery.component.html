@@ -1,7 +1,7 @@
 <div class="grocery-container">
   <div class="grocery-container__actions flex flex-row align-items-center justify-content-between">
     <app-button
-      icon="view_module"
+      icon="apps"
       color="primary"
       [text]="'GENERAL_BUTTONS_SELECT' | translate"
       (clicked)="openDialog()">
@@ -10,31 +10,14 @@
       icon="notifications_none"
       color="primary"
       [text]="'GENERAL_BUTTONS_ADD' | translate"
-      (clicked)="add()">
+      (clicked)="addToGroceries()">
     </app-button>
   </div>
-  <mat-selection-list *ngIf="groceries.length" (selectionChange)="updateGroceries($event)">
-    <mat-list-option checkboxPosition="before" color="primary" *ngFor="let item of groceries" [value]="item">
-      <div class="grocery-item flex flex-row align-items-center justify-content-between">
-        <div class="flex flex-row align-items-center">
-          <img [src]="item.icon" [alt]="item.value" />
-          <span class="mx-1 font-weight-bold">{{item.value}}</span>
-        </div>
-        <div class="flex flex-row align-items-center">
-          <mat-form-field floatLabel="never">
-            <input matInput placeholder="{{'GROCERY_NOTES' | translate}}"
-              [(ngModel)]="item.notes" (click)="$event.stopPropagation()">
-          </mat-form-field>
-          <app-button
-            icon="cancel"
-            color="accent"
-            [size]="ButtonSize.icon"
-            [matTooltip]="'GENERAL_TOOLTIPS_REMOVE' | translate"
-            matTooltipPosition="above"
-            (clicked)="removeItem($event, item)">
-          </app-button>
-        </div>
-      </div>
-    </mat-list-option>
-  </mat-selection-list>
+  <div class="grocery-container__content mt-2">
+    <app-grocery-list
+      [data]="groceries"
+      (selectionChange)="updateGroceries($event)"
+      (itemRemoved)="removeItem($event)">
+    </app-grocery-list>
+  </div>
 </div>

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { MatSelectionListChange } from '@angular/material/list';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
+import { differenceWith, isEqual } from 'lodash';
 
 import { ButtonSize } from '@shared/components/button/button.component';
 import * as fromGrocery from '@modules/tools/store/reducers';
@@ -20,13 +21,14 @@ type GroceryDialogOptions = MatDialogConfig & { data: GroceryDialogData }
 })
 export class GroceryComponent implements OnInit {
   groceries: Array<Grocery> = [];
-  selectedGroceries: Array<Grocery> = [];
+  chosenGroceries: Array<Grocery> = [];
   readonly ButtonSize = ButtonSize;
 
   constructor(
     private dialog: MatDialog,
     private translate: TranslateService,
     private store: Store<fromGrocery.State>,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -52,23 +54,26 @@ export class GroceryComponent implements OnInit {
     });
   }
 
-  updateGroceries = (event: MatSelectionListChange): void => {
-    const selected = event.options.some((item) => item.selected);
-    const value = event.options.map((item) => item.value)[0] as Grocery;
-
-    this.selectedGroceries = selected
-      ? [...this.selectedGroceries, value]
-      : this.selectedGroceries.filter(({ key }) => key !== value.key);
+  updateGroceries = (item: Grocery): void => {
+    this.chosenGroceries = item.selected
+      ? [...this.chosenGroceries, item]
+      : this.chosenGroceries.filter(({ key }) => key !== item.key);
   }
 
-  removeItem = (event: MouseEvent, grocery: Grocery): void => {
-    event.stopPropagation();
+  removeItem = (grocery: Grocery): void => {
     this.groceries = this.groceries.filter(({ key }) => key !== grocery.key);
   }
 
-  add = (): void => {
-    this.store.dispatch(SetSelectedGroceryList({ selectedGroceryList: this.selectedGroceries }));
-    this.groceries = [];
+  addToGroceries = (): void => {
+    if (!this.chosenGroceries.length) {
+      this.snackBar.open(this.translate.instant('NOTIFICATIONS_EMPTY_GROCERY_LIST'), 'Close');
+
+      return;
+    }
+
+    this.groceries = differenceWith(this.groceries, this.chosenGroceries, isEqual);
+    this.store.dispatch(SetSelectedGroceryList({ selectedGroceryList: this.chosenGroceries }));
+    this.snackBar.open(this.translate.instant('NOTIFICATIONS_ADDED_GROCERY'), 'Close');
   }
 
 }

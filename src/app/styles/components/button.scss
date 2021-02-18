@@ -16,7 +16,7 @@ app-button {
 
       mat-icon {
         @extend .position-relative;
-        line-height: inherit;
+        line-height: initial;
       }
     }
 

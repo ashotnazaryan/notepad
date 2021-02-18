@@ -8,12 +8,44 @@
   height: 100%;
 }
 
+.my-2 {
+  margin: $baseSpacing*2 0;
+}
+
+.my-1 {
+  margin: $baseSpacing 0;
+}
+
 .mx-2 {
   margin: 0 $baseSpacing*2;
 }
 
 .mx-1 {
   margin: 0 $baseSpacing;
+}
+
+.mt-1 {
+  margin-top: $baseSpacing;
+}
+
+.mt-2 {
+  margin-top: $baseSpacing*2;
+}
+
+.p-2 {
+  padding: $baseSpacing*2;
+}
+
+.p-1 {
+  padding: $baseSpacing*1;
+}
+
+.py-1 {
+  padding: $baseSpacing 0;
+}
+
+.py-2 {
+  padding: $baseSpacing*2 0;
 }
 
 .font-size-15 {

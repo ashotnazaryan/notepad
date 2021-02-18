@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
@@ -7,7 +8,7 @@ import { Observable } from 'rxjs/internal/Observable';
 export class FileService {
 
   constructor(
-
+    private translate: TranslateService
   ) {
 
   }
@@ -34,7 +35,8 @@ export class FileService {
 
     return new Observable(subscriber => {
       if (file.type !== 'text/plain') {
-        subscriber.error('Invalid file. Please choose a text file');
+        subscriber.error(this.translate.instant('NOTIFICATIONS_INVALID_FILE'));
+        
         return;
       }
 

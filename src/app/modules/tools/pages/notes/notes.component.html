@@ -5,8 +5,8 @@
       placeholder="Choose paper type"
       [value]="paperType"
       (selectionChange)="handlePaperTypeChange($event)">
-      <mat-option *ngFor="let item of paperTypes" [value]="item?.key">
-        {{item?.name}}
+      <mat-option *ngFor="let item of paperTypes" [value]="item.key">
+        {{item.name | translate}}
       </mat-option>
     </mat-select>
   </mat-form-field>
