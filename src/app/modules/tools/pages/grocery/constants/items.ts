@@ -62,22 +62,10 @@ export const groceryItems: Array<Grocery> = [
     icon: 'assets/icons/orange.svg'
   },
   {
-    key: 'peanut',
-    value: 'Peanut',
-    langKey: 'GROCERY_ICONS_PEANUT',
-    icon: 'assets/icons/peanut.svg'
-  },
-  {
     key: 'pear',
     value: 'Pear',
     langKey: 'GROCERY_ICONS_PEAR',
     icon: 'assets/icons/pear.svg'
-  },
-  {
-    key: 'pineapple',
-    value: 'Pineapple',
-    langKey: 'GROCERY_ICONS_PINEAPPLE',
-    icon: 'assets/icons/pineapple.svg'
   },
   {
     key: 'strawberry',
@@ -90,5 +78,59 @@ export const groceryItems: Array<Grocery> = [
     value: 'Watermelon',
     langKey: 'GROCERY_ICONS_WATERMELON',
     icon: 'assets/icons/watermelon.svg'
+  },
+  {
+    key: 'soda',
+    value: 'Soda',
+    langKey: 'GROCERY_ICONS_SODA',
+    icon: 'assets/icons/soda.svg'
+  },
+  {
+    key: 'potato',
+    value: 'Potato',
+    langKey: 'GROCERY_ICONS_POTATO',
+    icon: 'assets/icons/potato.svg'
+  },
+  {
+    key: 'pomegranate',
+    value: 'Pomegranate',
+    langKey: 'GROCERY_ICONS_POMEGRANATE',
+    icon: 'assets/icons/pomegranate.svg'
+  },
+  {
+    key: 'mango',
+    value: 'Mango',
+    langKey: 'GROCERY_ICONS_MANGO',
+    icon: 'assets/icons/mango.svg'
+  },
+  {
+    key: 'banana',
+    value: 'Banana',
+    langKey: 'GROCERY_ICONS_BANANA',
+    icon: 'assets/icons/banana.svg'
+  },
+  {
+    key: 'cabbage',
+    value: 'Cabbage',
+    langKey: 'GROCERY_ICONS_CABBAGE',
+    icon: 'assets/icons/cabbage.svg'
+  },
+  {
+    key: 'cucumber',
+    value: 'Cucumber',
+    langKey: 'GROCERY_ICONS_CUCUMBER',
+    icon: 'assets/icons/cucumber.svg'
+  },
+  {
+    key: 'corn',
+    value: 'Corn',
+    langKey: 'GROCERY_ICONS_CORN',
+    icon: 'assets/icons/corn.svg'
+  },
+  {
+    key: 'carrot',
+    value: 'Carrot',
+    langKey: 'GROCERY_ICONS_CARROT',
+    icon: 'assets/icons/carrot.svg'
   }
 ];

@@ -7,7 +7,6 @@
 }
 
 app-breadcrumbs {
-  max-width   : 80%;
+  max-width   : 45%;
   margin-right: $baseSpacing;
-  @extend .ellipsis-text;
 }
