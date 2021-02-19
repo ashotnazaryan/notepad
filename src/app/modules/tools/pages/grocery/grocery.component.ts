@@ -1,19 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
-import { differenceWith, isEqual } from 'lodash';
+import { Subject } from 'rxjs/internal/Subject';
+import { Observable } from 'rxjs/internal/Observable';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
+import { differenceWith } from 'lodash';
 
 import { ButtonSize } from '@shared/components/button/button.component';
-import { NotificationComponent, NotificationType } from '@shared/components/notification/notification.component';
+import {
+  NotificationComponent,
+  NotificationOptions,
+  NotificationData,
+  NotificationType
+} from '@shared/components/notification/notification.component';
 import * as fromGrocery from '@modules/tools/store/reducers';
+import { Grocery } from '@shared/models/grocery';
+import * as fromTools from '@modules/tools/store/reducers';
 import { SetChosenGroceryList, SetSelectedGroceryList } from '@modules/tools/store/actions/grocery.actions';
-import { GroceryDialogComponent, GroceryDialogData } from './components/grocery-dialog/grocery-dialog.component';
 import { groceryItems } from './constants/items';
-import { Grocery } from './models/grocery';
-
-type GroceryDialogOptions = MatDialogConfig & { data: GroceryDialogData }
+import { GroceryDialogComponent, GroceryDialogOptions } from './components/grocery-dialog/grocery-dialog.component';
 
 @Component({
   selector: 'app-grocery',
@@ -21,8 +28,17 @@ type GroceryDialogOptions = MatDialogConfig & { data: GroceryDialogData }
   styleUrls: ['./grocery.component.scss']
 })
 export class GroceryComponent implements OnInit {
+  private unsubscribe$ = new Subject();
   groceries: Array<Grocery> = [];
+  groceries$: Observable<Array<Grocery>> = this.store.select(fromTools.selectSelectedGroceryList)
+    .pipe(
+      takeUntil(this.unsubscribe$)
+    );
   chosenGroceries: Array<Grocery> = [];
+  chosenGroceries$: Observable<Array<Grocery>> = this.store.select(fromTools.selectChosenGroceryList)
+    .pipe(
+      takeUntil(this.unsubscribe$)
+    );
   readonly ButtonSize = ButtonSize;
   readonly NotificationType = NotificationType;
 
@@ -34,7 +50,13 @@ export class GroceryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.groceries$.subscribe((groceries) => {
+      this.groceries = groceries;
+    });
 
+    this.chosenGroceries$.subscribe((chosenGroceries) => {
+      this.chosenGroceries = chosenGroceries;
+    });
   }
 
   openDialog = (): void => {
@@ -49,10 +71,11 @@ export class GroceryComponent implements OnInit {
     const dialogRef = this.dialog.open(GroceryDialogComponent, options);
 
     dialogRef.componentInstance.grocerySelected.subscribe((item) => {
-      this.groceries = [
-        ...this.groceries,
-        item
-      ].filter(({ selected }) => selected);
+      const newItem = { ...item, selected: !item.selected };
+
+      this.groceries = newItem.selected
+        ? [...this.groceries, newItem]
+        : this.groceries.filter(({ key }) => key !== newItem.key);
 
       this.store.dispatch(SetSelectedGroceryList({ selectedGroceryList: this.groceries }));
     });
@@ -64,8 +87,8 @@ export class GroceryComponent implements OnInit {
       : this.chosenGroceries.filter(({ key }) => key !== item.key);
   }
 
-  removeItem = (grocery: Grocery): void => {
-    this.groceries = this.groceries.filter(({ key }) => key !== grocery.key);
+  removeItem = (item: Grocery): void => {
+    this.groceries = this.groceries.filter(({ key }) => key !== item.key);
     this.store.dispatch(SetSelectedGroceryList({ selectedGroceryList: this.groceries }));
   }
 
@@ -76,19 +99,27 @@ export class GroceryComponent implements OnInit {
       return;
     }
 
-    this.groceries = differenceWith(this.groceries, this.chosenGroceries, isEqual);
+    this.groceries = differenceWith(this.groceries, this.chosenGroceries, (a, b) => a.key === b.key);
     this.store.dispatch(SetChosenGroceryList({ chosenGroceryList: this.chosenGroceries }));
     this.store.dispatch(SetSelectedGroceryList({ selectedGroceryList: this.groceries }));
     this.showNotification(NotificationType.success, 'NOTIFICATIONS_ADDED_GROCERY');
+    this.chosenGroceries = [];
   }
 
-  private showNotification = (type: NotificationType, message: string) => {
-    this.snackBar.openFromComponent(NotificationComponent, {
+  private showNotification = (type: NotificationData['type'], message: NotificationData['message']): void => {
+    const options: NotificationOptions = {
       data: {
         type,
         message
       }
-    });
+    }
+
+    this.snackBar.openFromComponent(NotificationComponent, options);
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
 }

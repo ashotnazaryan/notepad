@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/internal/Observable';
+import { zip } from 'rxjs/internal/observable/zip';
 import { filter, map, mergeMap, tap } from 'rxjs/operators';
 import * as moment from 'moment';
 
@@ -32,6 +33,11 @@ export class HeaderComponent implements OnInit {
   modulePage$: Observable<ModulePage> = this.store.select(fromRoot.selectModulePage); // TODO use takeuntil
   currentLanguage$: Observable<Language> = this.store.select(fromRoot.selectLanguage); // TODO use takeuntil
   clockFormat = 'h:mm A';
+  totalCount$: Observable<number> = zip(
+    this.store.select(fromTools.selectChosenGroceryList)
+  ).pipe(
+    map(([chosenGroceryList]) => chosenGroceryList.length)
+  );
   groceryNotificationsCount$: Observable<number> = this.store.select(fromTools.selectChosenGroceryList)
     .pipe(map((chosenGroceryList) => chosenGroceryList.length));
 

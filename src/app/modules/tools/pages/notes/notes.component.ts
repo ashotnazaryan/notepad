@@ -4,8 +4,14 @@ import { MatSelectChange } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { FileService } from '@core/services/file.service';
-import { NotificationComponent, NotificationType } from '@shared/components/notification/notification.component';
+import { 
+  NotificationComponent, 
+  NotificationOptions, 
+  NotificationData, 
+  NotificationType 
+} from '@shared/components/notification/notification.component';
 import { KeyName } from '@shared/models';
+import { paperTypes } from './constants/paper-types';
 
 @Component({
   selector: 'app-notes',
@@ -14,28 +20,15 @@ import { KeyName } from '@shared/models';
 })
 export class NotesComponent implements OnInit {
   form: FormGroup;
-  paperTypes: Array<KeyName> = [
-    {
-      key: 'yellow',
-      name: 'PAPER_TYPE_YELLOW'
-    },
-    {
-      key: 'white',
-      name: 'PAPER_TYPE_WHITE'
-    },
-    {
-      key: 'black',
-      name: 'PAPER_TYPE_BLACK'
-    }
-  ];
+  paperTypes: Array<KeyName> = paperTypes;
   paperType: KeyName['key'] = this.paperTypes[0].key;
 
   constructor(
-    private fb: FormBuilder,
+    private formBuilder: FormBuilder,
     private file: FileService,
     private snackBar: MatSnackBar
   ) {
-    this.form = this.fb.group({
+    this.form = this.formBuilder.group({
       paper: null
     });
   }
@@ -74,13 +67,15 @@ export class NotesComponent implements OnInit {
     this.form.reset();
   }
 
-  private showNotification = (type: NotificationType, message: string) => {
-    this.snackBar.openFromComponent(NotificationComponent, {
+  private showNotification = (type: NotificationData['type'], message: NotificationData['message']): void => {
+    const options: NotificationOptions = {
       data: {
         type,
         message
       }
-    });
+    }
+
+    this.snackBar.openFromComponent(NotificationComponent, options);
   }
 
 }

@@ -1,30 +1,36 @@
-<mat-selection-list *ngIf="data.length; else noData" (selectionChange)="handleSelectionChange($event)">
-  <mat-list-option checkboxPosition="before" color="primary" *ngFor="let item of data" [value]="item">
-    <div class="grocery-item flex flex-row align-items-center justify-content-between">
-      <div class="flex flex-row align-items-center">
-        <img [src]="item.icon" [alt]="item.value" />
-        <span class="mx-1 font-weight-bold">{{item.langKey | translate}}</span>
-      </div>
-      <div class="flex flex-row align-items-center">
-        <mat-form-field floatLabel="never" class="mx-2">
-          <input
-            matInput
-            placeholder="{{'GROCERY_NOTES' | translate}}"
-            [disabled]="!editable"
-            [(ngModel)]="item.notes"
-            (click)="$event.stopPropagation()">
-        </mat-form-field>
-        <app-button
-          *ngIf="editable"
-          icon="close"
-          color="accent"
-          [size]="ButtonSize.icon"
-          [matTooltip]="'GENERAL_TOOLTIPS_REMOVE' | translate"
-          matTooltipPosition="above"
-          (clicked)="handleRemoveClick($event, item)">
-        </app-button>
-      </div>
-    </div>
-  </mat-list-option>
-</mat-selection-list>
-<ng-template #noData>{{'GENERAL_NO_DATA' | translate}}</ng-template>
+<div class="grocery-list-container">
+  <form [formGroup]="form">
+    <mat-selection-list
+      *ngIf="data.length; else noData"
+      [multiple]="multiple"
+      (selectionChange)="handleSelectionChange($event)">
+      <mat-list-option checkboxPosition="before" color="primary" *ngFor="let item of data" [value]="item">
+        <div class="grocery-list-container__item flex flex-row align-items-center justify-content-between">
+          <div class="grocery-list-container__icon-text flex flex-row align-items-center">
+            <img [src]="item.icon" [alt]="item.value" />
+            <span class="grocery-list-container__text mx-1 font-weight-bold ellipsis-text">{{item.langKey | translate}}</span>
+          </div>
+          <div class="flex flex-row flex-grow-1 align-items-center justify-content-end">
+            <mat-form-field floatLabel="never" class="grocery-list-container__notes mx-1">
+              <input
+                matInput
+                formControlName={{item.key}}
+                placeholder="{{'GROCERY_NOTES' | translate}}"
+                (click)="$event.stopPropagation()">
+            </mat-form-field>
+            <app-button
+              *ngIf="editable"
+              icon="close"
+              color="accent"
+              [size]="ButtonSize.icon"
+              [matTooltip]="'GENERAL_TOOLTIPS_REMOVE' | translate"
+              matTooltipPosition="above"
+              (clicked)="handleRemoveClick($event, item)">
+            </app-button>
+          </div>
+        </div>
+      </mat-list-option>
+    </mat-selection-list>
+  </form>
+  <ng-template #noData>{{'GENERAL_NO_DATA' | translate}}</ng-template>
+</div>

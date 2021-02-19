@@ -2,9 +2,19 @@
   display: block;
 }
 
-.grocery-item {
-  img {
-    width : 36px;
-    height: 36px;
+.grocery-list-container {
+  &__item {
+    img {
+      width : 36px;
+      height: 36px;
+    }
+  }
+
+  &__icon-text {
+    width: 30%;
+  }
+  
+  &__notes {
+    width: 70%;
   }
 }

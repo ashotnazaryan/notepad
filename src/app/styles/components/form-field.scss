@@ -1,0 +1,8 @@
+mat-form-field {
+  .mat-form-field-wrapper {
+    padding-bottom: $baseSpacing*3;
+    .mat-form-field-infix {
+      min-width: 120px;
+    }
+  }
+}

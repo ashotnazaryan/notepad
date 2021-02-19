@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatSnackBarRef, MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
+import { MatSnackBarRef, MAT_SNACK_BAR_DATA, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 import { ButtonSize } from '@shared/components/button/button.component';
 
@@ -7,6 +7,13 @@ export enum NotificationType {
   success,
   error
 }
+
+export interface NotificationData {
+  type: NotificationType;
+  message: string;
+}
+
+export type NotificationOptions = Omit<MatSnackBarConfig, 'data'> & { data: NotificationData };
 
 @Component({
   selector: 'app-notification',
@@ -18,10 +25,10 @@ export class NotificationComponent implements OnInit {
   readonly NotificationType = NotificationType;
 
   constructor(
-    @Inject(MAT_SNACK_BAR_DATA) public data: any,
+    @Inject(MAT_SNACK_BAR_DATA) public data: NotificationData,
     public snackRef: MatSnackBarRef<NotificationComponent>,
   ) {
-
+    
   }
 
   ngOnInit(): void {

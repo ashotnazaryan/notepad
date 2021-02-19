@@ -37,18 +37,26 @@
           icon="notifications_active"
           color="primary"
           [size]="ButtonSize.icon"
-          [matMenuTriggerFor]="notifications" 
-          matTooltipPosition="left"
+          [matMenuTriggerFor]="notifications"
           [matTooltip]="'GENERAL_TOOLTIPS_NOTIFICATIONS' | translate"
+          matTooltipPosition="left"
           matBadgeSize="small"
-          matBadge="{{groceryNotificationsCount$ | async}}"
-          matBadgeColor="warn">
+          matBadge="{{totalCount$ | async}}"
+          matBadgeColor="accent"
+          matBadgeHidden="{{!(totalCount$ | async)}}">
         </app-button>
         <mat-menu #notifications="matMenu">
-          <button 
-            mat-menu-item 
+          <button
+            mat-menu-item
             [routerLink]="groceryNotificationsLink">
-            {{'GENERAL_PAGES_GROCERY' | translate}}
+            <span
+              matBadgeSize="small"
+              matBadgeOverlap="false"
+              matBadge="{{groceryNotificationsCount$ | async}}"
+              matBadgeColor="accent"
+              matBadgeHidden="{{!(groceryNotificationsCount$ | async)}}">
+              {{'GENERAL_PAGES_GROCERY' | translate}}
+            </span>
           </button>
         </mat-menu>
       </div>

@@ -1,7 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
+import { unionBy } from 'lodash';
 
+import { Grocery } from '@shared/models/grocery';
 import { GroceryPageActions } from '../actions';
-import { Grocery } from '@modules/tools/pages/grocery/models/grocery';
 
 export const groceryFeatureKey = 'grocery';
 
@@ -19,13 +20,14 @@ export const reducer = createReducer(
   initialState,
   on(GroceryPageActions.SetChosenGroceryList, (state, { chosenGroceryList }) => ({
     ...state,
-    chosenGroceryList,
+    // TODO bug, update list with latest one and filter by unique
+    chosenGroceryList: unionBy(chosenGroceryList, state.chosenGroceryList, 'key')
   })),
 
   on(GroceryPageActions.SetSelectedGroceryList, (state, { selectedGroceryList }) => ({
     ...state,
     selectedGroceryList,
-  }))
+  })),
 );
 
 export const selectChosenGroceryListFn = (state: State) => state.chosenGroceryList;

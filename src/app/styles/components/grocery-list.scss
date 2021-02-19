@@ -1,0 +1,13 @@
+app-grocery-list {
+  mat-selection-list {
+    mat-list-option {
+      .mat-list-item-content {
+        padding: 0 $baseSpacing !important;
+
+        .mat-list-text {
+          padding-left: $baseSpacing !important;
+        }
+      }
+    }
+  }
+}

@@ -15,8 +15,8 @@
   </div>
   <div class="grocery-container__content mt-2">
     <app-grocery-list
-      [data]="groceries"
-      (selectionChange)="updateGroceries($event)"
+      [data]="(groceries$ | async)!"
+      (selectionChanged)="updateGroceries($event)"
       (itemRemoved)="removeItem($event)">
     </app-grocery-list>
   </div>
