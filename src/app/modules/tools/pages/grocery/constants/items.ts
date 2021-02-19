@@ -132,5 +132,53 @@ export const groceryItems: Array<Grocery> = [
     value: 'Carrot',
     langKey: 'GROCERY_ICONS_CARROT',
     icon: 'assets/icons/carrot.svg'
+  },
+  {
+    key: 'wine',
+    value: 'Wine',
+    langKey: 'GROCERY_ICONS_WINE',
+    icon: 'assets/icons/wine.svg'
+  },
+  {
+    key: 'tomato',
+    value: 'Tomato',
+    langKey: 'GROCERY_ICONS_TOMATO',
+    icon: 'assets/icons/tomato.svg'
+  },
+  {
+    key: 'pizza',
+    value: 'Pizza',
+    langKey: 'GROCERY_ICONS_PIZZA',
+    icon: 'assets/icons/pizza.svg'
+  },
+  {
+    key: 'coffee',
+    value: 'Coffee',
+    langKey: 'GROCERY_ICONS_COFFEE',
+    icon: 'assets/icons/coffee.svg'
+  },
+  {
+    key: 'bell-pepper',
+    value: 'Bell pepper',
+    langKey: 'GROCERY_ICONS_BELL_PEPPER',
+    icon: 'assets/icons/bell-pepper.svg'
+  },
+  {
+    key: 'beet',
+    value: 'Beet',
+    langKey: 'GROCERY_ICONS_BEET',
+    icon: 'assets/icons/beet.svg'
+  },
+  {
+    key: 'almond',
+    value: 'Almond',
+    langKey: 'GROCERY_ICONS_ALMOND',
+    icon: 'assets/icons/almond.svg'
+  },
+  {
+    key: 'chili',
+    value: 'Chili',
+    langKey: 'GROCERY_ICONS_CHILI',
+    icon: 'assets/icons/chili.svg'
   }
 ];
