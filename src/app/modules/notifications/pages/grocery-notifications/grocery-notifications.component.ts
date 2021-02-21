@@ -14,9 +14,10 @@ import { Grocery } from '@shared/models/grocery';
 })
 export class GroceryNotificationsComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject();
-  
-  groceries$: Observable<Array<Grocery>> = this.store.select(fromTools.selectChosenGroceryList)
-    .pipe(takeUntil(this.unsubscribe$));
+
+  groceries$: Observable<Array<Grocery>> =
+    this.store.select(fromTools.selectChosenGroceryList)
+      .pipe(takeUntil(this.unsubscribe$));
 
   constructor(
     private store: Store<fromTools.State>,

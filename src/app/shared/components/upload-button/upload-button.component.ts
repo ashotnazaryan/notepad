@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./upload-button.component.scss']
 })
 export class UploadButtonComponent implements OnInit {
-  @Input() accept = 'text/plain';
+  @Input() accept = 'text/plain'; // TODO create enum for accept types
   @Output() readonly uploaded = new EventEmitter<File>();
 
   constructor() { }
@@ -16,7 +16,7 @@ export class UploadButtonComponent implements OnInit {
   }
 
   upload = (event: any): void => { // TODO fix any type
-    // TODO fix a bug, after clear upload doesn't work
+    // TODO fix a bug, after clear the upload doesn't work
     if (!event?.target?.files?.length) {
       return;
     }

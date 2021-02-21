@@ -1,11 +1,12 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/internal/Observable';
+import { Subject } from 'rxjs/internal/Subject';
 import { zip } from 'rxjs/internal/observable/zip';
-import { filter, map, mergeMap, tap } from 'rxjs/operators';
+import { filter, map, mergeMap, takeUntil, tap } from 'rxjs/operators';
 import * as moment from 'moment';
 
 import { ROUTES, languages } from '@shared/constants';
@@ -22,24 +23,41 @@ import { ButtonSize } from '@shared/components/button/button.component';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   @Output() readonly pageTitleKeyReceived = new EventEmitter<string>();
 
+  private unsubscribe$ = new Subject();
+  clockFormat = 'h:mm A';
   notesLink = `${ROUTES.tools.route}/${ROUTES.tools.sub_routes.notes.route}`;
   timeLink = `${ROUTES.tools.route}/${ROUTES.tools.sub_routes.time.route}`;
   groceryLink = `${ROUTES.tools.route}/${ROUTES.tools.sub_routes.grocery.route}`;
   groceryNotificationsLink = `${ROUTES.notifications.route}/${ROUTES.notifications.sub_routes.grocery.route}`;
   languages = languages;
-  modulePage$: Observable<ModulePage> = this.store.select(fromRoot.selectModulePage); // TODO use takeuntil
-  currentLanguage$: Observable<Language> = this.store.select(fromRoot.selectLanguage); // TODO use takeuntil
-  clockFormat = 'h:mm A';
+
+  modulePage$: Observable<ModulePage> =
+    this.store.select(fromRoot.selectModulePage)
+      .pipe(
+        takeUntil(this.unsubscribe$)
+      );
+
+  currentLanguage$: Observable<Language> =
+    this.store.select(fromRoot.selectLanguage)
+      .pipe(
+        takeUntil(this.unsubscribe$)
+      );
+
   totalCount$: Observable<number> = zip(
     this.store.select(fromTools.selectChosenGroceryList)
   ).pipe(
+    takeUntil(this.unsubscribe$),
     map(([chosenGroceryList]) => chosenGroceryList.length)
   );
+
   groceryNotificationsCount$: Observable<number> = this.store.select(fromTools.selectChosenGroceryList)
-    .pipe(map((chosenGroceryList) => chosenGroceryList.length));
+    .pipe(
+      takeUntil(this.unsubscribe$),
+      map((chosenGroceryList) => chosenGroceryList.length)
+    );
 
   readonly ButtonSize = ButtonSize;
 
@@ -90,6 +108,11 @@ export class HeaderComponent implements OnInit {
           this.titleService.setTitle(title);
         });
       });
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
 }

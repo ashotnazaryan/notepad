@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 import { Grocery } from '@shared/models/grocery';
 import { ButtonSize } from '@shared/components/button/button.component';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-grocery-list',
@@ -18,11 +18,9 @@ export class GroceryListComponent implements OnInit {
   @Output() readonly selectionChanged: EventEmitter<Array<Grocery>> = new EventEmitter();
   @Output() readonly itemRemoved: EventEmitter<Grocery> = new EventEmitter();
 
-  form: FormGroup = this.formBuilder.group({
-    groceries: this.formBuilder.array([])
-  });
+  form: FormGroup = this.formBuilder.group({});
 
-  groceries: FormArray = this.form.get('groceries') as FormArray;
+  groceriesArr: FormArray = this.form.get('groceries') as FormArray;
   readonly ButtonSize = ButtonSize;
 
   constructor(
@@ -44,7 +42,7 @@ export class GroceryListComponent implements OnInit {
   handleRemoveClick = (event: MouseEvent, item: Grocery, i: number): void => {
     event.stopPropagation();
 
-    this.groceries.removeAt(i);
+    this.groceriesArr.removeAt(i);
     this.itemRemoved.emit(item);
   }
 
@@ -61,16 +59,16 @@ export class GroceryListComponent implements OnInit {
       });
     });
 
-    this.groceries = new FormArray(formArray);
-    this.form = this.formBuilder.group({ groceries: this.groceries });
+    this.groceriesArr = new FormArray(formArray);
+    this.form = this.formBuilder.group({ groceries: this.groceriesArr });
 
     this.form.valueChanges
       .pipe(
         distinctUntilChanged(),
-        debounceTime(400)
+        debounceTime(300)
       )
       .subscribe((formValue: { groceries: Array<Grocery> }) => {
-        const data = formValue.groceries.filter((item) => item.checked);
+        const data = formValue.groceries.filter(({ checked }) => checked);
 
         this.selectionChanged.emit(data);
       });

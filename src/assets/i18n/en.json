@@ -53,7 +53,8 @@
   "GROCERY_ICONS_BEET": "Beet",
   "GROCERY_ICONS_ALMOND": "Almond",
   "GROCERY_ICONS_CHILI": "Chili",
-  "NOTIFICATIONS_INVALID_FILE": "Invalid file. Please choose a text file",
-  "NOTIFICATIONS_ADDED_GROCERY": "Successfully added to the grocery",
-  "NOTIFICATIONS_EMPTY_GROCERY_LIST": "Please select at least one item"
+  "NOTIFICATIONS_INVALID_FILE": "Invalid file. Please choose a text file.",
+  "NOTIFICATIONS_ADDED_GROCERY": "Successfully added to the grocery.",
+  "NOTIFICATIONS_EMPTY_GROCERY_LIST": "Please select at least one item.",
+  "NOTIFICATIONS_EMPTY_NOTES": "There are no notes to save."
 }

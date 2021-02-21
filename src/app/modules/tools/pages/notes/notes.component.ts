@@ -45,6 +45,8 @@ export class NotesComponent implements OnInit {
     const data = this.form.value?.paper;
 
     if (!data) {
+      this.showNotification(NotificationType.error, 'NOTIFICATIONS_EMPTY_NOTES');
+
       return;
     }
 

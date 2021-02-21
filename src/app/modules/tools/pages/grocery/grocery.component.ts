@@ -29,11 +29,13 @@ import { GroceryDialogComponent, GroceryDialogOptions } from './components/groce
 })
 export class GroceryComponent implements OnInit {
   private unsubscribe$ = new Subject();
+  private groceryItems = groceryItems;
   groceries: Array<Grocery> = [];
-  groceries$: Observable<Array<Grocery>> = this.store.select(fromTools.selectSelectedGroceryList)
-    .pipe(
-      takeUntil(this.unsubscribe$)
-    );
+  groceries$: Observable<Array<Grocery>> =
+    this.store.select(fromTools.selectSelectedGroceryList)
+      .pipe(
+        takeUntil(this.unsubscribe$)
+      );
   chosenGroceries: Array<Grocery> = [];
   readonly ButtonSize = ButtonSize;
   readonly NotificationType = NotificationType;
@@ -56,7 +58,7 @@ export class GroceryComponent implements OnInit {
       width: '80vw',
       data: {
         title: this.translate.instant('GROCERY_CHOOSE_CATEGORY'),
-        content: groceryItems
+        content: this.groceryItems
       }
     }
 
@@ -65,7 +67,6 @@ export class GroceryComponent implements OnInit {
     dialogRef.componentInstance.grocerySelected.subscribe((item) => {
       const newItem = {
         ...item,
-        selected: !item.selected,
         checked: !!item.checked
       };
 

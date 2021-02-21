@@ -1,39 +1,41 @@
 <div class="grocery-list-container">
-  <form [formGroup]="form">
-    <mat-list formArrayName="groceries" *ngIf="data.length; else noData">
-      <mat-list-item color="primary" *ngFor="let item of groceries.controls; let i=index">
-        <div [formGroupName]="i" class="grocery-list-container__item w-100 flex flex-row align-items-center justify-content-between">
-          <div class="grocery-list-container__icon-text mr-2 flex flex-row align-items-center">
-            <mat-checkbox
-              *ngIf="multiple" 
-              color="primary"
-              formControlName="checked">
-            </mat-checkbox>
-            <img [src]="item.value.icon" [alt]="item.value.value" class="mx-2" />
-            <span class="grocery-list-container__text font-weight-bold ellipsis-text">{{item.value.langKey | translate}}</span>
+  <ng-container *ngIf="data.length; else noData">
+    <form [formGroup]="form">
+      <mat-list formArrayName="groceries">
+        <mat-list-item color="primary" *ngFor="let item of groceriesArr.controls; let i=index">
+          <div [formGroupName]="i" class="grocery-list-container__item w-100 flex flex-row align-items-center justify-content-between">
+            <div class="grocery-list-container__icon-text mr-2 flex flex-row align-items-center">
+              <mat-checkbox
+                *ngIf="multiple" 
+                color="primary"
+                formControlName="checked">
+              </mat-checkbox>
+              <img [src]="item.value.icon" [alt]="item.value.value" class="mx-2" />
+              <span class="grocery-list-container__text color-primary font-weight-bold ellipsis-text">{{item.value.langKey | translate}}</span>
+            </div>
+            <div class="grocery-list-container__notes-button flex flex-row flex-grow-1 align-items-center justify-content-end">
+              <mat-form-field floatLabel="never" class="w-100 mx-1">
+                <input
+                  matInput
+                  formControlName=notes
+                  placeholder="{{'GROCERY_NOTES' | translate}}"
+                  (click)="$event.stopPropagation()">
+              </mat-form-field>
+              <app-button
+                *ngIf="editable"
+                icon="close"
+                color="accent"
+                [size]="ButtonSize.icon"
+                [matTooltip]="'GENERAL_TOOLTIPS_REMOVE' | translate"
+                matTooltipPosition="above"
+                (clicked)="handleRemoveClick($event, item.value, i)">
+              </app-button>
+            </div>
           </div>
-          <div class="grocery-list-container__notes-button flex flex-row flex-grow-1 align-items-center justify-content-end">
-            <mat-form-field floatLabel="never" class="mx-1">
-              <input
-                matInput
-                formControlName=notes
-                placeholder="{{'GROCERY_NOTES' | translate}}"
-                (click)="$event.stopPropagation()">
-            </mat-form-field>
-            <app-button
-              *ngIf="editable"
-              icon="close"
-              color="accent"
-              [size]="ButtonSize.icon"
-              [matTooltip]="'GENERAL_TOOLTIPS_REMOVE' | translate"
-              matTooltipPosition="above"
-              (clicked)="handleRemoveClick($event, item.value, i)">
-            </app-button>
-          </div>
-        </div>
-      </mat-list-item>
-    </mat-list>
-  </form>
+        </mat-list-item>
+      </mat-list>
+    </form>
+  </ng-container>
   <ng-template #noData>
     <h1 class="color-primary">{{'GENERAL_NO_DATA' | translate}}</h1>
   </ng-template>

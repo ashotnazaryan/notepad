@@ -18,6 +18,7 @@ const initialState: State = {
 
 export const reducer = createReducer(
   initialState,
+
   on(GroceryPageActions.SetChosenGroceryList, (state, { chosenGroceryList }) => ({
     ...state,
     // TODO bug, update list with latest one and filter by unique
@@ -27,7 +28,8 @@ export const reducer = createReducer(
   on(GroceryPageActions.SetSelectedGroceryList, (state, { selectedGroceryList }) => ({
     ...state,
     selectedGroceryList,
-  })),
+  }))
+  
 );
 
 export const selectChosenGroceryListFn = (state: State) => state.chosenGroceryList;
