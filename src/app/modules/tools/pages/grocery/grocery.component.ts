@@ -16,8 +16,8 @@ import {
   NotificationType
 } from '@shared/components/notification/notification.component';
 import * as fromGrocery from '@modules/tools/store/reducers';
-import { Grocery } from '@shared/models/grocery';
 import * as fromTools from '@modules/tools/store/reducers';
+import { Grocery } from '@shared/models/grocery';
 import { SetChosenGroceryList, SetSelectedGroceryList } from '@modules/tools/store/actions/grocery.actions';
 import { groceryItems } from './constants/items';
 import { GroceryDialogComponent, GroceryDialogOptions } from './components/grocery-dialog/grocery-dialog.component';
@@ -35,10 +35,6 @@ export class GroceryComponent implements OnInit {
       takeUntil(this.unsubscribe$)
     );
   chosenGroceries: Array<Grocery> = [];
-  chosenGroceries$: Observable<Array<Grocery>> = this.store.select(fromTools.selectChosenGroceryList)
-    .pipe(
-      takeUntil(this.unsubscribe$)
-    );
   readonly ButtonSize = ButtonSize;
   readonly NotificationType = NotificationType;
 
@@ -52,10 +48,6 @@ export class GroceryComponent implements OnInit {
   ngOnInit(): void {
     this.groceries$.subscribe((groceries) => {
       this.groceries = groceries;
-    });
-
-    this.chosenGroceries$.subscribe((chosenGroceries) => {
-      this.chosenGroceries = chosenGroceries;
     });
   }
 
@@ -71,7 +63,11 @@ export class GroceryComponent implements OnInit {
     const dialogRef = this.dialog.open(GroceryDialogComponent, options);
 
     dialogRef.componentInstance.grocerySelected.subscribe((item) => {
-      const newItem = { ...item, selected: !item.selected };
+      const newItem = {
+        ...item,
+        selected: !item.selected,
+        checked: !!item.checked
+      };
 
       this.groceries = newItem.selected
         ? [...this.groceries, newItem]
@@ -81,10 +77,8 @@ export class GroceryComponent implements OnInit {
     });
   }
 
-  updateGroceries = (item: Grocery): void => {
-    this.chosenGroceries = item.selected
-      ? [...this.chosenGroceries, item]
-      : this.chosenGroceries.filter(({ key }) => key !== item.key);
+  updateGroceries = (items: Array<Grocery>): void => {
+    this.chosenGroceries = items.filter(({ checked }) => checked);
   }
 
   removeItem = (item: Grocery): void => {
@@ -112,7 +106,7 @@ export class GroceryComponent implements OnInit {
         type,
         message
       }
-    }
+    };
 
     this.snackBar.openFromComponent(NotificationComponent, options);
   }

@@ -1,5 +1,5 @@
 <div class="notes-container">
-  <mat-form-field>
+  <mat-form-field class="flex flex-grow-0">
     <mat-label>{{'GENERAL_PAPER_TYPE' | translate}}</mat-label>
     <mat-select
       placeholder="Choose paper type"
@@ -15,18 +15,21 @@
       [type]="paperType" 
       formControlName="paper">
     </app-paper>
-    <div class="actions flex flex-row align-items-center">
+    <div class="notes-container__actions flex flex-row justify-content-between">
+      <div class="flex flex-row align-items-center">
+        <app-button
+          class="mr-2"
+          icon="save"
+          color="primary"
+          [text]="'GENERAL_BUTTONS_SAVE' | translate"
+          (clicked)="save()">
+        </app-button>
+        <app-upload-button
+          (uploaded)="upload($event)">
+        </app-upload-button>
+      </div>
       <app-button
-        icon="save"
-        color="primary"
-        [text]="'GENERAL_BUTTONS_SAVE' | translate"
-        (clicked)="save()">
-      </app-button>
-      <app-upload-button
-        (uploaded)="upload($event)">
-      </app-upload-button>
-      <app-button
-        icon="clear" 
+        icon="clear"
         [text]="'GENERAL_BUTTONS_CLEAR' | translate"
         color="accent"
         (clicked)="clear()">

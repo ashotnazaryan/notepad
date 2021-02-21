@@ -1,11 +1,11 @@
 <app-button color="primary">
   <ng-template #customTemplate>
-    <div class="button-wrapper" (click)="fileInput.click()">
+    <div class="button-wrapper" (click)="fileToUpload.click()">
       <label for="fileToUpload" class="flex flex-row align-items-center justify-content-between">
-        <mat-icon>upload_file</mat-icon>
+        <mat-icon>drive_folder_upload</mat-icon>
         <span class="button-wrapper__text mx-1">{{'GENERAL_BUTTONS_UPLOAD' | translate}}</span>
       </label>
-      <input #fileInput type="file" accept="accept" (change)="upload($event)">
+      <input #fileToUpload type="file" accept="accept" (change)="upload($event)">
     </div>
   </ng-template>
 </app-button>

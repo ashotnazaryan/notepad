@@ -34,18 +34,18 @@ app-button {
     &.small {
       padding      : 3px 7px !important;
       min-width    : 60px !important;
-      border-radius: 4px !important;
+      border-radius: $baseSpacing !important;
     }
 
     &.large {
       padding      : $baseSpacing $baseSpacing*2 !important;
       min-width    : 100px !important;
-      border-radius: 4px !important;
+      border-radius: $baseSpacing !important;
     }
   }
 }
 
 .button-text {
   font-size : 15px;
-  flex-grow : 1;
+  @extend .flex-grow-1;
 }

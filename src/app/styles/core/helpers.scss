@@ -1,5 +1,9 @@
 @import './spacings';
 
+.color-primary {
+  color: $primary;
+}
+
 .w-100 {
   width: 100%;
 }
@@ -30,6 +34,10 @@
 
 .mt-2 {
   margin-top: $baseSpacing*2;
+}
+
+.mr-2 {
+  margin-right: $baseSpacing*2;
 }
 
 .p-2 {
@@ -100,6 +108,10 @@
   justify-content: flex-start;
 }
 
+.flex-grow-0 {
+  flex-grow: 0;
+}
+
 .flex-grow-1 {
   flex-grow: 1;
 }
@@ -112,4 +124,12 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.text-center {
+  text-align: center;
 }

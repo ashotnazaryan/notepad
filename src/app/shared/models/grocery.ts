@@ -4,5 +4,6 @@ export interface Grocery {
   langKey: string;
   icon: string;
   selected?: boolean;
+  checked?: boolean;
   notes?: string;
 }

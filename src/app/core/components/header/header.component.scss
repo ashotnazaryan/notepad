@@ -7,6 +7,16 @@
 }
 
 app-breadcrumbs {
-  max-width   : 45%;
-  margin-right: $baseSpacing;
+  max-width: 45%;
+}
+
+app-clock {
+  max-width: 35%;
+}
+
+// TODO remove to component styles
+mat-toolbar {
+  @media (max-width: $breakpoint-mobile) {
+    padding: 0 $baseSpacing*2 !important;
+  }
 }
