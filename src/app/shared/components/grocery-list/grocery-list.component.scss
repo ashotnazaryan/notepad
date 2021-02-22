@@ -5,6 +5,10 @@
 }
 
 .grocery-list-container {
+  max-height: calc(100vh - 185px);
+  overflow: auto;
+  padding-right: $baseSpacing*1;
+
   &__item {
     img {
       width : 48px;
@@ -13,10 +17,14 @@
   }
 
   &__icon-text {
-    width: 30%;
+    width: 33%;
   }
 
   &__notes-button {
+    width: 67%;
+  }
+
+  &__notes {
     width: 70%;
   }
 }

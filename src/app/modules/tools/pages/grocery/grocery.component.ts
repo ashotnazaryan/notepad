@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subject } from 'rxjs/internal/Subject';
 import { Observable } from 'rxjs/internal/Observable';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
-import { differenceWith } from 'lodash';
+import { differenceWith, lowerCase } from 'lodash';
 
 import { ButtonSize } from '@shared/components/button/button.component';
 import {
@@ -21,6 +21,7 @@ import { Grocery } from '@shared/models/grocery';
 import { SetChosenGroceryList, SetSelectedGroceryList } from '@modules/tools/store/actions/grocery.actions';
 import { groceryItems } from './constants/items';
 import { GroceryDialogComponent, GroceryDialogOptions } from './components/grocery-dialog/grocery-dialog.component';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-grocery',
@@ -37,6 +38,7 @@ export class GroceryComponent implements OnInit {
         takeUntil(this.unsubscribe$)
       );
   chosenGroceries: Array<Grocery> = [];
+  customItem = new FormControl('', Validators.required);
   readonly ButtonSize = ButtonSize;
   readonly NotificationType = NotificationType;
 
@@ -44,7 +46,7 @@ export class GroceryComponent implements OnInit {
     private dialog: MatDialog,
     private translate: TranslateService,
     private store: Store<fromGrocery.State>,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
@@ -55,7 +57,8 @@ export class GroceryComponent implements OnInit {
 
   openDialog = (): void => {
     const options: GroceryDialogOptions = {
-      width: '80vw',
+      width: '300px',
+      maxWidth: '80vw',
       data: {
         title: this.translate.instant('GROCERY_CHOOSE_CATEGORY'),
         content: this.groceryItems
@@ -87,7 +90,7 @@ export class GroceryComponent implements OnInit {
     this.store.dispatch(SetSelectedGroceryList({ selectedGroceryList: this.groceries }));
   }
 
-  addToGroceries = (): void => {
+  remind = (): void => {
     if (!this.chosenGroceries.length) {
       this.showNotification(NotificationType.error, 'NOTIFICATIONS_EMPTY_GROCERY_LIST');
 
@@ -99,6 +102,29 @@ export class GroceryComponent implements OnInit {
     this.store.dispatch(SetSelectedGroceryList({ selectedGroceryList: this.groceries }));
     this.showNotification(NotificationType.success, 'NOTIFICATIONS_ADDED_GROCERY');
     this.chosenGroceries = [];
+  }
+
+  addToGroceries = (): void => {
+    if (this.customItem.invalid) {
+      this.customItem.markAsTouched(); 
+
+      return;
+    }
+
+    const formValue = this.customItem.value as Grocery['value'];
+    const newItem: Grocery = {
+      value: formValue,
+      key: lowerCase(formValue),
+      icon: 'assets/icons/cart.svg'
+    };
+
+    this.groceries = [
+      ...this.groceries,
+      newItem
+    ];
+
+    this.store.dispatch(SetSelectedGroceryList({ selectedGroceryList: this.groceries }));
+    this.customItem.reset();
   }
 
   private showNotification = (type: NotificationData['type'], message: NotificationData['message']): void => {

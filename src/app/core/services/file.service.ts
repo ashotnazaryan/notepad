@@ -33,10 +33,10 @@ export class FileService {
   upload = (file: File): Observable<string | ProgressEvent> => {
     const fileReader = new FileReader();
 
-    return new Observable(subscriber => {
+    return new Observable((subscriber) => {
       if (file.type !== 'text/plain') {
         subscriber.error(this.translate.instant('NOTIFICATIONS_INVALID_FILE'));
-        
+
         return;
       }
 

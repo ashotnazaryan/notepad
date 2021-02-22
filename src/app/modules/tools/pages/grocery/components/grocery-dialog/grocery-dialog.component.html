@@ -1,14 +1,20 @@
 <div class="grocery-dialog-container flex flex-column justify-content-between">
   <h1 mat-dialog-title>{{data.title}}</h1>
-  <div mat-dialog-content class="grocery-dialog-container__items flex flex-row flex-wrap">
-    <div
-      *ngFor="let item of groceries"
-      class="grocery-dialog-container__items__item flex flex-row align-items-center justify-content-center"
-      [class.selected]="selected(item)"
-      (click)="handleClick(item)">
-      <img [src]="item.icon" [alt]="item.value" />
+  <ng-container *ngIf="!(loading$ | async); else loadingTmpl">
+    <div mat-dialog-content class="grocery-dialog-container__items flex flex-row flex-wrap">
+      <div
+        *ngFor="let item of groceries"
+        class="grocery-dialog-container__items__item flex flex-row align-items-center justify-content-center"
+        [class.selected]="selected(item)"
+        (click)="handleClick(item)">
+        <img [src]="item.icon" [alt]="item.value" />
+      </div>
     </div>
-  </div>
+  </ng-container>
+  <ng-template #loadingTmpl>
+    <!-- TODO move to the shared components -->
+    <mat-spinner [strokeWidth]="3" [diameter]="50" class="flex align-self-center"></mat-spinner>
+  </ng-template>
   <div mat-dialog-actions class="justify-content-end">
     <app-button
       mat-dialog-close

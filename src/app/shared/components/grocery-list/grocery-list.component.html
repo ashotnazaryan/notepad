@@ -10,14 +10,22 @@
                 color="primary"
                 formControlName="checked">
               </mat-checkbox>
-              <img [src]="item.value.icon" [alt]="item.value.value" class="mx-2" />
-              <span class="grocery-list-container__text color-primary font-weight-bold ellipsis-text">{{item.value.langKey | translate}}</span>
+              <img
+                *ngIf="item.value.icon"
+                [src]="item.value.icon"
+                [alt]="item.value.value"
+                [matTooltip]="(item.value.langKey || item.value.value) | translate"
+                matTooltipPosition="above"
+                class="mx-2" />
+              <span class="grocery-list-container__text color-primary font-weight-bold ellipsis-text">
+                {{(item.value.langKey || item.value.value) | translate}}
+              </span>
             </div>
             <div class="grocery-list-container__notes-button flex flex-row flex-grow-1 align-items-center justify-content-end">
-              <mat-form-field floatLabel="never" class="w-100 mx-1">
+              <mat-form-field floatLabel="never" class="grocery-list-container__notes mx-1">
                 <input
                   matInput
-                  formControlName=notes
+                  formControlName="notes"
                   placeholder="{{'GROCERY_NOTES' | translate}}"
                   (click)="$event.stopPropagation()">
               </mat-form-field>

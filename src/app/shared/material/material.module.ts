@@ -14,6 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const modules = [
   MatInputModule,
@@ -29,6 +30,7 @@ const modules = [
   MatListModule,
   MatBadgeModule,
   MatCheckboxModule,
+  MatProgressSpinnerModule,
 ]
 
 @NgModule({

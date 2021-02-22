@@ -108,6 +108,10 @@
   justify-content: flex-start;
 }
 
+.align-self-center {
+  align-self: center;
+}
+
 .flex-grow-0 {
   flex-grow: 0;
 }
@@ -121,9 +125,9 @@
 }
 
 .ellipsis-text {
-  overflow: hidden;
+  overflow     : hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space  : nowrap;
 }
 
 .overflow-hidden {

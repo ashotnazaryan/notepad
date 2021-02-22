@@ -16,6 +16,8 @@
   "GENERAL_PAGES_TIME": "Time",
   "GENERAL_PAGES_GROCERY": "Grocery",
   "GENERAL_NO_DATA": "No data is available",
+  "GENERAL_ADD_NEW_ITEM": "Add new item",
+  "GENERAL_REQUIRED_FIELD": "This field is required",
   "PAPER_TYPE_YELLOW": "Yellow",
   "PAPER_TYPE_WHITE": "White",
   "PAPER_TYPE_BLACK": "Black",
