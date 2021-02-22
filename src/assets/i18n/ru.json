@@ -18,6 +18,8 @@
   "GENERAL_NO_DATA": "Нет данных",
   "GENERAL_ADD_NEW_ITEM": "Добавить новый элемент",
   "GENERAL_REQUIRED_FIELD": "Это поле обязательное",
+  "GENERAL_SELECT_ALL": "Выбрать все",
+  "GENERAL_REMOVE_ALL": "Убрать все",
   "PAPER_TYPE_YELLOW": "Желтый",
   "PAPER_TYPE_WHITE": "Белый",
   "PAPER_TYPE_BLACK": "Черный",

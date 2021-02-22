@@ -9,6 +9,11 @@
   overflow: auto;
   padding-right: $baseSpacing*1;
 
+  &__actions {
+    border: 1px solid $dark-grey;
+    border-width: 1px 0;
+  }
+
   &__item {
     img {
       width : 48px;
@@ -17,11 +22,11 @@
   }
 
   &__icon-text {
-    width: 33%;
+    width: calc(40% - 8px);
   }
 
   &__notes-button {
-    width: 67%;
+    width: 60%;
   }
 
   &__notes {

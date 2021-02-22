@@ -90,6 +90,11 @@ export class GroceryComponent implements OnInit {
     this.store.dispatch(SetSelectedGroceryList({ selectedGroceryList: this.groceries }));
   }
 
+  removeAll = (): void => {
+    this.groceries = [];
+    this.store.dispatch(SetSelectedGroceryList({ selectedGroceryList: this.groceries }));
+  }
+
   remind = (): void => {
     if (!this.chosenGroceries.length) {
       this.showNotification(NotificationType.error, 'NOTIFICATIONS_EMPTY_GROCERY_LIST');

@@ -10,4 +10,14 @@ app-grocery-list {
       }
     }
   }
+
+  mat-checkbox {
+    .mat-checkbox-layout {
+      @extend .w-100;
+  
+      .mat-checkbox-label {
+        @extend .w-100;
+      }
+    }
+  }
 }

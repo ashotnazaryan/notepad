@@ -1,7 +1,6 @@
 <ng-container *ngIf="groceries$ | async as groceries">
   <app-grocery-list
-    [multiple]="false"
-    [data]="groceries"
-    [editable]="false">
+    [editable]="false"
+    [data]="groceries">
   </app-grocery-list>
 </ng-container>

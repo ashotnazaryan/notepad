@@ -1,27 +1,43 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators';
 import { differenceWith, findIndex } from 'lodash';
 
 import { Grocery } from '@shared/models/grocery';
 import { ButtonSize } from '@shared/components/button/button.component';
+import { pipe } from 'rxjs';
 
 @Component({
   selector: 'app-grocery-list',
   templateUrl: './grocery-list.component.html',
-  styleUrls: ['./grocery-list.component.scss']
+  styleUrls: ['./grocery-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GroceryListComponent implements OnInit {
   @Input() data: Array<Grocery> = [];
   @Input() editable = true;
-  @Input() multiple = true;
 
   @Output() readonly checkChanged: EventEmitter<Array<Grocery>> = new EventEmitter();
   @Output() readonly itemRemoved: EventEmitter<Grocery> = new EventEmitter();
+  @Output() readonly allRemoved: EventEmitter<void> = new EventEmitter();
 
   form: FormGroup = this.formBuilder.group({});
   groceriesArr: FormArray = this.form.get('groceries') as FormArray;
   readonly ButtonSize = ButtonSize;
+
+  // TODO find better way, performance issue
+  get allIntermediate(): boolean {
+    const groceries = this.groceriesArr.value as Array<Grocery>;
+
+    return !this.allChecked && groceries.some(({ checked }) => checked);
+  }
+
+  // TODO find better way, performance issue
+  get allChecked(): boolean {
+    const groceries = this.groceriesArr.value as Array<Grocery>;
+
+    return !!groceries.length && groceries.every(({ checked }) => checked);
+  }
 
   constructor(
     private formBuilder: FormBuilder
@@ -46,11 +62,25 @@ export class GroceryListComponent implements OnInit {
     this.itemRemoved.emit(item);
   }
 
+  handleRemoveAll = (): void => {
+    this.data.forEach((item) => {
+      const index = findIndex(this.groceriesArr.value, item); // Because this.groceriesArr changes after the removeItem
+
+      this.removeItem(index);
+    });
+
+    this.allRemoved.emit();
+  }
+
   private initFormControls = (): void => {
     const formArray = this.data.map((item) => this.createNewItem(item));
 
     this.groceriesArr = new FormArray(formArray);
-    this.form = this.formBuilder.group({ groceries: this.groceriesArr });
+
+    this.form = this.formBuilder.group({
+      selectAll: false,
+      groceries: this.groceriesArr
+    });
 
     this.form.valueChanges
       .pipe(
@@ -60,6 +90,18 @@ export class GroceryListComponent implements OnInit {
       .subscribe((formValue: { groceries: Array<Grocery> }) => {
         this.checkChanged.emit(formValue.groceries);
       });
+
+    // this.form.get('selectAll')?.valueChanges
+    //   .subscribe((selectAll) => {
+    //     const groceries = this.data.map((item) => ({
+    //       ...item,
+    //       checked: true
+    //     }));
+
+    //     if (selectAll) {
+    //       this.checkChanged.emit(groceries);
+    //     }
+    //   });
   }
 
   private updateFormControls = (): void => {
@@ -88,7 +130,7 @@ export class GroceryListComponent implements OnInit {
     return this.formBuilder.group({
       // TODO use spread operator
       key: item?.key,
-      notes: { value: item?.notes, disabled: !this.editable },
+      notes: item?.notes,
       checked: item?.checked,
       icon: item?.icon,
       langKey: item?.langKey,
