@@ -90,6 +90,15 @@ export class GroceryComponent implements OnInit {
     this.store.dispatch(SetSelectedGroceryList({ selectedGroceryList: this.groceries }));
   }
 
+  checkAll = (checked: Grocery['checked']): void => {
+    this.groceries = this.groceries.map((item) => ({
+      ...item,
+      checked
+    }));
+
+    this.store.dispatch(SetSelectedGroceryList({ selectedGroceryList: this.groceries }));
+  }
+
   removeAll = (): void => {
     this.groceries = [];
     this.store.dispatch(SetSelectedGroceryList({ selectedGroceryList: this.groceries }));

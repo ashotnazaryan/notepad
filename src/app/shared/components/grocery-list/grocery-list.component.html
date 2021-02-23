@@ -4,8 +4,8 @@
       <div *ngIf="editable" class="grocery-list-container__actions flex flex-row align-items-center justify-content-between p-2">
         <mat-checkbox
           color="primary"
-          [checked]="allChecked"
-          [indeterminate]="allIntermediate"
+          [checked]="allCheck"
+          [indeterminate]="intermediate"
           formControlName="selectAll">
           <span class="color-primary font-size-16">{{'GENERAL_SELECT_ALL' | translate}}</span>
         </mat-checkbox>
@@ -21,7 +21,7 @@
         <mat-list-item color="primary" *ngFor="let item of groceriesArr.controls; let i=index">
           <div [formGroupName]="i" class="grocery-list-container__item w-100 flex flex-row align-items-center justify-content-between">
             <div 
-              class="grocery-list-container__icon-text mr-2"
+              class="grocery-list-container__icon-text flex flex-row align-items-center justify-content-between mr-2"
               [matTooltip]="(item.value.langKey || item.value.value) | translate"
               matTooltipPosition="above">
               <mat-checkbox
@@ -40,12 +40,10 @@
                 </div>
               </mat-checkbox>
               <ng-template #single>
-                <div class="grocery-list-container__icon-text flex flex-row align-items-center justify-content-between mr-2">
+                <div class="flex flex-row align-items-center w-100">
                   <img
                     [src]="item.value.icon"
                     [alt]="item.value.value"
-                    [matTooltip]="(item.value.langKey || item.value.value) | translate"
-                    matTooltipPosition="above"
                     class="mx-2" />
                   <span class="grocery-list-container__text color-primary ellipsis-text">
                     {{(item.value.langKey || item.value.value) | translate}}
@@ -72,7 +70,7 @@
                 </app-button>
               </div>
               <ng-template #viewMode>
-                <div>{{item.value.notes}}</div>
+                <div class="ellipsis-text">{{item.value.notes}}</div>
               </ng-template>
             </div>
           </div>

@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { differenceWith, findIndex } from 'lodash';
 
 import { Grocery } from '@shared/models/grocery';
 import { ButtonSize } from '@shared/components/button/button.component';
-import { pipe } from 'rxjs';
 
 @Component({
   selector: 'app-grocery-list',
@@ -19,6 +18,7 @@ export class GroceryListComponent implements OnInit {
 
   @Output() readonly checkChanged: EventEmitter<Array<Grocery>> = new EventEmitter();
   @Output() readonly itemRemoved: EventEmitter<Grocery> = new EventEmitter();
+  @Output() readonly allChecked: EventEmitter<boolean> = new EventEmitter();
   @Output() readonly allRemoved: EventEmitter<void> = new EventEmitter();
 
   form: FormGroup = this.formBuilder.group({});
@@ -26,14 +26,14 @@ export class GroceryListComponent implements OnInit {
   readonly ButtonSize = ButtonSize;
 
   // TODO find better way, performance issue
-  get allIntermediate(): boolean {
+  get intermediate(): boolean {
     const groceries = this.groceriesArr.value as Array<Grocery>;
 
-    return !this.allChecked && groceries.some(({ checked }) => checked);
+    return !this.allCheck && groceries.some(({ checked }) => checked);
   }
 
   // TODO find better way, performance issue
-  get allChecked(): boolean {
+  get allCheck(): boolean {
     const groceries = this.groceriesArr.value as Array<Grocery>;
 
     return !!groceries.length && groceries.every(({ checked }) => checked);
@@ -82,26 +82,23 @@ export class GroceryListComponent implements OnInit {
       groceries: this.groceriesArr
     });
 
-    this.form.valueChanges
+    this.form.get('groceries')?.valueChanges
       .pipe(
         distinctUntilChanged(),
         debounceTime(300)
       )
-      .subscribe((formValue: { groceries: Array<Grocery> }) => {
-        this.checkChanged.emit(formValue.groceries);
+      .subscribe((groceries: Array<Grocery>) => {
+        this.checkChanged.emit(groceries);
       });
 
-    // this.form.get('selectAll')?.valueChanges
-    //   .subscribe((selectAll) => {
-    //     const groceries = this.data.map((item) => ({
-    //       ...item,
-    //       checked: true
-    //     }));
-
-    //     if (selectAll) {
-    //       this.checkChanged.emit(groceries);
-    //     }
-    //   });
+    this.form.get('selectAll')?.valueChanges
+      .subscribe((selectAll: boolean) => {
+        if (selectAll) {
+          this.allChecked.emit(true);
+        } else {
+          this.allChecked.emit(false);
+        }
+      });
   }
 
   private updateFormControls = (): void => {
@@ -124,6 +121,8 @@ export class GroceryListComponent implements OnInit {
 
       return;
     }
+
+    this.groceriesArr.patchValue(this.data);
   }
 
   private createNewItem = (item?: Grocery): FormGroup => {

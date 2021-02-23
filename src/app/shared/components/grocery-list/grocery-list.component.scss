@@ -5,8 +5,6 @@
 }
 
 .grocery-list-container {
-  max-height: calc(100vh - 185px);
-  overflow: auto;
   padding-right: $baseSpacing*1;
 
   &__actions {

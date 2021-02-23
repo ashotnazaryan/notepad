@@ -30,7 +30,8 @@
       [data]="(groceries$ | async)!"
       (checkChanged)="updateGroceries($event)"
       (itemRemoved)="removeItem($event)"
-      (allRemoved)="removeAll()">
+      (allRemoved)="removeAll()"
+      (allChecked)="checkAll($event)">
     </app-grocery-list>
   </div>
 </div>
