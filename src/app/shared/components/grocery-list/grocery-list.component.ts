@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs/internal/Subject';
 import { differenceWith, findIndex } from 'lodash';
 
 import { Grocery } from '@shared/models/grocery';
@@ -21,6 +22,7 @@ export class GroceryListComponent implements OnInit {
   @Output() readonly allChecked: EventEmitter<boolean> = new EventEmitter();
   @Output() readonly allRemoved: EventEmitter<void> = new EventEmitter();
 
+  private unsubscribe$ = new Subject();
   form: FormGroup = this.formBuilder.group({});
   groceriesArr: FormArray = this.form.get('groceries') as FormArray;
   readonly ButtonSize = ButtonSize;
@@ -84,6 +86,7 @@ export class GroceryListComponent implements OnInit {
 
     this.form.get('groceries')?.valueChanges
       .pipe(
+        takeUntil(this.unsubscribe$),
         distinctUntilChanged(),
         debounceTime(300)
       )
@@ -92,6 +95,9 @@ export class GroceryListComponent implements OnInit {
       });
 
     this.form.get('selectAll')?.valueChanges
+      .pipe(
+        takeUntil(this.unsubscribe$),
+      )
       .subscribe((selectAll: boolean) => {
         if (selectAll) {
           this.allChecked.emit(true);
@@ -143,6 +149,11 @@ export class GroceryListComponent implements OnInit {
 
   private removeItem = (index: number): void => {
     this.groceriesArr.removeAt(index);
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
 }

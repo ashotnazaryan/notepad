@@ -3,6 +3,8 @@ import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { KeyName } from '@shared/models';
 
+type ChangeFunction =  (value: string) => '';
+
 @Component({
   selector: 'app-paper',
   templateUrl: './paper.component.html',
@@ -20,12 +22,8 @@ export class PaperComponent implements OnInit {
   @Input() type?: KeyName['key'];
 
   textAreaControl = new FormControl('');
-  onChange: Function = () => { };
-  onTouched: Function = () => { };
-
-  constructor() { 
-
-  }
+  onChange: ChangeFunction = () => '';
+  onTouched: ChangeFunction = () => '';
 
   ngOnInit(): void {
     this.textAreaControl.valueChanges
@@ -40,11 +38,11 @@ export class PaperComponent implements OnInit {
     this.textAreaControl.setValue(value);
   }
 
-  registerOnChange(fn: Function): void {
+  registerOnChange(fn: ChangeFunction): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: Function): void {
+  registerOnTouched(fn: ChangeFunction): void {
     this.onTouched = fn;
   }
 

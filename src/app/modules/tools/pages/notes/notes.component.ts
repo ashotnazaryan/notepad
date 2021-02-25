@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -18,7 +18,7 @@ import { paperTypes } from './constants/paper-types';
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.scss']
 })
-export class NotesComponent implements OnInit {
+export class NotesComponent {
   form: FormGroup;
   paperTypes: Array<KeyName> = paperTypes;
   paperType: KeyName['key'] = this.paperTypes[0].key;
@@ -31,10 +31,6 @@ export class NotesComponent implements OnInit {
     this.form = this.formBuilder.group({
       paper: null
     });
-  }
-
-  ngOnInit(): void {
-    
   }
 
   handlePaperTypeChange = ({ value }: MatSelectChange): void => {

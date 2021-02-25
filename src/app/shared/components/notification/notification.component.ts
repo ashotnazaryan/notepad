@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatSnackBarRef, MAT_SNACK_BAR_DATA, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 import { ButtonSize } from '@shared/components/button/button.component';
@@ -20,7 +20,7 @@ export type NotificationOptions = Omit<MatSnackBarConfig, 'data'> & { data: Noti
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.scss']
 })
-export class NotificationComponent implements OnInit {
+export class NotificationComponent {
   readonly ButtonSize = ButtonSize;
   readonly NotificationType = NotificationType;
 
@@ -29,10 +29,6 @@ export class NotificationComponent implements OnInit {
     public snackRef: MatSnackBarRef<NotificationComponent>,
   ) {
     
-  }
-
-  ngOnInit(): void {
-
   }
 
   handleClick(): void {

@@ -32,5 +32,5 @@ export const reducer = createReducer(
   
 );
 
-export const selectChosenGroceryListFn = (state: State) => state.chosenGroceryList;
-export const selectSelectedGroceryListFn = (state: State) => state.selectedGroceryList;
+export const selectChosenGroceryListFn = (state: State): Array<Grocery> => state.chosenGroceryList;
+export const selectSelectedGroceryListFn = (state: State): Array<Grocery> => state.selectedGroceryList;

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { ModulePage } from '@shared/models';
 
@@ -7,13 +7,6 @@ import { ModulePage } from '@shared/models';
   templateUrl: './breadcrumbs.component.html',
   styleUrls: ['./breadcrumbs.component.scss']
 })
-export class BreadcrumbsComponent implements OnInit {
+export class BreadcrumbsComponent {
   @Input() item!: ModulePage;
-
-  constructor() { }
-
-  ngOnInit(): void {
-
-  }
-
 }

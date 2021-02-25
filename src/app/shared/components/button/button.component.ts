@@ -1,4 +1,4 @@
-import { Component, ContentChild, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { Component, ContentChild, ElementRef, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 
 export enum ButtonSize {
   icon,
@@ -11,24 +11,18 @@ export enum ButtonSize {
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss']
 })
-export class ButtonComponent implements OnInit {
+export class ButtonComponent {
   @Input() disabled = false;
-  @Input() color: string = 'default';
+  @Input() color = 'default';
   @Input() size: ButtonSize = ButtonSize.large;
   @Input() icon?: string;
   @Input() text?: string;
   @Output() readonly clicked = new EventEmitter<MouseEvent>();
-  @ContentChild('customTemplate', { static: true }) customTemplate?: TemplateRef<any>;
+  @ContentChild('customTemplate', { static: true }) customTemplate?: TemplateRef<ElementRef>;
 
   readonly ButtonSize = ButtonSize;
 
-  constructor() { }
-
-  ngOnInit(): void {
-    
-  }
-
-  handleClick = (event?: MouseEvent) => {
+  handleClick = (event?: MouseEvent): void => {
     this.clicked.emit(event);
   }
 

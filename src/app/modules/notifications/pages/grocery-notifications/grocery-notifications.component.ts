@@ -1,8 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/internal/Observable';
 import { Subject } from 'rxjs/internal/Subject';
-import { map, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 
 import * as fromTools from '@modules/tools/store/reducers';
 import { Grocery } from '@shared/models/grocery';
@@ -12,7 +12,7 @@ import { Grocery } from '@shared/models/grocery';
   templateUrl: './grocery-notifications.component.html',
   styleUrls: ['./grocery-notifications.component.scss']
 })
-export class GroceryNotificationsComponent implements OnInit, OnDestroy {
+export class GroceryNotificationsComponent implements OnDestroy {
   private unsubscribe$ = new Subject();
 
   groceries$: Observable<Array<Grocery>> =
@@ -22,10 +22,6 @@ export class GroceryNotificationsComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<fromTools.State>,
   ) { }
-
-  ngOnInit(): void {
-
-  }
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();

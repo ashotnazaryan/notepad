@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { ClockSize } from '@shared/components/clock/clock.component';
 
@@ -7,13 +7,6 @@ import { ClockSize } from '@shared/components/clock/clock.component';
   templateUrl: './time.component.html',
   styleUrls: ['./time.component.scss']
 })
-export class TimeComponent implements OnInit {
+export class TimeComponent {
   readonly ClockSize = ClockSize;
-
-  constructor() { }
-
-  ngOnInit(): void {
-    
-  }
-
 }

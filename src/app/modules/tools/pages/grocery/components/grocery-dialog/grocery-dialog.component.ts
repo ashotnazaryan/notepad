@@ -93,7 +93,7 @@ export class GroceryDialogComponent implements OnInit, OnDestroy {
       }),
       scan((acc, curr) => [...acc, curr], [] as any),
       filter((images) => images.length === icons.length),
-    ).subscribe((images) => {
+    ).subscribe(() => {
       this.loading$.next(false);
     });
   }
