@@ -1,8 +1,9 @@
 import { Event, NavigationEnd } from '@angular/router';
-import { get, identity } from 'lodash';
+import { capitalize, get, identity } from 'lodash';
 
 import { ROUTES } from '@core/constants';
-import { ModulePage, Weather } from '@shared/models';
+import { ModulePage } from '@shared/models';
+import Weather, { ClientWeather } from '@shared/models/location';
 
 export const getModulePage = (event: Event): ModulePage => {
   // FIXME https://github.com/angular/angular/issues/15439
@@ -18,16 +19,14 @@ export const getModulePage = (event: Event): ModulePage => {
   };
 }
 
-export const weatherNormalizer = (weather: any): Weather => {
-  const main = weather?.main;
-
+export const weatherNormalizer = (weather: Weather, digits = 1): ClientWeather => {
   return {
-    location: weather?.name,
-    temperature: `${main?.temp}℃`,
-    description: weather?.weather[0]?.description,
-    minTemperature: `${main?.temp_min}℃`,
-    maxTemperature: `${main?.temp_max}℃`,
-    feelsLike: `${main?.feels_like}℃`,
-    humidity: `${main?.humidity}%`
+    location: weather?.location,
+    temperature: `${weather?.temperature?.toFixed(digits)}℃`,
+    description: capitalize(weather?.description),
+    minTemperature: `${weather?.minTemperature?.toFixed(digits)}℃`,
+    maxTemperature: `${weather?.maxTemperature?.toFixed(digits)}℃`,
+    feelsLike: `${weather?.feelsLike?.toFixed(digits)}℃`,
+    humidity: `${weather?.humidity}%`
   }
 }

@@ -69,7 +69,7 @@
   "WEATHER_TIMEOUT_ERROR": "Время ожидания запроса на получение местоположения пользователя истекло.",
   "WEATHER_LOCATION": "Местоположение",
   "WEATHER_TEMPERATURE": "Температура",
-  "WEATHER_FEELS_LIKE": "Как будто",
+  "WEATHER_FEELS_LIKE": "Чувствуется как",
   "WEATHER_DESCRIPTION": "Описание",
   "WEATHER_MINIMUM": "Минимум",
   "WEATHER_MAXIMUM": "Максимум",

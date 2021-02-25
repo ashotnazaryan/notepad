@@ -1,13 +1,5 @@
-<!-- TODO move to a separate component -->
 <ng-container *ngIf="!(loading$ | async); else loading">
-  <!-- TODO move to the shared components -->
-  <div>{{'WEATHER_LOCATION' | translate}}: {{weather?.location}}</div>
-  <div>{{'WEATHER_TEMPERATURE' | translate}}: {{weather?.temperature}}</div>
-  <div>{{'WEATHER_FEELS_LIKE' | translate}}: {{weather?.feelsLike}}</div>
-  <div>{{'WEATHER_DESCRIPTION' | translate}}: {{weather?.description}}</div>
-  <div>{{'WEATHER_MINIMUM' | translate}} {{weather?.minTemperature}}</div>
-  <div>{{'WEATHER_MAXIMUM' | translate}}: {{weather?.maxTemperature}}</div>
-  <div>{{'WEATHER_HUMIDITY' | translate}}: {{weather?.humidity}}</div>
+  <app-weather-widget [data]="weather"></app-weather-widget>
 </ng-container>
 <ng-template #loading>
   <!-- TODO move to the shared components -->

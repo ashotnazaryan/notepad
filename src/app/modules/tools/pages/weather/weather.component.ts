@@ -9,7 +9,8 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { APP_CONFIGS } from '@core/config';
 import { HttpService } from '@core/services/http.service';
 import { LocationService } from '@shared/services/location.service';
-import { ClientLocation, Language, Weather } from '@shared/models';
+import { ClientLocation, Language } from '@shared/models';
+import Weather, { ClientWeather } from '@shared/models/location';
 import { weatherNormalizer } from '@shared/utils';
 import * as fromRoot from '@shared/store/reducers';
 import { NotificationComponent, NotificationOptions, NotificationType } from '@shared/components/notification/notification.component';
@@ -22,7 +23,7 @@ import { NotificationComponent, NotificationOptions, NotificationType } from '@s
 export class WeatherComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject();
   loading$ = new BehaviorSubject<boolean>(false);
-  weather?: Weather;
+  weather?: ClientWeather;
 
   constructor(
     private http: HttpService,
@@ -59,7 +60,9 @@ export class WeatherComponent implements OnInit, OnDestroy {
     this.http.get(url)
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((weather) => {
-        this.weather = weatherNormalizer(weather);
+        const wet = new Weather(weather);
+        
+        this.weather = weatherNormalizer(wet, 0);
       });
   }
 
