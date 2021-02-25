@@ -10,9 +10,7 @@
       matTooltipPosition="right">
     </app-button>
     <mat-menu #tools="matMenu">
-      <button mat-menu-item [routerLink]="notesLink">{{'GENERAL_PAGES_NOTES' | translate}}</button>
-      <button mat-menu-item [routerLink]="timeLink">{{'GENERAL_PAGES_TIME' | translate}}</button>
-      <button mat-menu-item [routerLink]="groceryLink">{{'GENERAL_PAGES_GROCERY' | translate}}</button>
+      <button *ngFor="let item of menuItems.tools" mat-menu-item [routerLink]="item.route">{{item.langKey | translate}}</button>
     </mat-menu>
     <div class="header-container__widgets flex flex-row flex-grow-1 justify-content-between align-items-center">
       <app-breadcrumbs 
@@ -47,15 +45,16 @@
         </app-button>
         <mat-menu #notifications="matMenu">
           <button
+            *ngFor="let item of menuItems.notifications"
             mat-menu-item
-            [routerLink]="groceryNotificationsLink">
+            [routerLink]="item.route">
             <span
               matBadgeSize="small"
               matBadgeOverlap="false"
               matBadge="{{groceryNotificationsCount$ | async}}"
               matBadgeColor="accent"
               matBadgeHidden="{{!(groceryNotificationsCount$ | async)}}">
-              {{'GENERAL_PAGES_GROCERY' | translate}}
+              {{item.langKey | translate}}
             </span>
           </button>
         </mat-menu>

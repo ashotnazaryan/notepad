@@ -1,5 +1,6 @@
 import { AppRoute } from "@shared/models";
 
+// TODO move to @core/constants
 export const ROUTES: AppRoute = {
   tools: {
     route: 'tools',
@@ -20,6 +21,11 @@ export const ROUTES: AppRoute = {
         route: 'grocery',
         name: 'Grocery',
         langKey: 'GENERAL_PAGES_GROCERY',
+      },
+      weather: {
+        route: 'weather',
+        name: 'Weather',
+        langKey: 'GENERAL_PAGES_WEATHER',
       }
     }
   },

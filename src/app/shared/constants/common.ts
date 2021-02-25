@@ -1,6 +1,6 @@
 import { Language } from "@shared/models";
 
-export const languages: Array<Language> = [
+export const LANGUAGES: Array<Language> = [
   {
     key: 'en',
     shortName: 'En',

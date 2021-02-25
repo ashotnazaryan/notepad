@@ -81,22 +81,20 @@ export class GroceryComponent implements OnInit {
     });
   }
 
-  updateGroceries = (items: Array<Grocery>): void => {
+  updateChosenGroceries = (items: Array<Grocery>): void => {
     this.chosenGroceries = items.filter(({ checked }) => checked);
   }
 
-  removeItem = (item: Grocery): void => {
+  updateSelectedGroceries = (item: Grocery): void => {
     this.groceries = this.groceries.filter(({ key }) => key !== item.key);
     this.store.dispatch(SetSelectedGroceryList({ selectedGroceryList: this.groceries }));
   }
 
   checkAll = (checked: Grocery['checked']): void => {
-    this.groceries = this.groceries.map((item) => ({
+    this.chosenGroceries = this.groceries.map((item) => ({
       ...item,
       checked
     }));
-
-    this.store.dispatch(SetSelectedGroceryList({ selectedGroceryList: this.groceries }));
   }
 
   removeAll = (): void => {
@@ -120,7 +118,7 @@ export class GroceryComponent implements OnInit {
 
   addToGroceries = (): void => {
     if (this.customItem.invalid) {
-      this.customItem.markAsTouched(); 
+      this.customItem.markAsTouched();
 
       return;
     }

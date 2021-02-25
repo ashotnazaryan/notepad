@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ROUTES } from '@shared/constants';
+import { ROUTES } from '@core/constants';
 import { ToolsComponent } from './tools.component';
 import { NotesComponent } from './pages/notes/notes.component';
 import { TimeComponent } from './pages/time/time.component';
 import { GroceryComponent } from './pages/grocery/grocery.component';
+import { WeatherComponent } from './pages/weather/weather.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,13 @@ const routes: Routes = [
         component: GroceryComponent,
         data: { 
           title: `${ROUTES.tools.sub_routes.grocery.langKey}`
+        }
+      },
+      {
+        path: `${ROUTES.tools.sub_routes.weather.route}`,
+        component: WeatherComponent,
+        data: { 
+          title: `${ROUTES.tools.sub_routes.weather.langKey}`
         }
       }
     ]

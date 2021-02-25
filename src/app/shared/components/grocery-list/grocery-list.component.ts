@@ -17,7 +17,7 @@ export class GroceryListComponent implements OnInit {
   @Input() data: Array<Grocery> = [];
   @Input() editable = true;
 
-  @Output() readonly checkChanged: EventEmitter<Array<Grocery>> = new EventEmitter();
+  @Output() readonly itemChecked: EventEmitter<Array<Grocery>> = new EventEmitter();
   @Output() readonly itemRemoved: EventEmitter<Grocery> = new EventEmitter();
   @Output() readonly allChecked: EventEmitter<boolean> = new EventEmitter();
   @Output() readonly allRemoved: EventEmitter<void> = new EventEmitter();
@@ -91,7 +91,7 @@ export class GroceryListComponent implements OnInit {
         debounceTime(300)
       )
       .subscribe((groceries: Array<Grocery>) => {
-        this.checkChanged.emit(groceries);
+        this.itemChecked.emit(groceries);
       });
 
     this.form.get('selectAll')?.valueChanges
@@ -99,11 +99,13 @@ export class GroceryListComponent implements OnInit {
         takeUntil(this.unsubscribe$),
       )
       .subscribe((selectAll: boolean) => {
-        if (selectAll) {
-          this.allChecked.emit(true);
-        } else {
-          this.allChecked.emit(false);
-        }
+        const allCheckedGroceries = this.data.map((item) => ({
+          ...item,
+          checked: selectAll
+        }));
+
+        this.groceriesArr.patchValue(allCheckedGroceries);
+        this.allChecked.emit(selectAll)
       });
   }
 

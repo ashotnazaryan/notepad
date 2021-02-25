@@ -9,7 +9,8 @@ import { zip } from 'rxjs/internal/observable/zip';
 import { filter, map, mergeMap, takeUntil, tap } from 'rxjs/operators';
 import * as moment from 'moment';
 
-import { ROUTES, languages } from '@shared/constants';
+import { MENU_ITEMS } from '@core/constants';
+import { LANGUAGES } from '@shared/constants';
 import { SetModulePage } from '@shared/store/actions/module-page.actions';
 import * as fromRoot from '@shared/store/reducers';
 import * as fromTools from '@modules/tools/store/reducers';
@@ -28,11 +29,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private unsubscribe$ = new Subject();
   clockFormat = 'h:mm A';
-  notesLink = `${ROUTES.tools.route}/${ROUTES.tools.sub_routes.notes.route}`;
-  timeLink = `${ROUTES.tools.route}/${ROUTES.tools.sub_routes.time.route}`;
-  groceryLink = `${ROUTES.tools.route}/${ROUTES.tools.sub_routes.grocery.route}`;
-  groceryNotificationsLink = `${ROUTES.notifications.route}/${ROUTES.notifications.sub_routes.grocery.route}`;
-  languages = languages;
+  languages = LANGUAGES;
+  menuItems = MENU_ITEMS;
 
   modulePage$: Observable<ModulePage> =
     this.store.select(fromRoot.selectModulePage)

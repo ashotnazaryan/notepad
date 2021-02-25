@@ -1,7 +1,7 @@
 import { Event, NavigationEnd } from '@angular/router';
 import { get, identity } from 'lodash';
 
-import { ROUTES } from '@shared/constants';
+import { ROUTES } from '@core/constants';
 import { ModulePage } from '@shared/models';
 
 export const getModulePage = (event: Event): ModulePage => {
