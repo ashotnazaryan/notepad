@@ -21,6 +21,8 @@
   "GENERAL_REQUIRED_FIELD": "Это поле обязательное",
   "GENERAL_SELECT_ALL": "Выбрать все",
   "GENERAL_REMOVE_ALL": "Убрать все",
+  "GENERAL_UNKNOWN_ERROR": "Произошла неизвестная ошибка.",
+  "GENERAL_UNSUPPORTED_BROWSER": "Неподдерживаемый браузер.",
   "PAPER_TYPE_YELLOW": "Желтый",
   "PAPER_TYPE_WHITE": "Белый",
   "PAPER_TYPE_BLACK": "Черный",
@@ -61,5 +63,15 @@
   "NOTIFICATIONS_INVALID_FILE": "Не валидный файл. Пожалуйста, выберите текстовый файл.",
   "NOTIFICATIONS_ADDED_GROCERY": "Успешно добавлено в покупки.",
   "NOTIFICATIONS_EMPTY_GROCERY_LIST": "Пожалуйста, выберите минимум один элемент.",
-  "NOTIFICATIONS_EMPTY_NOTES": "Нет заметок для сохранения."
+  "NOTIFICATIONS_EMPTY_NOTES": "Нет заметок для сохранения.",
+  "WEATHER_USER_DENIED_GEOLOCATION": "Пользователь отклонил запрос на геолокацию.",
+  "WEATHER_UNAVAILABLE_INFORMATION": "Информация о местоположении недоступна.",
+  "WEATHER_TIMEOUT_ERROR": "Время ожидания запроса на получение местоположения пользователя истекло.",
+  "WEATHER_LOCATION": "Местоположение",
+  "WEATHER_TEMPERATURE": "Температура",
+  "WEATHER_FEELS_LIKE": "Как будто",
+  "WEATHER_DESCRIPTION": "Описание",
+  "WEATHER_MINIMUM": "Минимум",
+  "WEATHER_MAXIMUM": "Максимум",
+  "WEATHER_HUMIDITY": "Влажность"
 }

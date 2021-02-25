@@ -2,7 +2,7 @@ import { Event, NavigationEnd } from '@angular/router';
 import { get, identity } from 'lodash';
 
 import { ROUTES } from '@core/constants';
-import { ModulePage } from '@shared/models';
+import { ModulePage, Weather } from '@shared/models';
 
 export const getModulePage = (event: Event): ModulePage => {
   // FIXME https://github.com/angular/angular/issues/15439
@@ -16,4 +16,18 @@ export const getModulePage = (event: Event): ModulePage => {
     module: moduleRoute.langKey,
     page: pageRoute.langKey
   };
+}
+
+export const weatherNormalizer = (weather: any): Weather => {
+  const main = weather?.main;
+
+  return {
+    location: weather?.name,
+    temperature: `${main?.temp}℃`,
+    description: weather?.weather[0]?.description,
+    minTemperature: `${main?.temp_min}℃`,
+    maxTemperature: `${main?.temp_max}℃`,
+    feelsLike: `${main?.feels_like}℃`,
+    humidity: `${main?.humidity}%`
+  }
 }

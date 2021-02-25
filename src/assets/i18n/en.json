@@ -21,6 +21,8 @@
   "GENERAL_REQUIRED_FIELD": "This field is required",
   "GENERAL_SELECT_ALL": "Select all",
   "GENERAL_REMOVE_ALL": "Remove all",
+  "GENERAL_UNKNOWN_ERROR": "An unknown error occurred.",
+  "GENERAL_UNSUPPORTED_BROWSER": "Unsupported Browser.",
   "PAPER_TYPE_YELLOW": "Yellow",
   "PAPER_TYPE_WHITE": "White",
   "PAPER_TYPE_BLACK": "Black",
@@ -61,5 +63,15 @@
   "NOTIFICATIONS_INVALID_FILE": "Invalid file. Please choose a text file.",
   "NOTIFICATIONS_ADDED_GROCERY": "Successfully added to the grocery.",
   "NOTIFICATIONS_EMPTY_GROCERY_LIST": "Please select at least one item.",
-  "NOTIFICATIONS_EMPTY_NOTES": "There are no notes to save."
+  "NOTIFICATIONS_EMPTY_NOTES": "There are no notes to save.",
+  "WEATHER_USER_DENIED_GEOLOCATION": "User denied the request for Geolocation.",
+  "WEATHER_UNAVAILABLE_INFORMATION": "Location information is unavailable.",
+  "WEATHER_TIMEOUT_ERROR": "The request to get user location timed out.",
+  "WEATHER_LOCATION": "Location",
+  "WEATHER_TEMPERATURE": "Temperature",
+  "WEATHER_FEELS_LIKE": "Feels like",
+  "WEATHER_DESCRIPTION": "Description",
+  "WEATHER_MINIMUM": "Minimum",
+  "WEATHER_MAXIMUM": "Maximum",
+  "WEATHER_HUMIDITY": "Humidity"
 }

@@ -46,7 +46,7 @@ export class GroceryComponent implements OnInit {
     private dialog: MatDialog,
     private translate: TranslateService,
     private store: Store<fromGrocery.State>,
-    private snackBar: MatSnackBar,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
