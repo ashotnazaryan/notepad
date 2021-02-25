@@ -1,3 +1,10 @@
 :host {
   display: block;
 }
+
+.weather-widget-container {
+  &__icon {
+    width: 36px;
+    height: 36px;
+  }
+}

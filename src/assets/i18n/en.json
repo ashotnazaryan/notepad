@@ -73,5 +73,6 @@
   "WEATHER_DESCRIPTION": "Description",
   "WEATHER_MINIMUM": "Minimum",
   "WEATHER_MAXIMUM": "Maximum",
-  "WEATHER_HUMIDITY": "Humidity"
+  "WEATHER_HUMIDITY": "Humidity",
+  "WEATHER_WIND": "Wind"
 }

@@ -22,11 +22,12 @@ export const getModulePage = (event: Event): ModulePage => {
 export const weatherNormalizer = (weather: Weather, digits = 1): ClientWeather => {
   return {
     location: weather?.location,
-    temperature: `${weather?.temperature?.toFixed(digits)}℃`,
+    temperature: `${weather?.temperature?.toFixed(digits)} ℃`,
     description: capitalize(weather?.description),
-    minTemperature: `${weather?.minTemperature?.toFixed(digits)}℃`,
-    maxTemperature: `${weather?.maxTemperature?.toFixed(digits)}℃`,
-    feelsLike: `${weather?.feelsLike?.toFixed(digits)}℃`,
-    humidity: `${weather?.humidity}%`
+    feelsLike: `${weather?.feelsLike?.toFixed(digits)} ℃`,
+    humidity: `${weather?.humidity} %`,
+    wind: `${weather?.wind} m/s`, // TODO translate m/s
+    minTemperature: `${weather?.minTemperature?.toFixed(digits)} ℃`,
+    maxTemperature: `${weather?.maxTemperature?.toFixed(digits)} ℃`
   }
 }

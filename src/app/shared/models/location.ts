@@ -15,6 +15,9 @@ export interface WeatherDTO {
     temp_max: number;
     temp_min: number;
   };
+  wind: {
+    speed: number;
+  }
 }
 
 export interface ClientWeather {
@@ -23,6 +26,7 @@ export interface ClientWeather {
   temperature?: string;
   feelsLike?: string;
   humidity?: string;
+  wind?: string;
   minTemperature?: string;
   maxTemperature?: string;
 }
@@ -33,6 +37,7 @@ export default class Weather {
   temperature?: number;
   feelsLike?: number;
   humidity?: number;
+  wind?: number;
   minTemperature?: number;
   maxTemperature?: number;
 
@@ -42,6 +47,7 @@ export default class Weather {
     this.temperature = dto.main.temp;
     this.feelsLike = dto.main.feels_like;
     this.humidity = dto.main.humidity;
+    this.wind = dto.wind.speed;
     this.minTemperature = dto.main.temp_min;
     this.maxTemperature = dto.main.temp_max;
   }
