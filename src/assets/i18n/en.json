@@ -23,6 +23,7 @@
   "GENERAL_REMOVE_ALL": "Remove all",
   "GENERAL_UNKNOWN_ERROR": "An unknown error occurred.",
   "GENERAL_UNSUPPORTED_BROWSER": "Unsupported Browser.",
+  "GENERAL_N_A": "N/A",
   "PAPER_TYPE_YELLOW": "Yellow",
   "PAPER_TYPE_WHITE": "White",
   "PAPER_TYPE_BLACK": "Black",
@@ -62,8 +63,10 @@
   "GROCERY_ICONS_CHILI": "Chili",
   "NOTIFICATIONS_INVALID_FILE": "Invalid file. Please choose a text file.",
   "NOTIFICATIONS_ADDED_GROCERY": "Successfully added to the grocery.",
+  "NOTIFICATIONS_ADDED_NOTES": "Successfully added to the notes.",
   "NOTIFICATIONS_EMPTY_GROCERY_LIST": "Please select at least one item.",
-  "NOTIFICATIONS_EMPTY_NOTES": "There are no notes to save.",
+  "NOTIFICATIONS_SAVE_EMPTY_NOTES": "There are no notes to save.",
+  "NOTIFICATIONS_REMIND_EMPTY_NOTES": "There are no notes to remind.",
   "WEATHER_USER_DENIED_GEOLOCATION": "User has denied the request for geolocation.",
   "WEATHER_UNAVAILABLE_INFORMATION": "Location information is unavailable.",
   "WEATHER_TIMEOUT_ERROR": "The request to get user location timed out.",
@@ -75,5 +78,6 @@
   "WEATHER_MAXIMUM": "Maximum",
   "WEATHER_HUMIDITY": "Humidity",
   "WEATHER_WIND": "Wind",
-  "WEATHER_METRIC_SPEED": "m/s"
+  "WEATHER_METRIC_SPEED": "m/s",
+  "WEATHER_UNKNOWN_PLACE": "Unknown place"
 }

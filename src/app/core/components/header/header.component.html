@@ -51,9 +51,9 @@
             <span
               matBadgeSize="small"
               matBadgeOverlap="false"
-              matBadge="{{groceryNotificationsCount$ | async}}"
+              matBadge="{{item.badgeCount}}"
               matBadgeColor="accent"
-              matBadgeHidden="{{!(groceryNotificationsCount$ | async)}}">
+              matBadgeHidden="{{!item.badgeCount}">
               {{item.langKey | translate}}
             </span>
           </button>

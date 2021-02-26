@@ -23,7 +23,7 @@ import { NotificationComponent, NotificationOptions, NotificationType } from '@s
 export class WeatherComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject();
   loading$ = new BehaviorSubject<boolean>(false);
-  weather?: ClientWeather;
+  weather: ClientWeather = {};
 
   constructor(
     private http: HttpService,
@@ -59,7 +59,7 @@ export class WeatherComponent implements OnInit, OnDestroy {
   }
 
   private handleSuccess = (weather: WeatherDTO): void => {
-    this.weather = weatherNormalizer(new Weather(weather));
+    this.weather = weatherNormalizer(new Weather(weather), 0);
   }
 
   private handleError = ({message}: { message: string }): void => {

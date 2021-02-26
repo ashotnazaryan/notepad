@@ -30,5 +30,10 @@ export const MENU_ITEMS: { [key: string]: Array<Menu> } = {
       route: `${ROUTES.notifications.route}/${ROUTES.notifications.sub_routes.grocery.route}`,
       langKey: `${ROUTES.notifications.sub_routes.grocery.langKey}`
     },
+    {
+      name: `${ROUTES.notifications.sub_routes.notes.name}`,
+      route: `${ROUTES.notifications.route}/${ROUTES.notifications.sub_routes.notes.route}`,
+      langKey: `${ROUTES.notifications.sub_routes.notes.langKey}`
+    },
   ]
 }

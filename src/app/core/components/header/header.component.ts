@@ -2,10 +2,11 @@ import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/cor
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs/internal/Observable';
 import { Subject } from 'rxjs/internal/Subject';
-import { zip } from 'rxjs/internal/observable/zip';
+import { of } from 'rxjs/internal/observable/of';
+import { combineLatest } from 'rxjs/internal/observable/combineLatest';
 import { filter, map, mergeMap, takeUntil, tap } from 'rxjs/operators';
 import * as moment from 'moment';
 
@@ -44,19 +45,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         takeUntil(this.unsubscribe$)
       );
 
-  totalCount$: Observable<number> = zip(
-    this.store.select(fromTools.selectChosenGroceryList)
-  ).pipe(
-    takeUntil(this.unsubscribe$),
-    map(([chosenGroceryList]) => chosenGroceryList.length)
-  );
-
-  groceryNotificationsCount$: Observable<number> = this.store.select(fromTools.selectChosenGroceryList)
-    .pipe(
-      takeUntil(this.unsubscribe$),
-      map((chosenGroceryList) => chosenGroceryList.length)
-    );
-
+  totalCount$: Observable<number> = of(0);
   readonly ButtonSize = ButtonSize;
 
   constructor(
@@ -71,6 +60,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.handleRouting();
+    const notifications$ = [
+      this.store.pipe(select(fromTools.selectChosenGroceryList)),
+      this.store.pipe(select(fromTools.selectNotes))
+    ];
+
+    this.totalCount$ = combineLatest(notifications$).pipe(
+      takeUntil(this.unsubscribe$),
+      tap(([chosenGroceryList, notes]) => {
+        console.log(chosenGroceryList, notes);
+      }),
+      map(([chosenGroceryList, notes]) => chosenGroceryList.length + notes.length)
+    );
   }
 
   changeLanguage = (language: Language): void => {

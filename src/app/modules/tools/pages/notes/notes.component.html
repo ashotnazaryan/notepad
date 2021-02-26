@@ -15,10 +15,9 @@
       [type]="paperType" 
       formControlName="paper">
     </app-paper>
-    <div class="notes-container__actions flex flex-row justify-content-between">
-      <div class="flex flex-row align-items-center">
+    <div class="notes-container__actions flex flex-column justify-content-between">
+      <div class="flex flex-row align-items-center justify-content-between">
         <app-button
-          class="mr-2"
           icon="save"
           color="primary"
           [text]="'GENERAL_BUTTONS_SAVE' | translate"
@@ -28,12 +27,20 @@
           (uploaded)="upload($event)">
         </app-upload-button>
       </div>
-      <app-button
-        icon="clear"
-        [text]="'GENERAL_BUTTONS_CLEAR' | translate"
-        color="accent"
-        (clicked)="clear()">
-      </app-button>
+      <div class="flex flex-row align-items-center justify-content-between my-2">
+        <app-button
+          icon="add_alert"
+          color="primary"
+          [text]="'GENERAL_BUTTONS_REMIND' | translate"
+          (clicked)="remind()">
+        </app-button>
+        <app-button
+          icon="clear"
+          [text]="'GENERAL_BUTTONS_CLEAR' | translate"
+          color="accent"
+          (clicked)="clear()">
+        </app-button>
+      </div>
     </div>
   </form>
 </div>

@@ -1,4 +1,6 @@
-export const paperTypes = [
+import { KeyName } from "@shared/models";
+
+export const paperTypes: Array<KeyName> = [
   {
     key: 'yellow',
     name: 'PAPER_TYPE_YELLOW'

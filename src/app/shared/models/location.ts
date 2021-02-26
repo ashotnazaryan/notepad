@@ -66,15 +66,15 @@ export interface WeatherDTO {
 }
 
 export interface ClientWeather {
-  location: string;
-  description: string;
-  icon: string;
-  temperature: string;
-  feelsLike: string;
-  humidity: string;
-  wind: string;
-  minTemperature: string;
-  maxTemperature: string;
+  location?: string;
+  description?: string;
+  icon?: string;
+  temperature?: string;
+  feelsLike?: string;
+  humidity?: string;
+  wind?: string;
+  minTemperature?: string;
+  maxTemperature?: string;
 }
 
 export default class Weather {

@@ -23,6 +23,7 @@
   "GENERAL_REMOVE_ALL": "Убрать все",
   "GENERAL_UNKNOWN_ERROR": "Произошла неизвестная ошибка.",
   "GENERAL_UNSUPPORTED_BROWSER": "Неподдерживаемый браузер.",
+  "GENERAL_N_A": "Н/Д",
   "PAPER_TYPE_YELLOW": "Желтый",
   "PAPER_TYPE_WHITE": "Белый",
   "PAPER_TYPE_BLACK": "Черный",
@@ -62,8 +63,10 @@
   "GROCERY_ICONS_CHILI": "Чили",
   "NOTIFICATIONS_INVALID_FILE": "Не валидный файл. Пожалуйста, выберите текстовый файл.",
   "NOTIFICATIONS_ADDED_GROCERY": "Успешно добавлено в покупки.",
+  "NOTIFICATIONS_ADDED_NOTES": "Успешно добавлено в заметки.",
   "NOTIFICATIONS_EMPTY_GROCERY_LIST": "Пожалуйста, выберите минимум один элемент.",
-  "NOTIFICATIONS_EMPTY_NOTES": "Нет заметок для сохранения.",
+  "NOTIFICATIONS_SAVE_EMPTY_NOTES": "Нет заметок для сохранения.",
+  "NOTIFICATIONS_REMIND_EMPTY_NOTES": "Нет заметок для напоминания.",
   "WEATHER_USER_DENIED_GEOLOCATION": "Пользователь отклонил запрос на геолокацию.",
   "WEATHER_UNAVAILABLE_INFORMATION": "Информация о местоположении недоступна.",
   "WEATHER_TIMEOUT_ERROR": "Время ожидания запроса на получение местоположения пользователя истекло.",
@@ -75,5 +78,6 @@
   "WEATHER_MAXIMUM": "Максимум",
   "WEATHER_HUMIDITY": "Влажность",
   "WEATHER_WIND": "Ветер",
-  "WEATHER_METRIC_SPEED": "м/с"
+  "WEATHER_METRIC_SPEED": "м/с",
+  "WEATHER_UNKNOWN_PLACE": "Неизвестное место"
 }

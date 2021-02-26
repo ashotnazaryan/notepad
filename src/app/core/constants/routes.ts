@@ -34,6 +34,11 @@ export const ROUTES: AppRoute = {
     name: 'Notifications',
     langKey: 'GENERAL_PAGES_NOTIFICATIONS',
     sub_routes: {
+      notes: {
+        route: 'notes',
+        name: 'Notes',
+        langKey: 'GENERAL_PAGES_NOTES',
+      },
       grocery: {
         route: 'grocery',
         name: 'Grocery',

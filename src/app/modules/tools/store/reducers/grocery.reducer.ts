@@ -21,13 +21,12 @@ export const reducer = createReducer(
 
   on(GroceryPageActions.SetChosenGroceryList, (state, { chosenGroceryList }) => ({
     ...state,
-    // TODO bug, update list with latest one and filter by unique
     chosenGroceryList: unionBy(chosenGroceryList, state.chosenGroceryList, 'key')
   })),
 
   on(GroceryPageActions.SetSelectedGroceryList, (state, { selectedGroceryList }) => ({
     ...state,
-    selectedGroceryList,
+    selectedGroceryList
   }))
   
 );
