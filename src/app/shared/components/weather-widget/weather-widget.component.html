@@ -1,24 +1,33 @@
-<mat-card class="weather-widget-container">
-  <mat-card-header>
-    <mat-card-title>{{data?.location}}</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <div class="flex flex-row align-items-center">
-      <img src="assets/icons/weather/cloudy-day-1.svg" [alt]="data?.description">
-      <div>
-        <p class="font-size-20">{{data?.temperature}}</p>
-        <p class="font-size-15">{{data?.description}}</p>
-      </div>
-    </div>
-    <div class="flex flex-row align-items-center justify-content-between">
-      <div class="flex flex-column justify-content-center">
-        <img class="weather-widget-container__icon my-1" src="assets/icons/weather/water-drop.svg">
-        <span class="text-center">{{data?.humidity}}</span>
-      </div>
-      <div class="flex flex-column justify-content-center">
-        <img class="weather-widget-container__icon my-1" src="assets/icons/weather/wind.svg">
-        <span class="text-center">{{data?.wind}}</span>
-      </div>
-    </div>
-  </mat-card-content>
-</mat-card>
+<ng-container [ngSwitch]="viewMode">
+  <mat-card *ngSwitchCase="viewModes.full" class="weather-widget-container">
+    <ng-container *ngIf="data; else noData">
+      <mat-card-header>
+        <mat-card-title class="color-primary">{{data?.location}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="flex flex-row align-items-center">
+          <img class="weather-widget-container__main-icon" [src]="data?.icon" [alt]="data?.description">
+          <div>
+            <p class="font-size-20 my-1 color-primary">{{data?.temperature}}</p>
+            <p class="font-size-12 my-1">{{'WEATHER_FEELS_LIKE' | translate}} {{data?.feelsLike}}</p>
+            <p class="font-size-15 my-2">{{data?.description}}</p>
+          </div>
+        </div>
+        <div class="flex flex-row align-items-center justify-content-between">
+          <div class="flex flex-column align-items-center">
+            <img class="weather-widget-container__icon my-1" src="assets/icons/weather/water-drop.svg">
+            <span class="text-center">{{data?.humidity}}</span>
+          </div>
+          <div class="flex flex-column align-items-center">
+            <img class="weather-widget-container__icon my-1" src="assets/icons/weather/wind.svg">
+            <span class="text-center">{{data?.wind}} {{'WEATHER_METRIC_SPEED' | translate}}</span>
+          </div>
+        </div>
+      </mat-card-content>
+    </ng-container>
+    <ng-template #noData>
+      <h1 class="color-primary">{{'GENERAL_NO_DATA' | translate}}</h1>
+    </ng-template>
+  </mat-card>
+  <div *ngSwitchCase="viewModes.compact">{{data?.temperature}}</div>
+</ng-container>

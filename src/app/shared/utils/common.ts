@@ -3,7 +3,7 @@ import { capitalize, get, identity } from 'lodash';
 
 import { ROUTES } from '@core/constants';
 import { ModulePage } from '@shared/models';
-import Weather, { ClientWeather } from '@shared/models/location';
+import Weather, { ClientWeather, WEATHER_ICONS } from '@shared/models/location';
 
 export const getModulePage = (event: Event): ModulePage => {
   // FIXME https://github.com/angular/angular/issues/15439
@@ -19,15 +19,14 @@ export const getModulePage = (event: Event): ModulePage => {
   };
 }
 
-export const weatherNormalizer = (weather: Weather, digits = 1): ClientWeather => {
-  return {
-    location: weather?.location,
-    temperature: `${weather?.temperature?.toFixed(digits)} ℃`,
-    description: capitalize(weather?.description),
-    feelsLike: `${weather?.feelsLike?.toFixed(digits)} ℃`,
-    humidity: `${weather?.humidity} %`,
-    wind: `${weather?.wind} m/s`, // TODO translate m/s
-    minTemperature: `${weather?.minTemperature?.toFixed(digits)} ℃`,
-    maxTemperature: `${weather?.maxTemperature?.toFixed(digits)} ℃`
-  }
-}
+export const weatherNormalizer = (weather: Weather, digits = 1): ClientWeather => ({
+  location: weather?.location,
+  temperature: `${weather?.temperature?.toFixed(digits)} ℃`,
+  description: capitalize(weather?.description),
+  icon: `assets/icons/weather/${WEATHER_ICONS[weather.icon]}.svg`,
+  feelsLike: `${weather?.feelsLike?.toFixed(digits)} ℃`,
+  humidity: `${weather?.humidity} %`,
+  wind: `${weather?.wind}`,
+  minTemperature: `${weather?.minTemperature?.toFixed(digits)} ℃`,
+  maxTemperature: `${weather?.maxTemperature?.toFixed(digits)} ℃`
+});

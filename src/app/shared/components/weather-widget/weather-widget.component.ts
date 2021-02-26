@@ -1,6 +1,12 @@
+import { FullscreenOverlayContainer } from '@angular/cdk/overlay';
 import { Component, Input } from '@angular/core';
 
 import { ClientWeather } from '@shared/models/location';
+
+export enum WeatherViewMode {
+  full,
+  compact
+}
 
 @Component({
   selector: 'app-weather-widget',
@@ -9,4 +15,7 @@ import { ClientWeather } from '@shared/models/location';
 })
 export class WeatherWidgetComponent {
   @Input() data?: ClientWeather;
+  @Input() viewMode: WeatherViewMode = WeatherViewMode.full;
+
+  viewModes = WeatherViewMode;
 }

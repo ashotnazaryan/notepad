@@ -74,5 +74,6 @@
   "WEATHER_MINIMUM": "Минимум",
   "WEATHER_MAXIMUM": "Максимум",
   "WEATHER_HUMIDITY": "Влажность",
-  "WEATHER_WIND": "Ветер"
+  "WEATHER_WIND": "Ветер",
+  "WEATHER_METRIC_SPEED": "м/с"
 }

@@ -64,7 +64,7 @@
   "NOTIFICATIONS_ADDED_GROCERY": "Successfully added to the grocery.",
   "NOTIFICATIONS_EMPTY_GROCERY_LIST": "Please select at least one item.",
   "NOTIFICATIONS_EMPTY_NOTES": "There are no notes to save.",
-  "WEATHER_USER_DENIED_GEOLOCATION": "User denied the request for Geolocation.",
+  "WEATHER_USER_DENIED_GEOLOCATION": "User has denied the request for geolocation.",
   "WEATHER_UNAVAILABLE_INFORMATION": "Location information is unavailable.",
   "WEATHER_TIMEOUT_ERROR": "The request to get user location timed out.",
   "WEATHER_LOCATION": "Location",
@@ -74,5 +74,6 @@
   "WEATHER_MINIMUM": "Minimum",
   "WEATHER_MAXIMUM": "Maximum",
   "WEATHER_HUMIDITY": "Humidity",
-  "WEATHER_WIND": "Wind"
+  "WEATHER_WIND": "Wind",
+  "WEATHER_METRIC_SPEED": "m/s"
 }

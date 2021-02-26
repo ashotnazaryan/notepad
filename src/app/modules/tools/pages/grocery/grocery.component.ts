@@ -127,7 +127,7 @@ export class GroceryComponent implements OnInit {
     const newItem: Grocery = {
       value: formValue,
       key: lowerCase(formValue),
-      icon: 'assets/icons/cart.svg'
+      icon: 'assets/icons/grocery/cart.svg'
     };
 
     this.groceries = [

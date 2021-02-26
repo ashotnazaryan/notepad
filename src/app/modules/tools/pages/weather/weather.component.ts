@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
-import { finalize, takeUntil, withLatestFrom } from 'rxjs/operators';
+import { finalize, switchMap, takeUntil, withLatestFrom } from 'rxjs/operators';
 import { Subject } from 'rxjs/internal/Subject';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
@@ -10,7 +10,7 @@ import { APP_CONFIGS } from '@core/config';
 import { HttpService } from '@core/services/http.service';
 import { LocationService } from '@shared/services/location.service';
 import { ClientLocation, Language } from '@shared/models';
-import Weather, { ClientWeather } from '@shared/models/location';
+import Weather, { ClientWeather, WeatherDTO } from '@shared/models/location';
 import { weatherNormalizer } from '@shared/utils';
 import * as fromRoot from '@shared/store/reducers';
 import { NotificationComponent, NotificationOptions, NotificationType } from '@shared/components/notification/notification.component';
@@ -48,29 +48,25 @@ export class WeatherComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.unsubscribe$),
         withLatestFrom(this.store.select(fromRoot.selectLanguage)),
+        switchMap(([data, { key }]: [ClientLocation, Language]) => {
+          const url = `${APP_CONFIGS.WEATHER_API.baseUrl}/data/2.5/weather?lang=${key}&lat=${data.latitude}&lon=${data.longitude}&units=metric&appid=${APP_CONFIGS.WEATHER_API.key}`;
+
+          return this.http.get(url)
+        }),
         finalize(() => this.loading$.next(false))
       )
       .subscribe(this.handleSuccess, this.handleError);
   }
 
-  private handleSuccess = ([data, { key }]: [ClientLocation | any, Language]): void => {
-    // TODO check why type alias ClientLocation isn't working
-    const url = `${APP_CONFIGS.WEATHER_API.baseUrl}/data/2.5/weather?lang=${key}&lat=${data.latitude}&lon=${data.longitude}&units=metric&appid=${APP_CONFIGS.WEATHER_API.key}`;
-
-    this.http.get(url)
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((weather) => {
-        const wet = new Weather(weather);
-        
-        this.weather = weatherNormalizer(wet, 0);
-      });
+  private handleSuccess = (weather: WeatherDTO): void => {
+    this.weather = weatherNormalizer(new Weather(weather));
   }
 
-  private handleError = (error: string): void => {
+  private handleError = ({message}: { message: string }): void => {
     const options: NotificationOptions = {
       data: {
-        type: NotificationType.error,
-        message: error
+        message,
+        type: NotificationType.error
       }
     };
 
