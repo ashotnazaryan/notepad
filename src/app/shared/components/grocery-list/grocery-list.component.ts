@@ -66,7 +66,7 @@ export class GroceryListComponent implements OnInit {
 
   handleRemoveAll = (): void => {
     this.data.forEach((item) => {
-      const index = findIndex(this.groceriesArr.value, item); // Because this.groceriesArr changes after the removeItem
+      const index = findIndex(this.groceriesArr.value, item); // NOTE Because this.groceriesArr changes after the removeItem
 
       this.removeItem(index);
     });
@@ -122,7 +122,7 @@ export class GroceryListComponent implements OnInit {
 
     if (removedItems.length) {
       removedItems.forEach((item) => {
-        const index = findIndex(this.groceriesArr.value, item); // Because this.groceriesArr changes after the removeItem
+        const index = findIndex(this.groceriesArr.value, item); // NOTE Because this.groceriesArr changes after the removeItem
 
         this.removeItem(index);
       });

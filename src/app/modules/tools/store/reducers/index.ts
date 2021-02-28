@@ -58,3 +58,13 @@ export const selectNotes = createSelector(
   selectNotesState,
   fromNotes.selectNotesFn
 );
+
+export const selectNotesCount = createSelector(
+  selectNotesState,
+  fromNotes.selectNotesCountFn
+);
+
+export const selectChosenGroceriesCount = createSelector(
+  selectGroceryState,
+  fromGrocery.selectChosenGroceriesCountFn
+);

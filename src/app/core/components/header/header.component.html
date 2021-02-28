@@ -39,9 +39,9 @@
           [matTooltip]="'GENERAL_TOOLTIPS_NOTIFICATIONS' | translate"
           matTooltipPosition="left"
           matBadgeSize="small"
-          matBadge="{{totalCount$ | async}}"
           matBadgeColor="accent"
-          matBadgeHidden="{{!(totalCount$ | async)}}">
+          [matBadge]="totalCount$ | async"
+          [matBadgeHidden]="!(totalCount$ | async)">
         </app-button>
         <mat-menu #notifications="matMenu">
           <button
@@ -51,9 +51,9 @@
             <span
               matBadgeSize="small"
               matBadgeOverlap="false"
-              matBadge="{{item.badgeCount}}"
               matBadgeColor="accent"
-              matBadgeHidden="{{!item.badgeCount}">
+              [matBadge]="item.badgeCount"
+              [matBadgeHidden]="!item.badgeCount">
               {{item.langKey | translate}}
             </span>
           </button>

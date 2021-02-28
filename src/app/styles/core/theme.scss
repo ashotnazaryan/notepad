@@ -12,7 +12,7 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $notepad-primary: mat-palette($mat-teal, 800, 600, 900);
-$notepad-accent: mat-palette($mat-deep-orange, 800, 600, 900);
+$notepad-accent: mat-palette($mat-deep-orange, 600, 400, 700);
 
 // The warn palette is optional (defaults to red).
 $notepad-warn: mat-palette($mat-red);

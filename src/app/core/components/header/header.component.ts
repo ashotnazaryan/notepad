@@ -60,17 +60,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.handleRouting();
+
     const notifications$ = [
-      this.store.pipe(select(fromTools.selectChosenGroceryList)),
-      this.store.pipe(select(fromTools.selectNotes))
+      this.store.pipe(select(fromTools.selectChosenGroceriesCount)),
+      this.store.pipe(select(fromTools.selectNotesCount))
     ];
 
     this.totalCount$ = combineLatest(notifications$).pipe(
       takeUntil(this.unsubscribe$),
-      tap(([chosenGroceryList, notes]) => {
-        console.log(chosenGroceryList, notes);
+      tap((data) => {
+        this.menuItems = {
+          ...this.menuItems,
+          notifications: this.menuItems.notifications.map((item, index) => ({
+            ...item,
+            badgeCount: data[index] // NOTE the sequence is important
+          }))
+        };
       }),
-      map(([chosenGroceryList, notes]) => chosenGroceryList.length + notes.length)
+      map(([chosenGroceriesCount, notesCount]: Array<number>) => chosenGroceriesCount + notesCount)
     );
   }
 

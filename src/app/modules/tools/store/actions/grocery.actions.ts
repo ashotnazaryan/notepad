@@ -11,3 +11,8 @@ export const SetSelectedGroceryList = createAction(
   '[Grocery] Set selected grocery list',
   props<{ selectedGroceryList: Array<Grocery> }>()
 );
+
+export const SetChosenGroceriesCount = createAction(
+  '[Grocery] Set chosen grocery count',
+  props<{ chosenGroceriesCount: number }>()
+);
