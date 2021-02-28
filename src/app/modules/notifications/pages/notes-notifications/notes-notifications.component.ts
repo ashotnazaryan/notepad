@@ -5,6 +5,7 @@ import { Subject } from 'rxjs/internal/Subject';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 
 import * as fromTools from '@modules/tools/store/reducers';
+import { Note } from '@modules/tools/pages/notes/models/note';
 
 @Component({
   selector: 'app-notes-notifications',
@@ -14,7 +15,7 @@ import * as fromTools from '@modules/tools/store/reducers';
 export class NotesNotificationsComponent implements OnDestroy {
   private unsubscribe$ = new Subject();
 
-  notes$: Observable<Array<string>> =
+  notes$: Observable<Array<Note>> =
     this.store.select(fromTools.selectNotes)
       .pipe(takeUntil(this.unsubscribe$));
 

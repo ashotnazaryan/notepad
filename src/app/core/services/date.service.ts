@@ -8,9 +8,6 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class DateService {
-
-  constructor() { }
-
   getCurrentDate = (format: string): Observable<string> => {
     return timer(0, 1000).pipe(
       map((_) => new Date()),

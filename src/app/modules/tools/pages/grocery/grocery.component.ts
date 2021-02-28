@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { Subject } from 'rxjs/internal/Subject';
@@ -8,20 +9,19 @@ import { Observable } from 'rxjs/internal/Observable';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import { differenceWith, lowerCase } from 'lodash';
 
-import { ButtonSize } from '@shared/components/button/button.component';
+import { Grocery } from '@shared/models/grocery';
 import {
   NotificationComponent,
   NotificationOptions,
   NotificationData,
   NotificationType
 } from '@shared/components/notification/notification.component';
+import { ButtonSize } from '@shared/components/button/button.component';
 import * as fromGrocery from '@modules/tools/store/reducers';
 import * as fromTools from '@modules/tools/store/reducers';
-import { Grocery } from '@shared/models/grocery';
 import { SetChosenGroceryList, SetSelectedGroceryList } from '@modules/tools/store/actions/grocery.actions';
 import { groceryItems } from './constants/items';
 import { GroceryDialogComponent, GroceryDialogOptions } from './components/grocery-dialog/grocery-dialog.component';
-import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-grocery',
@@ -32,11 +32,13 @@ export class GroceryComponent implements OnInit {
   private unsubscribe$ = new Subject();
   private groceryItems = groceryItems;
   groceries: Array<Grocery> = [];
+
   groceries$: Observable<Array<Grocery>> =
     this.store.select(fromTools.selectSelectedGroceryList)
       .pipe(
         takeUntil(this.unsubscribe$)
       );
+
   chosenGroceries: Array<Grocery> = [];
   customItem = new FormControl('', Validators.required);
   readonly ButtonSize = ButtonSize;

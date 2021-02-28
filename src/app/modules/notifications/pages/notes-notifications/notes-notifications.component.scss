@@ -1,3 +1,10 @@
 :host {
   display: block;
 }
+
+.notes-notifications-container {
+  &__text {
+    width: 80%;
+    overflow-wrap: anywhere;
+  }
+}

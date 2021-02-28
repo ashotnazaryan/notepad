@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/internal/Observable';
 import { Subject } from 'rxjs/internal/Subject';
 import { takeUntil } from 'rxjs/operators';
+import * as moment from 'moment';
 
 import { FileService } from '@core/services/file.service';
 import {
@@ -17,6 +18,7 @@ import {
 import { KeyName } from '@shared/models';
 import * as fromTools from '@modules/tools/store/reducers';
 import { SetNotes } from '@modules/tools/store/actions/notes.actions';
+import { Note } from './models/note';
 import { paperTypes } from './constants/paper-types';
 
 @Component({
@@ -30,13 +32,13 @@ export class NotesComponent implements OnInit {
   paperTypes = paperTypes;
   paperType: KeyName['key'] = this.paperTypes[0].key;
 
-  notes$: Observable<Array<string>> =
+  notes$: Observable<Array<Note>> =
     this.store.select(fromTools.selectNotes)
       .pipe(
         takeUntil(this.unsubscribe$)
       );
 
-  notes: Array<string> = [];
+  notes: Array<Note> = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -83,7 +85,10 @@ export class NotesComponent implements OnInit {
   }
 
   remind = (): void => {
-    const data = this.form.value?.paper as string;
+    const data: Note = {
+      createdAt: moment(new Date).format('LLLL'),
+      text: this.form.value?.paper as string
+    };
 
     if (!data) {
       this.showNotification(NotificationType.error, 'NOTIFICATIONS_REMIND_EMPTY_NOTES');

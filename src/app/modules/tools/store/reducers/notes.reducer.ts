@@ -1,11 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
 
+import { Note } from '@modules/tools/pages/notes/models/note';
 import { NotesActions } from '../actions';
 
 export const notesFeatureKey = 'notes';
 
 export interface State {
-  notes: Array<string>;
+  notes: Array<Note>;
   count: number;
 }
 
