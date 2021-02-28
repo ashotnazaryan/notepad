@@ -1,6 +1,7 @@
 <ng-container [ngSwitch]="size">
-  <ng-container *ngIf="dateTime$ | async as dateTime">
-    <h1 *ngSwitchCase="ClockSize.large">{{dateTime}}</h1>
-    <span *ngSwitchCase="ClockSize.small" class="font-size-15">{{dateTime}}</span>
-  </ng-container>
+  <div *ngSwitchCase="ClockSize.large">
+    <h2 class="color-primary text-center">{{date$ | async}}</h2>
+    <h1 class="color-primary text-center">{{time$ | async}}</h1>
+  </div>
+  <h5 *ngSwitchCase="ClockSize.small" class="font-size-15">{{time$ | async}}</h5>
 </ng-container>

@@ -8,3 +8,8 @@ export interface Language {
   shortName: string;
   name: string;
 }
+
+export enum ClockSize {
+  small,
+  large
+}

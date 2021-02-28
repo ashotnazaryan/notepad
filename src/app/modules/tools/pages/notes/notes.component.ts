@@ -52,7 +52,6 @@ export class NotesComponent implements OnInit {
   ngOnInit(): void {
     this.notes$.subscribe((notes) => {
       this.notes = notes;
-      // this.form.patchValue({ paper: notes[0] });
     });
   }
 
@@ -86,11 +85,11 @@ export class NotesComponent implements OnInit {
 
   remind = (): void => {
     const data: Note = {
-      createdAt: moment(new Date).format('LLLL'),
+      createdAt: moment(new Date).format('DD MMM YYYY, h:mm A'),
       text: this.form.value?.paper as string
     };
 
-    if (!data) {
+    if (!data.text) {
       this.showNotification(NotificationType.error, 'NOTIFICATIONS_REMIND_EMPTY_NOTES');
 
       return;

@@ -8,10 +8,10 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class DateService {
-  getCurrentDate = (format: string): Observable<string> => {
+  getCurrentDateTime = (format: string): Observable<string> => {
     return timer(0, 1000).pipe(
-      map((_) => new Date()),
-      map((currentTime) => moment(currentTime).format(format))
+      map(() => new Date()),
+      map((currentDateTime) => moment(currentDateTime).format(format))
     );
   }
 }

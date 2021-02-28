@@ -1,6 +1,13 @@
 <div class="notes-notifications-container">
-  <div class="flex flex-row" *ngFor="let item of notes$ | async">
-    <p class="font-size-15 mr-2">{{item.createdAt}}</p>
-    <p class="notes-notifications-container__text color-primary">{{item.text}}</p>
-  </div>
+  <ng-container *ngIf="notes$ | async as notes">
+    <ng-container *ngIf="notes.length; else noData">
+      <div class="flex flex-row" *ngFor="let item of notes$ | async">
+        <p class="font-size-15 mr-2">{{item.createdAt}}</p>
+        <p class="notes-notifications-container__text color-primary px-1">{{item.text}}</p>
+      </div>
+    </ng-container>
+    <ng-template #noData>
+      <h1 class="color-primary">{{'GENERAL_NO_DATA' | translate}}</h1>
+    </ng-template>
+  </ng-container>
 </div>

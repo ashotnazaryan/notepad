@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { ClockSize } from '@shared/components/clock/clock.component';
+import { ClockSize } from '@shared/models';
 
 @Component({
   selector: 'app-time',
@@ -9,4 +9,5 @@ import { ClockSize } from '@shared/components/clock/clock.component';
 })
 export class TimeComponent {
   readonly ClockSize = ClockSize;
+  dateFormat = 'dddd DD/MM/YYYY';
 }
