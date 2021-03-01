@@ -1,22 +1,37 @@
 <div class="header-container">
   <mat-toolbar color="primary">
     <!-- TODO move to component -->
-    <app-button
-      icon="settings"
-      color="primary"
-      [size]="ButtonSize.icon"
-      [matMenuTriggerFor]="tools"
-      [matTooltip]="'GENERAL_TOOLTIPS_TOOLS' | translate" 
-      matTooltipPosition="right">
-    </app-button>
-    <mat-menu #tools="matMenu">
-      <button *ngFor="let item of menuItems.tools" mat-menu-item [routerLink]="item.route">{{item.langKey | translate}}</button>
-    </mat-menu>
-    <div class="header-container__widgets flex flex-row flex-grow-1 justify-content-between align-items-center">
-      <app-breadcrumbs 
-        [item]="(modulePage$ | async)!">
-      </app-breadcrumbs>
-      <div class="flex flex-row flex-grow-1 align-items-center justify-content-end">
+    <div class="flex flex-row flex-grow-1 flex-wrap justify-content-between align-items-center w-100">
+      <div class="flex flex-row flex-grow-1 justify-content-start align-items-center max-w-100">
+        <app-button
+          icon="settings"
+          color="primary"
+          [size]="ButtonSize.icon"
+          [matMenuTriggerFor]="tools"
+          [matTooltip]="'GENERAL_TOOLTIPS_TOOLS' | translate" 
+          matTooltipPosition="right">
+        </app-button>
+        <mat-menu #tools="matMenu">
+          <button *ngFor="let item of menuItems.tools" mat-menu-item [routerLink]="item.route">{{item.langKey | translate}}</button>
+        </mat-menu>
+        <app-button
+          icon="widgets"
+          color="primary"
+          [size]="ButtonSize.icon"
+          [matMenuTriggerFor]="widgets"
+          [matTooltip]="'GENERAL_TOOLTIPS_WIDGETS' | translate" 
+          matTooltipPosition="right">
+        </app-button>
+        <mat-menu #widgets="matMenu">
+          <button *ngFor="let item of menuItems.widgets" mat-menu-item [routerLink]="item.route">{{item.langKey | translate}}</button>
+        </mat-menu>
+        <div class="header-container__breadcrumbs flex flex-row flex-grow-1 justify-content-end">
+          <app-breadcrumbs
+            [item]="(modulePage$ | async)!">
+          </app-breadcrumbs>
+        </div>
+      </div>
+      <div class="header-container__content flex flex-row flex-grow-1 justify-content-end align-items-center">
         <app-clock [timeFormat]="clockFormat" class="ellipsis-text"></app-clock>
         <!-- TODO move to component -->
         <app-button

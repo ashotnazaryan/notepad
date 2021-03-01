@@ -1,22 +1,26 @@
 @import 'src/app/styles/core';
 
+:host {
+  display: block;
+}
+
 .header-container {
-  &__widgets {
-    width: calc(100% - 40px);
+  &__breadcrumbs {
+    width: calc(100% - 82px);
+
+    app-breadcrumbs {
+      max-width: 95%;
+    }
   }
-}
-
-app-breadcrumbs {
-  max-width: 45%;
-}
-
-app-clock {
-  max-width: 35%;
 }
 
 // TODO remove to component styles
 mat-toolbar {
-  @media (max-width: $breakpoint-mobile) {
+  min-height: 56px;
+  height    : auto !important;
+
+  // TODO move resolution detection to a service
+  @media (max-width: $breakpoint-mobile-portrait) {
     padding: 0 $baseSpacing*2 !important;
   }
 }

@@ -58,7 +58,7 @@ export class GroceryDialogComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const icons = this.data.content.map(({ icon }) => icon);
 
-    this.groceries = this.data.content;
+    this.groceries = this.data.content.map((item) => ({ ...item, selected: false }));
 
     this.selectedGroceries$.subscribe((selectedGroceries) => {
       this.selectedGroceries = selectedGroceries;

@@ -14,18 +14,20 @@ export const MENU_ITEMS: { [key: string]: Array<Menu> } = {
       name: `${ROUTES.tools.sub_routes.grocery.name}`,
       route: `${ROUTES.tools.route}/${ROUTES.tools.sub_routes.grocery.route}`,
       langKey: `${ROUTES.tools.sub_routes.grocery.langKey}`
+    }
+  ],
+  widgets: [
+    {
+      key: `${ROUTES.widgets.route}/${ROUTES.widgets.sub_routes.time.route}`,
+      name: `${ROUTES.widgets.sub_routes.time.name}`,
+      route: `${ROUTES.widgets.route}/${ROUTES.widgets.sub_routes.time.route}`,
+      langKey: `${ROUTES.widgets.sub_routes.time.langKey}`
     },
     {
-      key: `${ROUTES.tools.route}/${ROUTES.tools.sub_routes.time.route}`,
-      name: `${ROUTES.tools.sub_routes.time.name}`,
-      route: `${ROUTES.tools.route}/${ROUTES.tools.sub_routes.time.route}`,
-      langKey: `${ROUTES.tools.sub_routes.time.langKey}`
-    },
-    {
-      key: `${ROUTES.tools.route}/${ROUTES.tools.sub_routes.weather.route}`,
-      name: `${ROUTES.tools.sub_routes.weather.name}`,
-      route: `${ROUTES.tools.route}/${ROUTES.tools.sub_routes.weather.route}`,
-      langKey: `${ROUTES.tools.sub_routes.weather.langKey}`
+      key: `${ROUTES.widgets.route}/${ROUTES.widgets.sub_routes.weather.route}`,
+      name: `${ROUTES.widgets.sub_routes.weather.name}`,
+      route: `${ROUTES.widgets.route}/${ROUTES.widgets.sub_routes.weather.route}`,
+      langKey: `${ROUTES.widgets.sub_routes.weather.langKey}`
     }
   ],
   notifications: [

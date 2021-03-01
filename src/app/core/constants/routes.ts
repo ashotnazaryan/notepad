@@ -13,17 +13,25 @@ export const ROUTES: AppRoute = {
         name: 'Notes',
         langKey: 'GENERAL_PAGES_NOTES',
       },
-      time: {
-        key: 'time',
-        route: 'time',
-        name: 'Time',
-        langKey: 'GENERAL_PAGES_TIME',
-      },
       grocery: {
         key: 'grocery',
         route: 'grocery',
         name: 'Grocery',
         langKey: 'GENERAL_PAGES_GROCERY',
+      }
+    }
+  },
+  widgets: {
+    key: 'widgets',
+    route: 'widgets',
+    name: 'Widgets',
+    langKey: 'GENERAL_PAGES_WIDGETS',
+    sub_routes: {
+      time: {
+        key: 'time',
+        route: 'time',
+        name: 'Time',
+        langKey: 'GENERAL_PAGES_TIME',
       },
       weather: {
         key: 'weather',

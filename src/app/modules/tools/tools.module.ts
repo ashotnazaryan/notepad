@@ -10,19 +10,15 @@ import { NotesEffects, GroceryEffects } from './store/effects';
 import { ToolsRoutingModule } from './tools.routing.module';
 import { ToolsComponent } from './tools.component';
 import { NotesComponent } from './pages/notes/notes.component';
-import { TimeComponent } from './pages/time/time.component';
 import { GroceryComponent } from './pages/grocery/grocery.component';
 import { GroceryDialogComponent } from './pages/grocery/components/grocery-dialog/grocery-dialog.component';
-import { WeatherComponent } from './pages/weather/weather.component';
 
 @NgModule({
   declarations: [
     ToolsComponent,
     NotesComponent,
-    TimeComponent,
     GroceryComponent,
     GroceryDialogComponent,
-    WeatherComponent
   ],
   imports: [
     ToolsRoutingModule,

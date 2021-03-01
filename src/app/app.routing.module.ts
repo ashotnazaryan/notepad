@@ -15,6 +15,10 @@ const routes: Routes = [
     loadChildren: () => import('@modules/tools/tools.module').then(m => m.ToolsModule)
   },
   {
+    path: `${ROUTES.widgets.route}`,
+    loadChildren: () => import('@modules/widgets/widgets.module').then(m => m.WidgetsModule)
+  },
+  {
     path: `${ROUTES.notifications.route}`,
     loadChildren: () => import('@modules/notifications/notifications.module').then(m => m.NotificationsModule)
   },
