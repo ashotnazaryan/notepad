@@ -105,7 +105,7 @@ export class GroceryListComponent implements OnInit {
         }));
 
         this.groceriesArr.patchValue(allCheckedGroceries);
-        this.allChecked.emit(selectAll)
+        this.allChecked.emit(selectAll);
       });
   }
 
@@ -116,8 +116,6 @@ export class GroceryListComponent implements OnInit {
 
     if (newItems.length) {
       newItems.forEach((item) => this.addItem(item));
-
-      return
     }
 
     if (removedItems.length) {
@@ -126,8 +124,6 @@ export class GroceryListComponent implements OnInit {
 
         this.removeItem(index);
       });
-
-      return;
     }
 
     this.groceriesArr.patchValue(this.data);

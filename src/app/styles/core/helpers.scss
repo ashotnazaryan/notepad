@@ -17,19 +17,23 @@
 }
 
 .my-2 {
-  margin: $baseSpacing*2 0 !important;
+  margin-top: $baseSpacing*2 !important;
+  margin-bottom: $baseSpacing*2 !important;
 }
 
 .my-1 {
-  margin: $baseSpacing 0 !important;
+  margin-top: $baseSpacing !important;
+  margin-bottom: $baseSpacing !important;
 }
 
 .mx-2 {
-  margin: 0 $baseSpacing*2 !important;
+  margin-left: $baseSpacing*2 !important;
+  margin-right: $baseSpacing*2 !important;
 }
 
 .mx-1 {
-  margin: 0 $baseSpacing !important;
+  margin-left: $baseSpacing !important;
+  margin-right: $baseSpacing !important;
 }
 
 .mt-1 {
@@ -53,19 +57,33 @@
 }
 
 .py-1 {
-  padding: $baseSpacing 0 !important;
+  padding-top: $baseSpacing !important;
+  padding-bottom: $baseSpacing !important;
 }
 
 .py-2 {
-  padding: $baseSpacing*2 0 !important;
+  padding-top: $baseSpacing*2 !important;
+  padding-bottom: $baseSpacing*2 !important;
+}
+
+.py-3 {
+  padding-top: $baseSpacing*3 !important;
+  padding-bottom: $baseSpacing*3 !important;
 }
 
 .px-1 {
-  padding: 0 $baseSpacing !important;
+  padding-left: $baseSpacing !important;
+  padding-right: $baseSpacing !important;
 }
 
 .px-2 {
-  padding: 0 $baseSpacing*2 !important;
+  padding-left: $baseSpacing*2 !important;
+  padding-right: $baseSpacing*2 !important;
+}
+
+.px-3 {
+  padding-left: $baseSpacing*3 !important;
+  padding-right: $baseSpacing*3 !important;
 }
 
 .font-size-12 {
@@ -160,4 +178,10 @@
 
 .text-center {
   text-align: center;
+}
+
+.position-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }

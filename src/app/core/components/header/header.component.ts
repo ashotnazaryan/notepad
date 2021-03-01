@@ -115,7 +115,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
           }))
         };
       }),
-      map(([chosenGroceriesCount, notesCount]: Array<number>) => chosenGroceriesCount + notesCount) // TODO use reduce to count
+      map((data) => data.reduce((acc, curr) => acc + curr, 0))
     );
   }
 

@@ -2,6 +2,7 @@
 
 :host {
   display: block;
+  @extend .position-sticky;
 }
 
 .header-container {
@@ -18,9 +19,4 @@
 mat-toolbar {
   min-height: 56px;
   height    : auto !important;
-
-  // TODO move resolution detection to a service
-  @media (max-width: $breakpoint-mobile-portrait) {
-    padding: 0 $baseSpacing*2 !important;
-  }
 }

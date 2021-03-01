@@ -1,29 +1,31 @@
 <div class="grocery-container">
-  <div class="grocery-container__actions flex flex-row align-items-center justify-content-between">
-    <app-button
-      icon="apps"
-      color="primary"
-      [text]="'GENERAL_BUTTONS_SELECT' | translate"
-      (clicked)="openDialog()">
-    </app-button>
-    <app-button
-      icon="add_alert"
-      color="primary"
-      [text]="'GENERAL_BUTTONS_REMIND' | translate"
-      (clicked)="remind()">
-    </app-button>
-  </div>
-  <div class="flex flex-row flex-grow-1 align-items-center justify-content-between">
-    <mat-form-field floatLabel="never" class="w-100 mr-2">
-      <input matInput [placeholder]="'GENERAL_ADD_NEW_ITEM' | translate" [formControl]="customItem">
-      <mat-error *ngIf="customItem.invalid">{{'GENERAL_REQUIRED_FIELD' | translate}}</mat-error>
-    </mat-form-field>
-    <app-button
-      icon="playlist_add"
-      color="primary"
-      [text]="'GENERAL_BUTTONS_ADD' | translate"
-      (clicked)="addToGroceries()">
-    </app-button>
+  <div class="grocery-container__actions">
+    <div class="flex flex-row align-items-center justify-content-between">
+      <app-button
+        icon="apps"
+        color="primary"
+        [text]="'GENERAL_BUTTONS_SELECT' | translate"
+        (clicked)="openDialog()">
+      </app-button>
+      <app-button
+        icon="add_alert"
+        color="primary"
+        [text]="'GENERAL_BUTTONS_REMIND' | translate"
+        (clicked)="remind()">
+      </app-button>
+    </div>
+    <div class="flex flex-row flex-grow-1 align-items-center justify-content-between">
+      <mat-form-field floatLabel="never" class="w-100 mr-2">
+        <input matInput [placeholder]="'GENERAL_ADD_NEW_ITEM' | translate" [formControl]="customItem">
+        <mat-error *ngIf="customItem.invalid">{{'GENERAL_REQUIRED_FIELD' | translate}}</mat-error>
+      </mat-form-field>
+      <app-button
+        icon="playlist_add"
+        color="primary"
+        [text]="'GENERAL_BUTTONS_ADD' | translate"
+        (clicked)="addToGroceries()">
+      </app-button>
+    </div>
   </div>
   <div class="grocery-container__content mt-2">
     <app-grocery-list
