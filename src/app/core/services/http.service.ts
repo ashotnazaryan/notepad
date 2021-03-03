@@ -18,8 +18,7 @@ export class HttpService {
     return submitParams;
   };
 
-  // TODO make generic
-  get = (url: string): Observable<any> => {
-    return this.http.get(url);
+  get = <T>(url: string): Observable<T> => {
+    return this.http.get<T>(url);
   };
 }

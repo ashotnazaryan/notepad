@@ -50,7 +50,7 @@ export class WeatherComponent implements OnInit, OnDestroy {
         switchMap(([data, { key }]: [ClientLocation, Language]) => {
           const url = `${APP_CONFIGS.WEATHER_API.baseUrl}/data/2.5/weather?lang=${key}&lat=${data.latitude}&lon=${data.longitude}&units=metric&appid=${APP_CONFIGS.WEATHER_API.key}`;
 
-          return this.http.get(url);
+          return this.http.get<WeatherDTO>(url);
         }),
         finalize(() => this.loading$.next(false))
       )

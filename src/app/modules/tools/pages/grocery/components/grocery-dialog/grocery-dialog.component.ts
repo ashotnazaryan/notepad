@@ -16,12 +16,12 @@ import {
 import { Observable } from 'rxjs/internal/Observable';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Subject } from 'rxjs/internal/Subject';
-import { filter, map, mergeMap, scan, takeUntil, tap } from 'rxjs/operators';
+import { concatMap, finalize, takeUntil, tap, toArray } from 'rxjs/operators';
 import { from } from 'rxjs/internal/observable/from';
-import { fromEvent } from 'rxjs/internal/observable/fromEvent';
 
-import * as fromTools from '@modules/tools/store/reducers';
 import { Grocery } from '@shared/models/grocery';
+import { loadImage } from '@shared/utils';
+import * as fromTools from '@modules/tools/store/reducers';
 
 export interface GroceryDialogData {
   title: string;
@@ -83,25 +83,16 @@ export class GroceryDialogComponent implements OnInit, OnDestroy {
       ?.selected;
   };
 
-  // TODO enhance, handle errors, move to the service
   private handleIconsLoaded = (icons: Array<Grocery['icon']>): void => {
     from(icons)
       .pipe(
         takeUntil(this.unsubscribe$),
         tap(() => this.loading$.next(true)),
-        mergeMap((path) => {
-          const img = new Image();
-
-          img.src = path || '';
-
-          return fromEvent(img, 'load').pipe(map((event) => event.target));
-        }),
-        scan((acc, curr) => [...acc, curr], [] as any),
-        filter((images) => images.length === icons.length)
+        concatMap(loadImage),
+        toArray(),
+        finalize(() => this.loading$.next(false))
       )
-      .subscribe(() => {
-        this.loading$.next(false);
-      });
+      .subscribe();
   };
 
   ngOnDestroy(): void {

@@ -4,6 +4,7 @@ import { capitalize, get, identity } from 'lodash';
 import { ROUTES } from '@core/constants';
 import { ModulePage } from '@shared/models';
 import Weather, { ClientWeather, WEATHER_ICONS } from '@shared/models/location';
+import { Observable } from 'rxjs/internal/Observable';
 
 export const getModulePage = (event: Event): ModulePage => {
   // FIXME https://github.com/angular/angular/issues/15439
@@ -35,3 +36,20 @@ export const weatherNormalizer = (
   minTemperature: `${weather?.minTemperature?.toFixed(digits)} ℃`,
   maxTemperature: `${weather?.maxTemperature?.toFixed(digits)} ℃`
 });
+
+export const loadImage = (path = ''): Observable<HTMLImageElement | string> => {
+  return new Observable((observer) => {
+    const img = new Image();
+
+    img.src = path;
+
+    img.onload = () => {
+      observer.next(img);
+      observer.complete();
+    };
+
+    img.onerror = (err) => {
+      observer.error(err);
+    };
+  });
+};

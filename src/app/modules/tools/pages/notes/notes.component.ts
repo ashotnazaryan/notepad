@@ -7,7 +7,7 @@ import { Subject } from 'rxjs/internal/Subject';
 import { takeUntil } from 'rxjs/operators';
 import * as moment from 'moment';
 
-import { FileService } from '@core/services/file.service';
+import { FileService } from '@shared/services/file.service';
 import { NotificationType } from '@shared/components/notification/notification.component';
 import { KeyName } from '@shared/models';
 import { NotificationService } from '@shared/services/notification.service';
