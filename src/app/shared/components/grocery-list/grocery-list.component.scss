@@ -5,7 +5,7 @@
 }
 
 .grocery-list-container {
-  padding-right: $baseSpacing*1;
+  padding-right: $baseSpacing * 1;
 
   &__actions {
     border: 1px solid $dark-grey;
@@ -14,7 +14,7 @@
 
   &__item {
     img {
-      width : 48px;
+      width: 48px;
       height: 48px;
     }
   }

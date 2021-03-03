@@ -16,12 +16,12 @@ app-button {
 
       mat-icon {
         @extend .position-relative;
-        line-height: initial !important;
       }
     }
 
     &.icon {
       padding: inherit !important;
+      min-width: 40px !important;
 
       .mat-button-wrapper {
         @extend .flex;
@@ -32,20 +32,20 @@ app-button {
     }
 
     &.small {
-      padding      : 3px 7px !important;
-      min-width    : 60px !important;
+      padding: 3px 7px !important;
+      min-width: 60px !important;
       border-radius: $baseSpacing !important;
     }
 
     &.large {
-      padding      : $baseSpacing $baseSpacing*2 !important;
-      min-width    : 100px !important;
+      padding: $baseSpacing $baseSpacing * 2 !important;
+      min-width: 100px !important;
       border-radius: $baseSpacing !important;
     }
   }
 }
 
 .button-text {
-  font-size : 15px;
+  font-size: 15px;
   @extend .flex-grow-1;
 }

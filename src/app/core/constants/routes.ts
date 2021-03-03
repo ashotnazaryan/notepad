@@ -1,4 +1,4 @@
-import { AppRoute } from "@shared/models";
+import { AppRoute } from '@shared/models';
 
 export const ROUTES: AppRoute = {
   tools: {
@@ -11,13 +11,19 @@ export const ROUTES: AppRoute = {
         key: 'notes',
         route: 'notes',
         name: 'Notes',
-        langKey: 'GENERAL_PAGES_NOTES',
+        langKey: 'GENERAL_PAGES_NOTES'
       },
       grocery: {
         key: 'grocery',
         route: 'grocery',
         name: 'Grocery',
-        langKey: 'GENERAL_PAGES_GROCERY',
+        langKey: 'GENERAL_PAGES_GROCERY'
+      },
+      password_generator: {
+        key: 'password_generator',
+        route: 'password_generator',
+        name: 'Password generator',
+        langKey: 'GENERAL_PAGES_PASSWORD_GENERATOR'
       }
     }
   },
@@ -31,13 +37,13 @@ export const ROUTES: AppRoute = {
         key: 'time',
         route: 'time',
         name: 'Time',
-        langKey: 'GENERAL_PAGES_TIME',
+        langKey: 'GENERAL_PAGES_TIME'
       },
       weather: {
         key: 'weather',
         route: 'weather',
         name: 'Weather',
-        langKey: 'GENERAL_PAGES_WEATHER',
+        langKey: 'GENERAL_PAGES_WEATHER'
       }
     }
   },
@@ -51,14 +57,14 @@ export const ROUTES: AppRoute = {
         key: 'notes',
         route: 'notes',
         name: 'Notes',
-        langKey: 'GENERAL_PAGES_NOTES',
+        langKey: 'GENERAL_PAGES_NOTES'
       },
       grocery: {
         key: 'grocery',
         route: 'grocery',
         name: 'Grocery',
-        langKey: 'GENERAL_PAGES_GROCERY',
+        langKey: 'GENERAL_PAGES_GROCERY'
       }
     }
   }
-}
+};

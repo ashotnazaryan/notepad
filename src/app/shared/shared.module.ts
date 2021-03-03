@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { MaterialModule} from './material/material.module';
+import { MaterialModule } from './material/material.module';
 import { PaperComponent } from './components/paper/paper.component';
 import { UploadButtonComponent } from './components/upload-button/upload-button.component';
 import { ButtonComponent } from './components/button/button.component';
@@ -16,7 +16,7 @@ import { WeatherWidgetComponent } from './components/weather-widget/weather-widg
 import { SpinnerComponent } from './components/spinner/spinner.component';
 
 const components = [
-  PaperComponent, 
+  PaperComponent,
   UploadButtonComponent,
   ButtonComponent,
   ClockComponent,
@@ -24,13 +24,11 @@ const components = [
   GroceryListComponent,
   NotificationComponent,
   WeatherWidgetComponent,
-  SpinnerComponent,
+  SpinnerComponent
 ];
 
 @NgModule({
-  declarations: [
-    ...components
-  ],
+  declarations: [...components],
   imports: [
     CommonModule,
     RouterModule,
@@ -48,4 +46,4 @@ const components = [
     ...components
   ]
 })
-export class SharedModule { }
+export class SharedModule {}

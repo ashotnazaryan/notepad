@@ -1,4 +1,4 @@
-import { Language } from "@shared/models";
+import { Language } from '@shared/models';
 
 export const LANGUAGES: Array<Language> = [
   {
@@ -11,4 +11,4 @@ export const LANGUAGES: Array<Language> = [
     shortName: 'Ру',
     name: 'Русский'
   }
-]
+];

@@ -22,27 +22,20 @@ export class ClockComponent implements OnInit, OnDestroy {
   date$?: Observable<string>;
   time$?: Observable<string>;
 
-  constructor(
-    private dateService: DateService
-  ) {
-
-  }
+  constructor(private dateService: DateService) {}
 
   ngOnInit(): void {
-    this.date$ = this.dateService.getCurrentDateTime(this.dateFormat)
-      .pipe(
-        takeUntil(this.unsubscribe$)
-      );
+    this.date$ = this.dateService
+      .getCurrentDateTime(this.dateFormat)
+      .pipe(takeUntil(this.unsubscribe$));
 
-    this.time$ = this.dateService.getCurrentDateTime(this.timeFormat)
-      .pipe(
-        takeUntil(this.unsubscribe$)
-      );
+    this.time$ = this.dateService
+      .getCurrentDateTime(this.timeFormat)
+      .pipe(takeUntil(this.unsubscribe$));
   }
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }
-
 }

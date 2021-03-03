@@ -1,7 +1,11 @@
 import { APP_INITIALIZER, Injector, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateLoader,
+  TranslateModule,
+  TranslateService
+} from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { StoreModule } from '@ngrx/store';
 
@@ -22,9 +26,7 @@ export function appInitializerFactory(translate: TranslateService) {
 }
 
 @NgModule({
-  declarations: [
-    HeaderComponent
-  ],
+  declarations: [HeaderComponent],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -36,13 +38,9 @@ export function appInitializerFactory(translate: TranslateService) {
         deps: [HttpClient]
       }
     }),
-    StoreModule.forFeature(fromTools.toolsFeatureKey, fromTools.reducers),
+    StoreModule.forFeature(fromTools.toolsFeatureKey, fromTools.reducers)
   ],
-  exports: [
-    HttpClientModule,
-    SharedModule,
-    HeaderComponent
-  ],
+  exports: [HttpClientModule, SharedModule, HeaderComponent],
   providers: [
     {
       provide: APP_INITIALIZER,
@@ -52,4 +50,4 @@ export function appInitializerFactory(translate: TranslateService) {
     }
   ]
 })
-export class CoreModule { }
+export class CoreModule {}

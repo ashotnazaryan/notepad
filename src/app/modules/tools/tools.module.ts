@@ -12,6 +12,7 @@ import { ToolsComponent } from './tools.component';
 import { NotesComponent } from './pages/notes/notes.component';
 import { GroceryComponent } from './pages/grocery/grocery.component';
 import { GroceryDialogComponent } from './pages/grocery/components/grocery-dialog/grocery-dialog.component';
+import { PasswordGeneratorComponent } from './pages/password-generator/password-generator.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { GroceryDialogComponent } from './pages/grocery/components/grocery-dialo
     NotesComponent,
     GroceryComponent,
     GroceryDialogComponent,
+    PasswordGeneratorComponent
   ],
   imports: [
     ToolsRoutingModule,
@@ -26,10 +28,8 @@ import { GroceryDialogComponent } from './pages/grocery/components/grocery-dialo
     TranslateModule,
     SharedModule,
     StoreModule.forFeature(fromTools.toolsFeatureKey, fromTools.reducers),
-    EffectsModule.forFeature([NotesEffects, GroceryEffects]),
+    EffectsModule.forFeature([NotesEffects, GroceryEffects])
   ],
-  entryComponents: [
-    GroceryDialogComponent
-  ]
+  entryComponents: [GroceryDialogComponent]
 })
-export class ToolsModule { }
+export class ToolsModule {}

@@ -1,5 +1,5 @@
-import { Menu } from "@core/models";
-import { ROUTES } from "./routes";
+import { Menu } from '@core/models';
+import { ROUTES } from './routes';
 
 export const MENU_ITEMS: { [key: string]: Array<Menu> } = {
   tools: [
@@ -10,10 +10,16 @@ export const MENU_ITEMS: { [key: string]: Array<Menu> } = {
       langKey: `${ROUTES.tools.sub_routes.notes.langKey}`
     },
     {
-      key:  `${ROUTES.tools.route}/${ROUTES.tools.sub_routes.grocery.route}`,
+      key: `${ROUTES.tools.route}/${ROUTES.tools.sub_routes.grocery.route}`,
       name: `${ROUTES.tools.sub_routes.grocery.name}`,
       route: `${ROUTES.tools.route}/${ROUTES.tools.sub_routes.grocery.route}`,
       langKey: `${ROUTES.tools.sub_routes.grocery.langKey}`
+    },
+    {
+      key: `${ROUTES.tools.route}/${ROUTES.tools.sub_routes.password_generator.route}`,
+      name: `${ROUTES.tools.sub_routes.password_generator.name}`,
+      route: `${ROUTES.tools.route}/${ROUTES.tools.sub_routes.password_generator.route}`,
+      langKey: `${ROUTES.tools.sub_routes.password_generator.langKey}`
     }
   ],
   widgets: [
@@ -42,6 +48,6 @@ export const MENU_ITEMS: { [key: string]: Array<Menu> } = {
       name: `${ROUTES.notifications.sub_routes.notes.name}`,
       route: `${ROUTES.notifications.route}/${ROUTES.notifications.sub_routes.notes.route}`,
       langKey: `${ROUTES.notifications.sub_routes.notes.langKey}`
-    },
+    }
   ]
-}
+};

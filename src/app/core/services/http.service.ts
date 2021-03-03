@@ -6,9 +6,7 @@ import { Observable } from 'rxjs/internal/Observable';
   providedIn: 'root'
 })
 export class HttpService {
-  constructor(private http: HttpClient) {
-
-  }
+  constructor(private http: HttpClient) {}
 
   static parseParams = (params: { [key: string]: any }): HttpParams => {
     let submitParams = new HttpParams();
@@ -18,9 +16,10 @@ export class HttpService {
     });
 
     return submitParams;
-  }
+  };
 
+  // TODO make generic
   get = (url: string): Observable<any> => {
     return this.http.get(url);
-  }
+  };
 }

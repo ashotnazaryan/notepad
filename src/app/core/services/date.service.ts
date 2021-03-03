@@ -13,5 +13,5 @@ export class DateService {
       map(() => new Date()),
       map((currentDateTime) => moment(currentDateTime).format(format))
     );
-  }
+  };
 }

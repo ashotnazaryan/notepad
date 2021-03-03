@@ -21,4 +21,4 @@ import { NotesNotificationsComponent } from './pages/notes-notifications/notes-n
     SharedModule
   ]
 })
-export class NotificationsModule { }
+export class NotificationsModule {}

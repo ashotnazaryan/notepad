@@ -1,4 +1,12 @@
-import { Component, ContentChild, ElementRef, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  TemplateRef
+} from '@angular/core';
 
 export enum ButtonSize {
   icon,
@@ -18,12 +26,12 @@ export class ButtonComponent {
   @Input() icon?: string;
   @Input() text?: string;
   @Output() readonly clicked = new EventEmitter<MouseEvent>();
-  @ContentChild('customTemplate', { static: true }) customTemplate?: TemplateRef<ElementRef>;
+  @ContentChild('customTemplate', { static: true })
+  customTemplate?: TemplateRef<ElementRef>;
 
   readonly ButtonSize = ButtonSize;
 
   handleClick = (event?: MouseEvent): void => {
     this.clicked.emit(event);
-  }
-
+  };
 }

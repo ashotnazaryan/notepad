@@ -15,13 +15,11 @@ import { Note } from '@modules/tools/pages/notes/models/note';
 export class NotesNotificationsComponent implements OnDestroy {
   private unsubscribe$ = new Subject();
 
-  notes$: Observable<Array<Note>> =
-    this.store.select(fromTools.selectNotes)
-      .pipe(takeUntil(this.unsubscribe$));
+  notes$: Observable<Array<Note>> = this.store
+    .select(fromTools.selectNotes)
+    .pipe(takeUntil(this.unsubscribe$));
 
-  constructor(
-    private store: Store<fromTools.State>,
-  ) { }
+  constructor(private store: Store<fromTools.State>) {}
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();

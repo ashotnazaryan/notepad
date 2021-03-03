@@ -8,9 +8,8 @@ describe('PaperComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PaperComponent ]
-    })
-    .compileComponents();
+      declarations: [PaperComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

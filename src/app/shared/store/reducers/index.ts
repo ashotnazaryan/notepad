@@ -1,4 +1,3 @@
-
 import { InjectionToken } from '@angular/core';
 import {
   createSelector,
@@ -6,7 +5,7 @@ import {
   ActionReducer,
   MetaReducer,
   Action,
-  ActionReducerMap,
+  ActionReducerMap
 } from '@ngrx/store';
 import * as fromRouter from '@ngrx/router-store';
 
@@ -26,7 +25,7 @@ export const ROOT_REDUCERS = new InjectionToken<
   factory: () => ({
     [fromModulePage.modulePageFeatureKey]: fromModulePage.reducer,
     [fromLanguage.languageFeatureKey]: fromLanguage.reducer,
-    router: fromRouter.routerReducer,
+    router: fromRouter.routerReducer
   })
 });
 
@@ -42,19 +41,21 @@ export const logger = (reducer: ActionReducer<State>): ActionReducer<State> => {
 
     return result;
   };
-}
+};
 
 export const metaReducers: MetaReducer<State>[] = !environment.production
   ? [logger]
   : [];
 
-export const selectModulePageState = createFeatureSelector<State, fromModulePage.State>(
-  fromModulePage.modulePageFeatureKey
-);
+export const selectModulePageState = createFeatureSelector<
+  State,
+  fromModulePage.State
+>(fromModulePage.modulePageFeatureKey);
 
-export const selectLanguageState = createFeatureSelector<State, fromLanguage.State>(
-  fromLanguage.languageFeatureKey
-);
+export const selectLanguageState = createFeatureSelector<
+  State,
+  fromLanguage.State
+>(fromLanguage.languageFeatureKey);
 
 export const selectModulePage = createSelector(
   selectModulePageState,

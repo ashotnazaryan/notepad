@@ -7,6 +7,8 @@
   "GENERAL_BUTTONS_CLOSE": "Close",
   "GENERAL_BUTTONS_REMIND": "Remind",
   "GENERAL_BUTTONS_ADD": "Add",
+  "GENERAL_BUTTONS_GENERATE": "Generate",
+  "GENERAL_BUTTONS_COPY": "Copy",
   "GENERAL_TOOLTIPS_TOOLS": "Tools",
   "GENERAL_TOOLTIPS_WIDGETS": "Widgets",
   "GENERAL_TOOLTIPS_REMOVE": "Remove",
@@ -18,6 +20,7 @@
   "GENERAL_PAGES_TIME": "Time",
   "GENERAL_PAGES_GROCERY": "Grocery",
   "GENERAL_PAGES_WEATHER": "Weather",
+  "GENERAL_PAGES_PASSWORD_GENERATOR": "Password generator",
   "GENERAL_NO_DATA": "No data is available",
   "GENERAL_ADD_NEW_ITEM": "Add new item",
   "GENERAL_REQUIRED_FIELD": "This field is required",
@@ -69,6 +72,8 @@
   "NOTIFICATIONS_EMPTY_GROCERY_LIST": "Please select at least one item.",
   "NOTIFICATIONS_SAVE_EMPTY_NOTES": "There are no notes to save.",
   "NOTIFICATIONS_REMIND_EMPTY_NOTES": "There are no notes to remind.",
+  "NOTIFICATIONS_COPIED_CLIPBOARD": "Copied to clipboard.",
+  "NOTIFICATIONS_EMPTY_GENERATED_PASSWORD": "Please generate a password.",
   "WEATHER_USER_DENIED_GEOLOCATION": "User has denied the request for geolocation.",
   "WEATHER_UNAVAILABLE_INFORMATION": "Location information is unavailable.",
   "WEATHER_TIMEOUT_ERROR": "The request to get user location timed out.",
@@ -81,5 +86,11 @@
   "WEATHER_HUMIDITY": "Humidity",
   "WEATHER_WIND": "Wind",
   "WEATHER_METRIC_SPEED": "m/s",
-  "WEATHER_UNKNOWN_PLACE": "Unknown place"
+  "WEATHER_UNKNOWN_PLACE": "Unknown place",
+  "PASSWORD_LENGTH": "Password length",
+  "PASSWORD_UPPERCASE": "A-Z uppercase letters",
+  "PASSWORD_DIGITS": "0-9 digits",
+  "PASSWORD_SYMBOLS": "!@#$%^&*= symbols",
+  "PASSWORD_AVOID_SIMILAR_CHARACTERS": "Avoid similar characters (1lIioO0)",
+  "PASSWORD_GENERATED": "Generated password"
 }

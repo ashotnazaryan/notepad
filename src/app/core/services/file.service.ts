@@ -6,14 +6,13 @@ import { Observable } from 'rxjs/internal/Observable';
   providedIn: 'root'
 })
 export class FileService {
+  constructor(private translate: TranslateService) {}
 
-  constructor(
-    private translate: TranslateService
-  ) {
-
-  }
-
-  download = (data: string, type = 'text/plain', fileName = 'text.txt'): void => {
+  download = (
+    data: string,
+    type = 'text/plain',
+    fileName = 'text.txt'
+  ): void => {
     const textToBLOB = new Blob([data], { type });
     const newLink = document.createElement('a');
 
@@ -28,7 +27,7 @@ export class FileService {
     }
 
     newLink.click();
-  }
+  };
 
   upload = (file: File): Observable<string | ProgressEvent> => {
     const fileReader = new FileReader();
@@ -44,13 +43,13 @@ export class FileService {
         const result = (event.target as any)?.result as string;
 
         subscriber.next(result);
-      }
+      };
 
       fileReader.onerror = (event: ProgressEvent) => {
         subscriber.error(event);
-      }
+      };
 
       fileReader.readAsText(file);
     });
-  }
+  };
 }

@@ -6,7 +6,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {
+  MatSnackBarModule,
+  MAT_SNACK_BAR_DEFAULT_OPTIONS
+} from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -16,6 +19,10 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
+import { MatSliderModule } from '@angular/material/slider';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+
+import { APP_CONFIGS } from '@core/config';
 
 const modules = [
   MatInputModule,
@@ -33,16 +40,19 @@ const modules = [
   MatCheckboxModule,
   MatProgressSpinnerModule,
   MatCardModule,
-]
+  MatSliderModule,
+  ClipboardModule
+];
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    ...modules
-  ],
-  exports: [
-    ...modules
+  imports: [CommonModule, ...modules],
+  exports: [...modules],
+  providers: [
+    {
+      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+      useValue: { duration: APP_CONFIGS.NOTIFICATION_DURATION }
+    }
   ]
 })
-export class MaterialModule { }
+export class MaterialModule {}

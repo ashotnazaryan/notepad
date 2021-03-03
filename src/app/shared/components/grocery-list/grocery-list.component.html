@@ -1,41 +1,59 @@
 <div class="grocery-list-container">
   <ng-container *ngIf="data.length; else noData">
     <form [formGroup]="form">
-      <div *ngIf="editable" class="grocery-list-container__actions flex flex-row align-items-center justify-content-between p-2">
+      <div
+        *ngIf="editable"
+        class="grocery-list-container__actions flex flex-row align-items-center justify-content-between p-2"
+      >
         <mat-checkbox
           color="primary"
           [checked]="allCheck"
           [indeterminate]="intermediate"
-          formControlName="selectAll">
-          <span class="color-primary font-size-16">{{'GENERAL_SELECT_ALL' | translate}}</span>
+          formControlName="selectAll"
+        >
+          <span class="color-primary font-size-16">{{
+            'GENERAL_SELECT_ALL' | translate
+          }}</span>
         </mat-checkbox>
         <app-button
           icon="close"
           [text]="'GENERAL_REMOVE_ALL' | translate"
           color="accent"
           [size]="ButtonSize.small"
-          (clicked)="handleRemoveAll()">
+          (clicked)="handleRemoveAll()"
+        >
         </app-button>
       </div>
       <mat-list formArrayName="groceries">
-        <mat-list-item color="primary" *ngFor="let item of groceriesArr.controls; let i=index">
-          <div [formGroupName]="i" class="grocery-list-container__item w-100 flex flex-row align-items-center justify-content-between">
-            <div 
+        <mat-list-item
+          color="primary"
+          *ngFor="let item of groceriesArr.controls; let i = index"
+        >
+          <div
+            [formGroupName]="i"
+            class="grocery-list-container__item w-100 flex flex-row align-items-center justify-content-between"
+          >
+            <div
               class="grocery-list-container__icon-text flex flex-row align-items-center justify-content-between mr-2"
-              [matTooltip]="(item.value.langKey || item.value.value) | translate"
-              matTooltipPosition="above">
+              [matTooltip]="item.value.langKey || item.value.value | translate"
+              matTooltipPosition="above"
+            >
               <mat-checkbox
                 *ngIf="editable; else single"
                 class="w-100"
                 color="primary"
-                formControlName="checked">
+                formControlName="checked"
+              >
                 <div class="flex flex-row align-items-center">
                   <img
                     [src]="item.value.icon"
                     [alt]="item.value.value"
-                    class="mx-1" />
-                  <span class="grocery-list-container__text color-primary ellipsis-text">
-                    {{(item.value.langKey || item.value.value) | translate}}
+                    class="mx-1"
+                  />
+                  <span
+                    class="grocery-list-container__text color-primary ellipsis-text"
+                  >
+                    {{ item.value.langKey || item.value.value | translate }}
                   </span>
                 </div>
               </mat-checkbox>
@@ -44,21 +62,31 @@
                   <img
                     [src]="item.value.icon"
                     [alt]="item.value.value"
-                    class="mx-2" />
-                  <span class="grocery-list-container__text color-primary ellipsis-text">
-                    {{(item.value.langKey || item.value.value) | translate}}
+                    class="mx-2"
+                  />
+                  <span
+                    class="grocery-list-container__text color-primary ellipsis-text"
+                  >
+                    {{ item.value.langKey || item.value.value | translate }}
                   </span>
                 </div>
               </ng-template>
             </div>
             <div class="grocery-list-container__notes-button">
-              <div *ngIf="editable; else viewMode" class="flex flex-row flex-grow-1 align-items-center justify-content-end">
-                <mat-form-field floatLabel="never" class="grocery-list-container__notes mx-1">
+              <div
+                *ngIf="editable; else viewMode"
+                class="flex flex-row flex-grow-1 align-items-center justify-content-end"
+              >
+                <mat-form-field
+                  floatLabel="never"
+                  class="grocery-list-container__notes mx-1"
+                >
                   <input
                     matInput
                     formControlName="notes"
-                    placeholder="{{'GROCERY_NOTES' | translate}}"
-                    (click)="$event.stopPropagation()">
+                    placeholder="{{ 'GROCERY_NOTES' | translate }}"
+                    (click)="$event.stopPropagation()"
+                  />
                 </mat-form-field>
                 <app-button
                   icon="close"
@@ -66,11 +94,12 @@
                   [size]="ButtonSize.icon"
                   [matTooltip]="'GENERAL_TOOLTIPS_REMOVE' | translate"
                   matTooltipPosition="above"
-                  (clicked)="handleRemoveClick($event, item.value, i)">
+                  (clicked)="handleRemoveClick($event, item.value, i)"
+                >
                 </app-button>
               </div>
               <ng-template #viewMode>
-                <div class="ellipsis-text">{{item.value.notes}}</div>
+                <div class="ellipsis-text">{{ item.value.notes }}</div>
               </ng-template>
             </div>
           </div>
@@ -79,6 +108,6 @@
     </form>
   </ng-container>
   <ng-template #noData>
-    <h1 class="color-primary">{{'GENERAL_NO_DATA' | translate}}</h1>
+    <h1 class="color-primary">{{ 'GENERAL_NO_DATA' | translate }}</h1>
   </ng-template>
 </div>

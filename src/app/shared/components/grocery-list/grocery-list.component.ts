@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  SimpleChanges
+} from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs/internal/Subject';
@@ -17,7 +25,9 @@ export class GroceryListComponent implements OnInit {
   @Input() data: Array<Grocery> = [];
   @Input() editable = true;
 
-  @Output() readonly itemChecked: EventEmitter<Array<Grocery>> = new EventEmitter();
+  @Output() readonly itemChecked: EventEmitter<
+    Array<Grocery>
+  > = new EventEmitter();
   @Output() readonly itemRemoved: EventEmitter<Grocery> = new EventEmitter();
   @Output() readonly allChecked: EventEmitter<boolean> = new EventEmitter();
   @Output() readonly allRemoved: EventEmitter<void> = new EventEmitter();
@@ -41,28 +51,32 @@ export class GroceryListComponent implements OnInit {
     return !!groceries.length && groceries.every(({ checked }) => checked);
   }
 
-  constructor(
-    private formBuilder: FormBuilder
-  ) {
-
-  }
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.initFormControls();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (!changes.data.firstChange && changes.data.currentValue?.length && this.editable) {
+    if (
+      !changes.data.firstChange &&
+      changes.data.currentValue?.length &&
+      this.editable
+    ) {
       this.updateFormControls();
     }
   }
 
-  handleRemoveClick = (event: MouseEvent, item: Grocery, index: number): void => {
+  handleRemoveClick = (
+    event: MouseEvent,
+    item: Grocery,
+    index: number
+  ): void => {
     event.stopPropagation();
 
     this.removeItem(index);
     this.itemRemoved.emit(item);
-  }
+  };
 
   handleRemoveAll = (): void => {
     this.data.forEach((item) => {
@@ -72,7 +86,7 @@ export class GroceryListComponent implements OnInit {
     });
 
     this.allRemoved.emit();
-  }
+  };
 
   private initFormControls = (): void => {
     const formArray = this.data.map((item) => this.createNewItem(item));
@@ -84,8 +98,9 @@ export class GroceryListComponent implements OnInit {
       groceries: this.groceriesArr
     });
 
-    this.form.get('groceries')?.valueChanges
-      .pipe(
+    this.form
+      .get('groceries')
+      ?.valueChanges.pipe(
         takeUntil(this.unsubscribe$),
         distinctUntilChanged(),
         debounceTime(300)
@@ -94,10 +109,9 @@ export class GroceryListComponent implements OnInit {
         this.itemChecked.emit(groceries);
       });
 
-    this.form.get('selectAll')?.valueChanges
-      .pipe(
-        takeUntil(this.unsubscribe$),
-      )
+    this.form
+      .get('selectAll')
+      ?.valueChanges.pipe(takeUntil(this.unsubscribe$))
       .subscribe((selectAll: boolean) => {
         const allCheckedGroceries = this.data.map((item) => ({
           ...item,
@@ -107,12 +121,20 @@ export class GroceryListComponent implements OnInit {
         this.groceriesArr.patchValue(allCheckedGroceries);
         this.allChecked.emit(selectAll);
       });
-  }
+  };
 
   private updateFormControls = (): void => {
     const groceries = this.groceriesArr.value as Array<Grocery>;
-    const newItems = differenceWith(this.data, groceries, (a, b) => a.key === b.key);
-    const removedItems = differenceWith(groceries, this.data, (a, b) => a.key === b.key);
+    const newItems = differenceWith(
+      this.data,
+      groceries,
+      (a, b) => a.key === b.key
+    );
+    const removedItems = differenceWith(
+      groceries,
+      this.data,
+      (a, b) => a.key === b.key
+    );
 
     if (newItems.length) {
       newItems.forEach((item) => this.addItem(item));
@@ -127,7 +149,8 @@ export class GroceryListComponent implements OnInit {
     }
 
     this.groceriesArr.patchValue(this.data);
-  }
+    this.form.get('selectAll')?.setValue(this.allCheck);
+  };
 
   private createNewItem = (item?: Grocery): FormGroup => {
     return this.formBuilder.group({
@@ -139,19 +162,18 @@ export class GroceryListComponent implements OnInit {
       langKey: item?.langKey,
       value: item?.value
     });
-  }
+  };
 
   private addItem = (item?: Grocery): void => {
     this.groceriesArr.push(this.createNewItem(item));
-  }
+  };
 
   private removeItem = (index: number): void => {
     this.groceriesArr.removeAt(index);
-  }
+  };
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }
-
 }

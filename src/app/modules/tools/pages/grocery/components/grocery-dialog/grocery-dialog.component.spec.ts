@@ -8,9 +8,8 @@ describe('GroceryDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GroceryDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [GroceryDialogComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

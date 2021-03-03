@@ -12,10 +12,7 @@ import { ROOT_REDUCERS, metaReducers } from '@shared/store/reducers';
 import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PageNotFoundComponent
-  ],
+  declarations: [AppComponent, PageNotFoundComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,
@@ -29,12 +26,12 @@ import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.c
         strictStateSerializability: true,
         strictActionSerializability: true,
         strictActionWithinNgZone: true,
-        strictActionTypeUniqueness: true,
-      },
+        strictActionTypeUniqueness: true
+      }
     }),
     EffectsModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

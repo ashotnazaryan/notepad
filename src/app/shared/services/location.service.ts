@@ -8,11 +8,7 @@ import { ClientLocation, Position } from '@shared/models';
   providedIn: 'root'
 })
 export class LocationService {
-  constructor(
-    private translate: TranslateService
-  ) {
-
-  }
+  constructor(private translate: TranslateService) {}
 
   getLocation = (): Observable<ClientLocation> => {
     return new Observable((subscriber) => {
@@ -25,28 +21,34 @@ export class LocationService {
           (error) => subscriber.error(this.getError(error))
         );
       } else {
-        subscriber.error({ message: this.translate.instant('GENERAL_UNSUPPORTED_BROWSER') });
+        subscriber.error({
+          message: this.translate.instant('GENERAL_UNSUPPORTED_BROWSER')
+        });
       }
     });
-  }
+  };
 
   private getPosition = (position: GeolocationPosition): Position => {
     return {
       latitude: position.coords.latitude,
       longitude: position.coords.longitude
-    }
-  }
+    };
+  };
 
   private getError = (error: GeolocationPositionError): { message: string } => {
     switch (error.code) {
       case error.PERMISSION_DENIED:
-        return { message: this.translate.instant('WEATHER_USER_DENIED_GEOLOCATION') };
+        return {
+          message: this.translate.instant('WEATHER_USER_DENIED_GEOLOCATION')
+        };
       case error.POSITION_UNAVAILABLE:
-        return { message: this.translate.instant('WEATHER_UNAVAILABLE_INFORMATION') };
+        return {
+          message: this.translate.instant('WEATHER_UNAVAILABLE_INFORMATION')
+        };
       case error.TIMEOUT:
         return { message: this.translate.instant('WEATHER_TIMEOUT_ERROR') };
       default:
         return { message: this.translate.instant('GENERAL_UNKNOWN_ERROR') };
     }
-  }
+  };
 }

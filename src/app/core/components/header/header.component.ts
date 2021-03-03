@@ -1,4 +1,10 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output
+} from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
@@ -33,17 +39,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   languages = LANGUAGES;
   menuItems = MENU_ITEMS;
 
-  modulePage$: Observable<ModulePage> =
-    this.store.select(fromRoot.selectModulePage)
-      .pipe(
-        takeUntil(this.unsubscribe$)
-      );
+  modulePage$: Observable<ModulePage> = this.store
+    .select(fromRoot.selectModulePage)
+    .pipe(takeUntil(this.unsubscribe$));
 
-  currentLanguage$: Observable<Language> =
-    this.store.select(fromRoot.selectLanguage)
-      .pipe(
-        takeUntil(this.unsubscribe$)
-      );
+  currentLanguage$: Observable<Language> = this.store
+    .select(fromRoot.selectLanguage)
+    .pipe(takeUntil(this.unsubscribe$));
 
   totalCount$: Observable<number> = of(0);
   readonly ButtonSize = ButtonSize;
@@ -54,9 +56,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private titleService: Title,
     private store: Store<fromRoot.State & fromTools.State>,
     private translate: TranslateService
-  ) {
-
-  }
+  ) {}
 
   ngOnInit(): void {
     this.handleRouting();
@@ -67,7 +67,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     moment.locale(language.key);
     this.translate.use(language.key);
     this.store.dispatch(SetLanguage(language));
-  }
+  };
 
   private handleRouting = (): void => {
     this.router.events
@@ -96,7 +96,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
           this.titleService.setTitle(title);
         });
       });
-  }
+  };
 
   private setNotificationsCount = (): void => {
     const notifications$ = [
@@ -117,11 +117,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
       }),
       map((data) => data.reduce((acc, curr) => acc + curr, 0))
     );
-  }
+  };
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }
-
 }

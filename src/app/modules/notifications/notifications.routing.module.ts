@@ -19,14 +19,14 @@ const routes: Routes = [
       {
         path: `${ROUTES.notifications.sub_routes.grocery.route}`,
         component: GroceryNotificationsComponent,
-        data: { 
+        data: {
           title: `${ROUTES.notifications.sub_routes.grocery.langKey}`
         }
       },
       {
         path: `${ROUTES.notifications.sub_routes.notes.route}`,
         component: NotesNotificationsComponent,
-        data: { 
+        data: {
           title: `${ROUTES.notifications.sub_routes.notes.langKey}`
         }
       }
@@ -38,4 +38,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class NotificationsRoutingModule { }
+export class NotificationsRoutingModule {}

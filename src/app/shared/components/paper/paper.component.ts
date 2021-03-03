@@ -3,7 +3,7 @@ import { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { KeyName } from '@shared/models';
 
-type ChangeFunction =  (value: string) => '';
+type ChangeFunction = (value: string) => '';
 
 @Component({
   selector: 'app-paper',
@@ -26,12 +26,11 @@ export class PaperComponent implements OnInit {
   onTouched: ChangeFunction = () => '';
 
   ngOnInit(): void {
-    this.textAreaControl.valueChanges
-      .subscribe((value: string) => {
-        if (this.onChange) {
-          this.onChange(value);
-        }
-      });
+    this.textAreaControl.valueChanges.subscribe((value: string) => {
+      if (this.onChange) {
+        this.onChange(value);
+      }
+    });
   }
 
   writeValue(value: string): void {
@@ -45,5 +44,4 @@ export class PaperComponent implements OnInit {
   registerOnTouched(fn: ChangeFunction): void {
     this.onTouched = fn;
   }
-
 }

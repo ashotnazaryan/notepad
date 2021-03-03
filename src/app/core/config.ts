@@ -7,5 +7,6 @@ export const APP_CONFIGS = {
   WEATHER_API: {
     key: '99f0c42a193beb6881706566f41ab96b',
     baseUrl: 'https://api.openweathermap.org'
-  }
-}
+  },
+  NOTIFICATION_DURATION: 10000
+};

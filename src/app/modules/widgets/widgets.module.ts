@@ -7,17 +7,8 @@ import { WidgetsComponent } from './widgets.component';
 import { WeatherComponent } from './pages/weather/weather.component';
 import { TimeComponent } from './pages/time/time.component';
 
-
 @NgModule({
-  declarations: [
-    WidgetsComponent,
-    TimeComponent,
-    WeatherComponent,
-  ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    WidgetsRoutingModule
-  ]
+  declarations: [WidgetsComponent, TimeComponent, WeatherComponent],
+  imports: [CommonModule, SharedModule, WidgetsRoutingModule]
 })
-export class WidgetsModule { }
+export class WidgetsModule {}

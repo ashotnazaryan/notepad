@@ -20,5 +20,5 @@ export class NotesEffects {
   constructor(
     private actions$: Actions,
     private store: Store<fromTools.State>
-  ) { }
+  ) {}
 }

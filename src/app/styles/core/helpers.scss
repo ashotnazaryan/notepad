@@ -17,8 +17,8 @@
 }
 
 .my-2 {
-  margin-top: $baseSpacing*2 !important;
-  margin-bottom: $baseSpacing*2 !important;
+  margin-top: $baseSpacing * 2 !important;
+  margin-bottom: $baseSpacing * 2 !important;
 }
 
 .my-1 {
@@ -27,8 +27,8 @@
 }
 
 .mx-2 {
-  margin-left: $baseSpacing*2 !important;
-  margin-right: $baseSpacing*2 !important;
+  margin-left: $baseSpacing * 2 !important;
+  margin-right: $baseSpacing * 2 !important;
 }
 
 .mx-1 {
@@ -41,19 +41,19 @@
 }
 
 .mt-2 {
-  margin-top: $baseSpacing*2 !important;
+  margin-top: $baseSpacing * 2 !important;
 }
 
 .mr-2 {
-  margin-right: $baseSpacing*2 !important;
+  margin-right: $baseSpacing * 2 !important;
 }
 
 .p-2 {
-  padding: $baseSpacing*2 !important;
+  padding: $baseSpacing * 2 !important;
 }
 
 .p-1 {
-  padding: $baseSpacing*1 !important;
+  padding: $baseSpacing * 1 !important;
 }
 
 .py-1 {
@@ -62,13 +62,13 @@
 }
 
 .py-2 {
-  padding-top: $baseSpacing*2 !important;
-  padding-bottom: $baseSpacing*2 !important;
+  padding-top: $baseSpacing * 2 !important;
+  padding-bottom: $baseSpacing * 2 !important;
 }
 
 .py-3 {
-  padding-top: $baseSpacing*3 !important;
-  padding-bottom: $baseSpacing*3 !important;
+  padding-top: $baseSpacing * 3 !important;
+  padding-bottom: $baseSpacing * 3 !important;
 }
 
 .px-1 {
@@ -77,13 +77,13 @@
 }
 
 .px-2 {
-  padding-left: $baseSpacing*2 !important;
-  padding-right: $baseSpacing*2 !important;
+  padding-left: $baseSpacing * 2 !important;
+  padding-right: $baseSpacing * 2 !important;
 }
 
 .px-3 {
-  padding-left: $baseSpacing*3 !important;
-  padding-right: $baseSpacing*3 !important;
+  padding-left: $baseSpacing * 3 !important;
+  padding-right: $baseSpacing * 3 !important;
 }
 
 .font-size-12 {
@@ -167,9 +167,9 @@
 }
 
 .ellipsis-text {
-  overflow     : hidden;
+  overflow: hidden;
   text-overflow: ellipsis;
-  white-space  : nowrap;
+  white-space: nowrap;
 }
 
 .overflow-hidden {

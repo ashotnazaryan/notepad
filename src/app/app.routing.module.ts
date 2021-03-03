@@ -12,15 +12,20 @@ const routes: Routes = [
   },
   {
     path: `${ROUTES.tools.route}`,
-    loadChildren: () => import('@modules/tools/tools.module').then(m => m.ToolsModule)
+    loadChildren: () =>
+      import('@modules/tools/tools.module').then((m) => m.ToolsModule)
   },
   {
     path: `${ROUTES.widgets.route}`,
-    loadChildren: () => import('@modules/widgets/widgets.module').then(m => m.WidgetsModule)
+    loadChildren: () =>
+      import('@modules/widgets/widgets.module').then((m) => m.WidgetsModule)
   },
   {
     path: `${ROUTES.notifications.route}`,
-    loadChildren: () => import('@modules/notifications/notifications.module').then(m => m.NotificationsModule)
+    loadChildren: () =>
+      import('@modules/notifications/notifications.module').then(
+        (m) => m.NotificationsModule
+      )
   },
   {
     path: '**',
@@ -32,4 +37,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

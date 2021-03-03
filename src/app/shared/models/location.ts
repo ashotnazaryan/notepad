@@ -44,7 +44,7 @@ export const WEATHER_ICONS = {
   [WeatherIcon['snow-day']]: 'snow',
   [WeatherIcon['snow-night']]: 'snow',
   [WeatherIcon['mist-day']]: 'mist',
-  [WeatherIcon['mist-night']]: 'mist',
+  [WeatherIcon['mist-night']]: 'mist'
 };
 
 export interface WeatherDTO {
@@ -62,7 +62,7 @@ export interface WeatherDTO {
   };
   wind: {
     speed: number;
-  }
+  };
 }
 
 export interface ClientWeather {

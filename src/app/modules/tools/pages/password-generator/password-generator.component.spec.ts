@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ClockComponent } from './clock.component';
+import { PasswordGeneratorComponent } from './password-generator.component';
 
-describe('ClockComponent', () => {
-  let component: ClockComponent;
-  let fixture: ComponentFixture<ClockComponent>;
+describe('PasswordGeneratorComponent', () => {
+  let component: PasswordGeneratorComponent;
+  let fixture: ComponentFixture<PasswordGeneratorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ClockComponent]
+      declarations: [PasswordGeneratorComponent]
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ClockComponent);
+    fixture = TestBed.createComponent(PasswordGeneratorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

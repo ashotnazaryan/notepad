@@ -15,7 +15,7 @@ export interface AppRoute {
         route: string;
         name: string;
         langKey: string;
-      }
-    }
-  }
+      };
+    };
+  };
 }

@@ -13,12 +13,16 @@ export class GroceryEffects {
     this.actions$.pipe(
       ofType(GroceryActions.SetChosenGroceryList),
       switchMap(() => this.store.pipe(select(selectChosenGroceryList))),
-      map((chosenGroceryList) => GroceryActions.SetChosenGroceriesCount({ chosenGroceriesCount: chosenGroceryList.length }))
+      map((chosenGroceryList) =>
+        GroceryActions.SetChosenGroceriesCount({
+          chosenGroceriesCount: chosenGroceryList.length
+        })
+      )
     )
   );
 
   constructor(
     private actions$: Actions,
     private store: Store<fromTools.State>
-  ) { }
+  ) {}
 }

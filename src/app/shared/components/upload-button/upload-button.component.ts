@@ -18,6 +18,5 @@ export class UploadButtonComponent {
     const file = event.target.files[0] as File;
 
     this.uploaded.emit(file);
-  }
-
+  };
 }

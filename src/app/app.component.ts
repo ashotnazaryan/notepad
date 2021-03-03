@@ -29,6 +29,5 @@ export class AppComponent implements OnInit {
 
   handlePageTitleKeyReceived = (title: string): void => {
     this.pageTitleKey = title;
-  }
-
+  };
 }

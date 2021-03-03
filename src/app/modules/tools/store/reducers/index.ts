@@ -2,7 +2,7 @@ import {
   createSelector,
   createFeatureSelector,
   combineReducers,
-  Action,
+  Action
 } from '@ngrx/store';
 import * as fromRoot from '@shared/store/reducers';
 import * as fromGrocery from './grocery.reducer';
@@ -19,10 +19,13 @@ export interface State extends fromRoot.State {
   [toolsFeatureKey]: ToolsState;
 }
 
-export function reducers(state: ToolsState | undefined, action: Action): ToolsState {
+export function reducers(
+  state: ToolsState | undefined,
+  action: Action
+): ToolsState {
   return combineReducers({
     [fromGrocery.groceryFeatureKey]: fromGrocery.reducer,
-    [fromNotes.notesFeatureKey]: fromNotes.reducer,
+    [fromNotes.notesFeatureKey]: fromNotes.reducer
   })(state, action);
 }
 
@@ -30,19 +33,13 @@ export const selectToolsState = createFeatureSelector<State, ToolsState>(
   toolsFeatureKey
 );
 
-export const selectGroceryState = createSelector(
-  selectToolsState,
-  (state) => {
-    return state[fromGrocery.groceryFeatureKey]
-  }
-);
+export const selectGroceryState = createSelector(selectToolsState, (state) => {
+  return state[fromGrocery.groceryFeatureKey];
+});
 
-export const selectNotesState = createSelector(
-  selectToolsState,
-  (state) => {
-    return state[fromNotes.notesFeatureKey]
-  }
-);
+export const selectNotesState = createSelector(selectToolsState, (state) => {
+  return state[fromNotes.notesFeatureKey];
+});
 
 export const selectChosenGroceryList = createSelector(
   selectGroceryState,

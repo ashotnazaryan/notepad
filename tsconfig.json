@@ -16,23 +16,12 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "es2020",
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "lib": ["es2018", "dom"],
     "paths": {
-      "@environments/*": [
-        "environments/*"
-      ],
-      "@core/*": [
-        "app/core/*"
-      ],
-      "@shared/*": [
-        "app/shared/*"
-      ],
-      "@modules/*": [
-        "app/modules/*"
-      ]
+      "@environments/*": ["environments/*"],
+      "@core/*": ["app/core/*"],
+      "@shared/*": ["app/shared/*"],
+      "@modules/*": ["app/modules/*"]
     }
   },
   "angularCompilerOptions": {

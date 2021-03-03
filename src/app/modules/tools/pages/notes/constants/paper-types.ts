@@ -1,4 +1,4 @@
-import { KeyName } from "@shared/models";
+import { KeyName } from '@shared/models';
 
 export const paperTypes: Array<KeyName> = [
   {

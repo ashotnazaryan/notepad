@@ -7,6 +7,8 @@
   "GENERAL_BUTTONS_CLOSE": "Закрыть",
   "GENERAL_BUTTONS_REMIND": "Напомнить",
   "GENERAL_BUTTONS_ADD": "Добавить",
+  "GENERAL_BUTTONS_GENERATE": "Сгенерировать",
+  "GENERAL_BUTTONS_COPY": "Копировать",
   "GENERAL_TOOLTIPS_TOOLS": "Инструменты",
   "GENERAL_TOOLTIPS_WIDGETS": "Виджеты",
   "GENERAL_TOOLTIPS_REMOVE": "Удалить",
@@ -18,6 +20,7 @@
   "GENERAL_PAGES_TIME": "Время",
   "GENERAL_PAGES_GROCERY": "Покупки",
   "GENERAL_PAGES_WEATHER": "Погода",
+  "GENERAL_PAGES_PASSWORD_GENERATOR": "Генератор пароля",
   "GENERAL_NO_DATA": "Нет данных",
   "GENERAL_ADD_NEW_ITEM": "Добавить новый элемент",
   "GENERAL_REQUIRED_FIELD": "Это поле обязательное",
@@ -69,6 +72,8 @@
   "NOTIFICATIONS_EMPTY_GROCERY_LIST": "Пожалуйста, выберите минимум один элемент.",
   "NOTIFICATIONS_SAVE_EMPTY_NOTES": "Нет заметок для сохранения.",
   "NOTIFICATIONS_REMIND_EMPTY_NOTES": "Нет заметок для напоминания.",
+  "NOTIFICATIONS_COPIED_CLIPBOARD": "Скопировано в буфер обмена.",
+  "NOTIFICATIONS_EMPTY_GENERATED_PASSWORD": "Пожалуйста, сгенерируйте пароль.",
   "WEATHER_USER_DENIED_GEOLOCATION": "Пользователь отклонил запрос на геолокацию.",
   "WEATHER_UNAVAILABLE_INFORMATION": "Информация о местоположении недоступна.",
   "WEATHER_TIMEOUT_ERROR": "Время ожидания запроса на получение местоположения пользователя истекло.",
@@ -81,5 +86,11 @@
   "WEATHER_HUMIDITY": "Влажность",
   "WEATHER_WIND": "Ветер",
   "WEATHER_METRIC_SPEED": "м/с",
-  "WEATHER_UNKNOWN_PLACE": "Неизвестное место"
+  "WEATHER_UNKNOWN_PLACE": "Неизвестное место",
+  "PASSWORD_LENGTH": "Длина пароля",
+  "PASSWORD_UPPERCASE": "A-Z заглавные буквы",
+  "PASSWORD_DIGITS": "0-9 цифры",
+  "PASSWORD_SYMBOLS": "!@#$%^&*= символы",
+  "PASSWORD_AVOID_SIMILAR_CHARACTERS": "Избегать похожих символов (1lIioO0)",
+  "PASSWORD_GENERATED": "Сгенерированный пароль"
 }

@@ -12,15 +12,18 @@ export interface State {
 }
 
 const initialState: State = {
-  language: LANGUAGES.filter((language) => language.key === APP_CONFIGS.DEFAULT_LANGUAGE_KEY)[0],
+  language: LANGUAGES.filter(
+    (language) => language.key === APP_CONFIGS.DEFAULT_LANGUAGE_KEY
+  )[0]
 };
 
 export const reducer = createReducer(
   initialState,
   on(LanguageActions.SetLanguage, (state, language) => ({
     ...state,
-    language,
+    language
   }))
 );
 
-export const selectLanguageFn = (state: State): State['language'] => state.language;
+export const selectLanguageFn = (state: State): State['language'] =>
+  state.language;
