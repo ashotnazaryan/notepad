@@ -13,6 +13,7 @@ import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.compo
 import { GroceryListComponent } from './components/grocery-list/grocery-list.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { WeatherWidgetComponent } from './components/weather-widget/weather-widget.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 const components = [
   PaperComponent, 
@@ -23,6 +24,7 @@ const components = [
   GroceryListComponent,
   NotificationComponent,
   WeatherWidgetComponent,
+  SpinnerComponent,
 ];
 
 @NgModule({

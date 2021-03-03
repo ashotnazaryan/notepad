@@ -134,6 +134,7 @@
   },
   "defaultProject": "notepad",
   "cli": {
+    "analytics": false,
     "defaultCollection": "@ngrx/schematics"
   }
 }

@@ -2,6 +2,9 @@
   <app-weather-widget [data]="weather"></app-weather-widget>
 </ng-container>
 <ng-template #loading>
-  <!-- TODO move to the shared components -->
-  <mat-spinner [strokeWidth]="5" [diameter]="70" class="flex align-self-center"></mat-spinner>
+  <app-spinner
+    [absolute]="true"
+    [strokeWidth]="5"
+    [diameter]="70">
+  </app-spinner>
 </ng-template>

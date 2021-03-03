@@ -1,9 +1,9 @@
 <mat-form-field class="w-100">
   <textarea
-    class="paper d-block {{type}} border-box"
     matInput
-    [formControl]="textAreaControl"
     cdkTextareaAutosize
+    class="paper d-block {{type}} border-box"
+    [formControl]="textAreaControl"
     #autosize="cdkTextareaAutosize"
     [cdkAutosizeMinRows]="size"
     [cdkAutosizeMaxRows]="size">

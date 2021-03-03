@@ -1,6 +1,6 @@
 <div class="grocery-dialog-container flex flex-column justify-content-between">
   <h1 mat-dialog-title>{{data.title}}</h1>
-  <ng-container *ngIf="!(loading$ | async); else loadingTmpl">
+  <ng-container *ngIf="!(loading$ | async); else loading">
     <div mat-dialog-content class="grocery-dialog-container__items flex flex-row flex-wrap">
       <div
         *ngFor="let item of groceries"
@@ -11,13 +11,13 @@
       </div>
     </div>
   </ng-container>
-  <ng-template #loadingTmpl>
-    <!-- TODO move to the shared components -->
-    <mat-spinner [strokeWidth]="3" [diameter]="50" class="flex align-self-center"></mat-spinner>
+  <ng-template #loading>
+    <app-spinner></app-spinner>
   </ng-template>
   <div mat-dialog-actions class="justify-content-end">
     <app-button
       mat-dialog-close
+      icon="close"
       color="accent"
       [text]="'GENERAL_BUTTONS_CLOSE' | translate">
     </app-button>
