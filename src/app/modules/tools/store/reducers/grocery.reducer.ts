@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { unionBy } from 'lodash';
 
-import { Grocery } from '@shared/models/grocery';
+import { Grocery } from '@shared/models';
 import { GroceryActions } from '../actions';
 
 export const groceryFeatureKey = 'grocery';

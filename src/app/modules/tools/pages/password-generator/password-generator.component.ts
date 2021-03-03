@@ -5,7 +5,7 @@ import * as generator from 'generate-password-browser';
 
 import { ButtonSize } from '@shared/components/button/button.component';
 import { NotificationType } from '@shared/components/notification/notification.component';
-import { NotificationService } from '@shared/services/notification.service';
+import { NotificationService } from '@shared/services';
 
 type GeneratorOptions = generator.Options & { password?: string };
 

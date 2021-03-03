@@ -5,7 +5,7 @@ import { Subject } from 'rxjs/internal/Subject';
 import { takeUntil } from 'rxjs/operators';
 
 import * as fromTools from '@modules/tools/store/reducers';
-import { Grocery } from '@shared/models/grocery';
+import { Grocery } from '@shared/models';
 
 @Component({
   selector: 'app-grocery-notifications',

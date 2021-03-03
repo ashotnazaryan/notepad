@@ -4,7 +4,7 @@ import { Subject } from 'rxjs/internal/Subject';
 import { takeUntil } from 'rxjs/operators';
 
 import { APP_CONFIGS } from '@core/config';
-import { DateService } from '@shared/services/date.service';
+import { DateService } from '@shared/services';
 import { ClockSize } from '@shared/models';
 
 @Component({

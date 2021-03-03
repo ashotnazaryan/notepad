@@ -18,7 +18,7 @@ type ChangeFunction = (value: string) => '';
   ]
 })
 export class PaperComponent implements OnInit {
-  @Input() size = 14;
+  @Input() size = 12;
   @Input() type?: KeyName['key'];
 
   textAreaControl = new FormControl('');

@@ -1,4 +1,4 @@
-import { Grocery } from '../../../../../shared/models/grocery';
+import { Grocery } from '@shared/models';
 
 export const groceryItems: Array<Grocery> = [
   {

@@ -8,10 +8,10 @@ import { Observable } from 'rxjs/internal/Observable';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import { differenceWith, lowerCase } from 'lodash';
 
-import { Grocery } from '@shared/models/grocery';
+import { Grocery } from '@shared/models';
 import { NotificationType } from '@shared/components/notification/notification.component';
 import { ButtonSize } from '@shared/components/button/button.component';
-import { NotificationService } from '@shared/services/notification.service';
+import { NotificationService } from '@shared/services';
 import * as fromGrocery from '@modules/tools/store/reducers';
 import * as fromTools from '@modules/tools/store/reducers';
 import {

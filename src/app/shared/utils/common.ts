@@ -1,10 +1,10 @@
 import { Event, NavigationEnd } from '@angular/router';
+import { Observable } from 'rxjs/internal/Observable';
 import { capitalize, get, identity } from 'lodash';
 
 import { ROUTES } from '@core/constants';
 import { ModulePage } from '@shared/models';
 import Weather, { ClientWeather, WEATHER_ICONS } from '@shared/models/location';
-import { Observable } from 'rxjs/internal/Observable';
 
 export const getModulePage = (event: Event): ModulePage => {
   // FIXME https://github.com/angular/angular/issues/15439

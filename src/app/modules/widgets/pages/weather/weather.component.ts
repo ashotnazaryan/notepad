@@ -7,8 +7,7 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 import { APP_CONFIGS } from '@core/config';
 import { HttpService } from '@core/services/http.service';
-import { LocationService } from '@shared/services/location.service';
-import { NotificationService } from '@shared/services/notification.service';
+import { LocationService, NotificationService } from '@shared/services';
 import { ClientLocation, Language } from '@shared/models';
 import Weather, { ClientWeather, WeatherDTO } from '@shared/models/location';
 import { weatherNormalizer } from '@shared/utils';

@@ -12,7 +12,7 @@ import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs/internal/Subject';
 import { differenceWith, findIndex } from 'lodash';
 
-import { Grocery } from '@shared/models/grocery';
+import { Grocery } from '@shared/models';
 import { ButtonSize } from '@shared/components/button/button.component';
 
 @Component({

@@ -19,7 +19,7 @@ import { Subject } from 'rxjs/internal/Subject';
 import { concatMap, finalize, takeUntil, tap, toArray } from 'rxjs/operators';
 import { from } from 'rxjs/internal/observable/from';
 
-import { Grocery } from '@shared/models/grocery';
+import { Grocery } from '@shared/models';
 import { loadImage } from '@shared/utils';
 import * as fromTools from '@modules/tools/store/reducers';
 

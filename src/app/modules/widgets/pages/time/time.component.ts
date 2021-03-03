@@ -10,4 +10,5 @@ import { ClockSize } from '@shared/models';
 export class TimeComponent {
   readonly ClockSize = ClockSize;
   dateFormat = 'dddd DD/MM/YYYY';
+  timeFormat = 'HH:mm:ss';
 }

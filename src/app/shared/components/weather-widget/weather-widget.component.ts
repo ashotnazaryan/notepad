@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { ClientWeather } from '@shared/models/location';
+import { ClientWeather } from '@shared/models';
 
 export enum WeatherViewMode {
   full,
