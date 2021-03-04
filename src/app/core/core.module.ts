@@ -14,12 +14,12 @@ import { SharedModule } from '@shared/shared.module';
 import * as fromTools from '@modules/tools/store/reducers';
 import { HeaderComponent } from './components/header/header.component';
 
-export function HttpLoaderFactory(http: HttpClient) {
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
 }
 
 export function appInitializerFactory(translate: TranslateService) {
-  return () => {
+  return (): Promise<any> => {
     translate.setDefaultLang(APP_CONFIGS.DEFAULT_LANGUAGE_KEY);
     return translate.use(APP_CONFIGS.DEFAULT_LANGUAGE_KEY).toPromise();
   };

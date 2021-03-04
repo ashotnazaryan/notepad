@@ -9,10 +9,16 @@ import { APP_CONFIGS } from '@core/config';
 import { HttpService } from '@core/services/http.service';
 import { LocationService, NotificationService } from '@shared/services';
 import { ClientLocation, Language } from '@shared/models';
-import Weather, { ClientWeather, WeatherDTO } from '@shared/models/location';
+import Weather, {
+  ClientWeather,
+  ForecastDTO,
+  WeatherDTO
+} from '@shared/models/location';
 import { weatherNormalizer } from '@shared/utils';
 import * as fromRoot from '@shared/store/reducers';
 import { NotificationType } from '@shared/components/notification/notification.component';
+import { WeatherViewMode } from '@shared/components/weather-widget/weather-widget.component';
+import { zip } from 'rxjs/internal/observable/zip';
 
 @Component({
   selector: 'app-weather',
@@ -23,6 +29,8 @@ export class WeatherComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject();
   loading$ = new BehaviorSubject<boolean>(false);
   weather: ClientWeather = {};
+  forecastHours = 40;
+  readonly WeatherViewMode = WeatherViewMode;
 
   constructor(
     private http: HttpService,
@@ -48,16 +56,32 @@ export class WeatherComponent implements OnInit, OnDestroy {
         withLatestFrom(this.store.select(fromRoot.selectLanguage)),
         switchMap(([data, { key }]: [ClientLocation, Language]) => {
           const url = `${APP_CONFIGS.WEATHER_API.baseUrl}/data/2.5/weather?lang=${key}&lat=${data.latitude}&lon=${data.longitude}&units=metric&appid=${APP_CONFIGS.WEATHER_API.key}`;
+          const hourlyForecastUrl = `${APP_CONFIGS.WEATHER_API.baseUrl}/data/2.5/forecast?lang=${key}&lat=${data.latitude}&lon=${data.longitude}&units=metric&cnt=${this.forecastHours}&appid=${APP_CONFIGS.WEATHER_API.key}`;
 
-          return this.http.get<WeatherDTO>(url);
+          return zip(
+            this.http.get<WeatherDTO>(url),
+            this.http.get<ForecastDTO>(hourlyForecastUrl)
+          );
         }),
         finalize(() => this.loading$.next(false))
       )
       .subscribe(this.handleSuccess, this.handleError);
   };
 
-  private handleSuccess = (weather: WeatherDTO): void => {
-    this.weather = weatherNormalizer(new Weather(weather), 0);
+  private handleSuccess = ([weather, forecast]: [
+    WeatherDTO,
+    ForecastDTO
+  ]): void => {
+    const normalizedCurrentWeather = weatherNormalizer(new Weather(weather), 0);
+    const normalizedForecast = forecast.list
+      .map((item) => weatherNormalizer(new Weather(item), 0))
+      // NOTE to get daily forecast, openweathermap provides a 3-hour forecast for free
+      .filter((item, index) => index % 8 === 0);
+
+    this.weather = {
+      ...normalizedCurrentWeather,
+      forecast: normalizedForecast
+    };
   };
 
   private handleError = ({ message }: { message: string }): void => {

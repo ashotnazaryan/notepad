@@ -48,6 +48,14 @@
   margin-right: $baseSpacing * 2 !important;
 }
 
+.mb-2 {
+  margin-bottom: $baseSpacing * 2 !important;
+}
+
+.m-0 {
+  margin: 0 0 0 0 !important;
+}
+
 .p-2 {
   padding: $baseSpacing * 2 !important;
 }
@@ -191,4 +199,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.text-nowrap {
+  white-space: nowrap;
 }

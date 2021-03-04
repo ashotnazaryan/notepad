@@ -49,6 +49,7 @@ export const WEATHER_ICONS = {
 
 export interface WeatherDTO {
   name: string;
+  dt_txt?: string;
   weather: Array<{
     description: string;
     icon: WeatherIcon;
@@ -63,6 +64,11 @@ export interface WeatherDTO {
   wind: {
     speed: number;
   };
+  forecast: Array<WeatherDTO>;
+}
+
+export interface ForecastDTO {
+  list: Array<WeatherDTO>;
 }
 
 export interface ClientWeather {
@@ -75,6 +81,8 @@ export interface ClientWeather {
   wind?: string;
   minTemperature?: string;
   maxTemperature?: string;
+  time?: string;
+  forecast?: Array<ClientWeather>;
 }
 
 export default class Weather {
@@ -87,6 +95,8 @@ export default class Weather {
   wind: number;
   minTemperature: number;
   maxTemperature: number;
+  time?: string;
+  forecast?: Array<WeatherDTO>;
 
   constructor(dto: WeatherDTO) {
     this.location = dto.name;
@@ -98,5 +108,7 @@ export default class Weather {
     this.wind = dto.wind.speed;
     this.minTemperature = dto.main.temp_min;
     this.maxTemperature = dto.main.temp_max;
+    this.time = dto.dt_txt;
+    this.forecast = dto.forecast;
   }
 }

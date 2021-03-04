@@ -2,40 +2,80 @@
   <mat-card *ngSwitchCase="viewModes.full" class="weather-widget-container">
     <ng-container *ngIf="data; else noData">
       <mat-card-header>
-        <mat-card-title class="color-primary">{{data?.location || 'WEATHER_UNKNOWN_PLACE' | translate}}</mat-card-title>
+        <div
+          class="flex flex-row align-items-center justify-content-between w-100 mb-2"
+        >
+          <mat-card-title class="color-primary m-0">{{
+            data?.location || 'WEATHER_UNKNOWN_PLACE' | translate
+          }}</mat-card-title>
+          <div class="flex flex-row flex-wrap align-items-center justify-content-end">
+            <div class="flex flex-row align-items-center mx-1">
+              <img
+                class="weather-widget-container__icon mx-1"
+                src="assets/icons/weather/water-drop.svg"
+              />
+              <span class="text-center text-nowrap">{{
+                data?.humidity || 'GENERAL_N_A' | translate
+              }}</span>
+            </div>
+            <div class="flex flex-row align-items-center mx-1">
+              <img
+                class="weather-widget-container__icon mx-1"
+                src="assets/icons/weather/wind.svg"
+              />
+              <span class="text-center text-nowrap">
+                {{ data?.wind || 'GENERAL_N_A' | translate }}
+                {{ 'WEATHER_METRIC_SPEED' | translate }}
+              </span>
+            </div>
+          </div>
+        </div>
       </mat-card-header>
       <mat-card-content>
         <div class="flex flex-row align-items-center">
-          <img 
+          <img
             class="weather-widget-container__main-icon"
             [src]="data?.icon"
             [alt]="data?.description"
-            [matTooltip]="data?.description || ''" />
+            [matTooltip]="data?.description || ''"
+          />
           <div>
-            <p class="font-size-20 my-1 color-primary">{{data?.temperature || 'GENERAL_N_A' | translate}}</p>
-            <p class="font-size-12 my-1">
-              {{'WEATHER_FEELS_LIKE' | translate}} {{data?.feelsLike || 'GENERAL_N_A' | translate}}
+            <p class="font-size-20 my-1 color-primary">
+              {{ data?.temperature || 'GENERAL_N_A' | translate }}
             </p>
-            <p class="font-size-15 my-2">{{data?.description || 'GENERAL_N_A' | translate}}</p>
+            <p class="font-size-12 my-1">
+              {{ 'WEATHER_FEELS_LIKE' | translate }}
+              {{ data?.feelsLike || 'GENERAL_N_A' | translate }}
+            </p>
+            <p class="font-size-15 my-2">
+              {{ data?.description || 'GENERAL_N_A' | translate }}
+            </p>
           </div>
         </div>
-        <div class="flex flex-row align-items-center justify-content-end">
-          <div class="flex flex-row align-items-center mx-2">
-            <img class="weather-widget-container__icon mx-1" src="assets/icons/weather/water-drop.svg">
-            <span class="text-center">{{data?.humidity || 'GENERAL_N_A' | translate}}</span>
-          </div>
-          <div class="flex flex-row align-items-center mx-2">
-            <img class="weather-widget-container__icon mx-1" src="assets/icons/weather/wind.svg">
-            <span class="text-center">
-              {{data?.wind || 'GENERAL_N_A' | translate}} {{'WEATHER_METRIC_SPEED' | translate}}
-            </span>
+        <div
+          class="weather-widget-container__forecast flex flex-row flex-wrap align-items-center justify-content-end"
+        >
+          <div
+            *ngFor="let item of data?.forecast"
+            class="flex flex-column justify-content-center mx-2"
+          >
+            <p class="my-1">{{ item?.time }}</p>
+            <img
+              class="weather-widget-container__icon"
+              [src]="item?.icon"
+              [alt]="item?.description"
+              [matTooltip]="item?.description || ''"
+            />
+            <p class="color-primary my-1">{{ item?.temperature }}</p>
           </div>
         </div>
       </mat-card-content>
     </ng-container>
     <ng-template #noData>
-      <h1 class="color-primary">{{'GENERAL_NO_DATA' | translate}}</h1>
+      <h1 class="color-primary">{{ 'GENERAL_NO_DATA' | translate }}</h1>
     </ng-template>
   </mat-card>
-  <div *ngSwitchCase="viewModes.compact">{{data?.temperature || 'GENERAL_N_A' | translate}}</div>
+  <div *ngSwitchCase="viewModes.compact">
+    {{ data?.temperature || 'GENERAL_N_A' | translate }}
+  </div>
 </ng-container>

@@ -1,3 +1,9 @@
+@import 'src/app/styles/core';
+
 :host {
   display: block;
+}
+
+app-weather-widget {
+  margin-bottom: $baseSpacing * 2;
 }

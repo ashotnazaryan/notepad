@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { ClientWeather } from '@shared/models';
+import { ClientWeather } from '@shared/models/location';
 
 export enum WeatherViewMode {
   full,
@@ -16,5 +16,5 @@ export class WeatherWidgetComponent {
   @Input() data: ClientWeather = {};
   @Input() viewMode: WeatherViewMode = WeatherViewMode.full;
 
-  viewModes = WeatherViewMode;
+  readonly viewModes = WeatherViewMode;
 }
