@@ -1,6 +1,6 @@
 import { Event, NavigationEnd } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
-import { capitalize, get, identity } from 'lodash';
+import { capitalize, get, identity, isNumber } from 'lodash';
 import * as moment from 'moment';
 
 import { ROUTES } from '@core/constants';
@@ -36,6 +36,9 @@ export const weatherNormalizer = (
   wind: `${Math.round(weather?.wind)}`,
   minTemperature: `${weather?.minTemperature?.toFixed(digits)} ℃`,
   maxTemperature: `${weather?.maxTemperature?.toFixed(digits)} ℃`,
+  precipitationProbability: isNumber(weather?.precipitationProbability)
+    ? `${weather?.precipitationProbability * 100} %`
+    : undefined,
   time: `${moment(weather?.time).format('D MMM')}`
 });
 

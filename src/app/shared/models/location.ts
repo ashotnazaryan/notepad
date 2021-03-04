@@ -64,6 +64,7 @@ export interface WeatherDTO {
   wind: {
     speed: number;
   };
+  pop: number;
   forecast: Array<WeatherDTO>;
 }
 
@@ -78,6 +79,7 @@ export interface ClientWeather {
   temperature?: string;
   feelsLike?: string;
   humidity?: string;
+  precipitationProbability?: string;
   wind?: string;
   minTemperature?: string;
   maxTemperature?: string;
@@ -95,6 +97,7 @@ export default class Weather {
   wind: number;
   minTemperature: number;
   maxTemperature: number;
+  precipitationProbability?: number;
   time?: string;
   forecast?: Array<WeatherDTO>;
 
@@ -108,6 +111,7 @@ export default class Weather {
     this.wind = dto.wind.speed;
     this.minTemperature = dto.main.temp_min;
     this.maxTemperature = dto.main.temp_max;
+    this.precipitationProbability = dto.pop;
     this.time = dto.dt_txt;
     this.forecast = dto.forecast;
   }

@@ -8,7 +8,9 @@
           <mat-card-title class="color-primary m-0">{{
             data?.location || 'WEATHER_UNKNOWN_PLACE' | translate
           }}</mat-card-title>
-          <div class="flex flex-row flex-wrap align-items-center justify-content-end">
+          <div
+            class="flex flex-row flex-wrap align-items-center justify-content-end"
+          >
             <div class="flex flex-row align-items-center mx-1">
               <img
                 class="weather-widget-container__icon mx-1"
@@ -57,16 +59,19 @@
         >
           <div
             *ngFor="let item of data?.forecast"
-            class="flex flex-column justify-content-center mx-2"
+            class="flex flex-column align-items-center mx-2"
           >
-            <p class="my-1">{{ item?.time }}</p>
-            <img
-              class="weather-widget-container__icon"
-              [src]="item?.icon"
-              [alt]="item?.description"
-              [matTooltip]="item?.description || ''"
-            />
-            <p class="color-primary my-1">{{ item?.temperature }}</p>
+            <p class="m-0">{{ item?.time }}</p>
+            <div class="flex flex-column align-items-center my-1">
+              <p class="mb-1">{{ item?.precipitationProbability }}</p>
+              <img
+                class="weather-widget-container__forecast-icon"
+                [src]="item?.icon"
+                [alt]="item?.description"
+                [matTooltip]="item?.description || ''"
+              />
+            </div>
+            <p class="color-primary m-0">{{ item?.temperature }}</p>
           </div>
         </div>
       </mat-card-content>

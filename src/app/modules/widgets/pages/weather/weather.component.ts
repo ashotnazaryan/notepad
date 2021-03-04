@@ -76,7 +76,7 @@ export class WeatherComponent implements OnInit, OnDestroy {
     const normalizedForecast = forecast.list
       .map((item) => weatherNormalizer(new Weather(item), 0))
       // NOTE to get daily forecast, openweathermap provides a 3-hour forecast for free
-      .filter((item, index) => index % 8 === 0);
+      .filter((item, index) => index !== 0 && index % 8 === 0);
 
     this.weather = {
       ...normalizedCurrentWeather,
