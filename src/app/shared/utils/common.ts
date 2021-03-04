@@ -23,24 +23,39 @@ export const getModulePage = (event: Event): ModulePage => {
   };
 };
 
-export const weatherNormalizer = (
-  weather: Weather,
-  digits = 1
-): ClientWeather => ({
+export const weatherNormalizer = (weather: Weather): ClientWeather => ({
   location: weather?.location,
-  temperature: `${weather?.temperature?.toFixed(digits)} ℃`,
+  temperature: getRoundedTemperature(weather.temperature),
   description: capitalize(weather?.description),
   icon: `assets/icons/weather/${WEATHER_ICONS[weather.icon]}.svg`,
-  feelsLike: `${weather?.feelsLike?.toFixed(digits)} ℃`,
+  feelsLike: getRoundedTemperature(weather.feelsLike),
   humidity: `${weather?.humidity} %`,
   wind: `${Math.round(weather?.wind)}`,
-  minTemperature: `${weather?.minTemperature?.toFixed(digits)} ℃`,
-  maxTemperature: `${weather?.maxTemperature?.toFixed(digits)} ℃`,
-  precipitationProbability: isNumber(weather?.precipitationProbability)
-    ? `${weather?.precipitationProbability * 100} %`
-    : undefined,
-  time: `${moment(weather?.time).format('D MMM')}`
+  minTemperature: getRoundedTemperature(weather.minTemperature),
+  maxTemperature: getRoundedTemperature(weather.maxTemperature),
+  precipitationProbability: getPrecipitationProbability(
+    weather.precipitationProbability
+  ),
+  time: `${moment(weather?.time).format('D MMMM')}`
 });
+
+const getRoundedTemperature = (temperature: number): string => {
+  return temperature >= -0.5 && temperature < 0
+    ? `0 ℃`
+    : `${Math.round(temperature)} ℃`;
+};
+
+const getPrecipitationProbability = (
+  precipitationProbability: number | undefined
+): string => {
+  if (typeof precipitationProbability === 'undefined') {
+    return '';
+  }
+
+  return isNumber(precipitationProbability)
+    ? `${precipitationProbability * 100} %`
+    : '';
+};
 
 export const loadImage = (path = ''): Observable<HTMLImageElement | string> => {
   return new Observable((observer) => {
