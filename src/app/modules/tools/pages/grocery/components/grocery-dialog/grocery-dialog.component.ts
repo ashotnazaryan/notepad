@@ -16,7 +16,7 @@ import {
 import { Observable } from 'rxjs/internal/Observable';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Subject } from 'rxjs/internal/Subject';
-import { concatMap, finalize, takeUntil, tap, toArray } from 'rxjs/operators';
+import { finalize, mergeMap, scan, takeUntil, tap } from 'rxjs/operators';
 import { from } from 'rxjs/internal/observable/from';
 
 import { Grocery } from '@shared/models';
@@ -88,8 +88,8 @@ export class GroceryDialogComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.unsubscribe$),
         tap(() => this.loading$.next(true)),
-        concatMap(loadImage),
-        toArray(),
+        mergeMap(loadImage),
+        scan((acc, curr) => [...acc, curr], [] as any),
         finalize(() => this.loading$.next(false))
       )
       .subscribe();

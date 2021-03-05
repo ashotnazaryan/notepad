@@ -87,6 +87,7 @@
   "WEATHER_WIND": "Wind",
   "WEATHER_METRIC_SPEED": "m/s",
   "WEATHER_UNKNOWN_PLACE": "Unknown place",
+  "WEATHER_PRECIPITATION_PROBABILITY": "Precipitation probability",
   "PASSWORD_LENGTH": "Password length",
   "PASSWORD_UPPERCASE": "A-Z uppercase letters",
   "PASSWORD_DIGITS": "0-9 digits",

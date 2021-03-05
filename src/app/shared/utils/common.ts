@@ -1,6 +1,6 @@
 import { Event, NavigationEnd } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
-import { capitalize, get, identity, isNumber } from 'lodash';
+import { capitalize, get, identity } from 'lodash';
 import * as moment from 'moment';
 
 import { ROUTES } from '@core/constants';
@@ -52,9 +52,7 @@ const getPrecipitationProbability = (
     return '';
   }
 
-  return isNumber(precipitationProbability)
-    ? `${precipitationProbability * 100} %`
-    : '';
+  return `${parseFloat(precipitationProbability.toFixed(2)) * 100} %`;
 };
 
 export const loadImage = (path = ''): Observable<HTMLImageElement | string> => {

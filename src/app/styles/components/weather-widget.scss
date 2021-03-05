@@ -1,0 +1,12 @@
+app-weather-widget {
+  mat-card-header {
+    .mat-card-header-text {
+      max-width: 50%;
+      @extend .mx-1;
+
+      mat-card-title {
+        @extend .ellipsis-text;
+      }
+    }
+  }
+}

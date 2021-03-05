@@ -87,6 +87,7 @@
   "WEATHER_WIND": "Ветер",
   "WEATHER_METRIC_SPEED": "м/с",
   "WEATHER_UNKNOWN_PLACE": "Неизвестное место",
+  "WEATHER_PRECIPITATION_PROBABILITY": "Вероятность осадков",
   "PASSWORD_LENGTH": "Длина пароля",
   "PASSWORD_UPPERCASE": "A-Z заглавные буквы",
   "PASSWORD_DIGITS": "0-9 цифры",

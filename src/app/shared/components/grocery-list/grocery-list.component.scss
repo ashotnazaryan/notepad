@@ -20,11 +20,12 @@
   }
 
   &__icon-text {
-    width: calc(40% - 8px);
+    min-width: calc(40% - 8px);
   }
 
   &__notes-button {
-    width: 60%;
+    max-width: 60%;
+    width: auto;
   }
 
   &__notes {

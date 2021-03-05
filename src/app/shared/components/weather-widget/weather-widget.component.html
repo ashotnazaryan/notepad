@@ -1,35 +1,43 @@
 <ng-container [ngSwitch]="viewMode">
   <mat-card *ngSwitchCase="viewModes.full" class="weather-widget-container">
     <ng-container *ngIf="data; else noData">
-      <mat-card-header>
-        <div
-          class="flex flex-row align-items-center justify-content-between w-100 mb-2"
-        >
-          <mat-card-title class="color-primary m-0">{{
+      <mat-card-header
+        class="flex flex-row align-items-center justify-content-between w-100 mb-2"
+      >
+        <mat-card-title
+          [matTooltip]="data?.location || 'WEATHER_UNKNOWN_PLACE' | translate"
+          class="weather-widget-container__title color-primary m-0"
+          >{{
             data?.location || 'WEATHER_UNKNOWN_PLACE' | translate
-          }}</mat-card-title>
+          }}</mat-card-title
+        >
+        <div
+          class="flex flex-row flex-wrap align-items-center justify-content-end"
+        >
           <div
-            class="flex flex-row flex-wrap align-items-center justify-content-end"
+            class="flex flex-row align-items-center mx-1"
+            [matTooltip]="'WEATHER_HUMIDITY' | translate"
           >
-            <div class="flex flex-row align-items-center mx-1">
-              <img
-                class="weather-widget-container__icon mx-1"
-                src="assets/icons/weather/water-drop.svg"
-              />
-              <span class="text-center text-nowrap">{{
-                data?.humidity || 'GENERAL_N_A' | translate
-              }}</span>
-            </div>
-            <div class="flex flex-row align-items-center mx-1">
-              <img
-                class="weather-widget-container__icon mx-1"
-                src="assets/icons/weather/wind.svg"
-              />
-              <span class="text-center text-nowrap">
-                {{ data?.wind || 'GENERAL_N_A' | translate }}
-                {{ 'WEATHER_METRIC_SPEED' | translate }}
-              </span>
-            </div>
+            <img
+              class="weather-widget-container__icon mx-1"
+              src="assets/icons/weather/water-drop.svg"
+            />
+            <span class="text-center text-nowrap">{{
+              data?.humidity || 'GENERAL_N_A' | translate
+            }}</span>
+          </div>
+          <div
+            class="flex flex-row align-items-center mx-1"
+            [matTooltip]="'WEATHER_WIND' | translate"
+          >
+            <img
+              class="weather-widget-container__icon mx-1"
+              src="assets/icons/weather/wind.svg"
+            />
+            <span class="text-center text-nowrap">
+              {{ data?.wind || 'GENERAL_N_A' | translate }}
+              {{ 'WEATHER_METRIC_SPEED' | translate }}
+            </span>
           </div>
         </div>
       </mat-card-header>
@@ -63,7 +71,12 @@
           >
             <p class="m-0">{{ item?.time }}</p>
             <div class="flex flex-column align-items-center my-1">
-              <p class="mb-1">{{ item?.precipitationProbability }}</p>
+              <p
+                class="mb-1"
+                [matTooltip]="'WEATHER_PRECIPITATION_PROBABILITY' | translate"
+              >
+                {{ item?.precipitationProbability }}
+              </p>
               <img
                 class="weather-widget-container__forecast-icon"
                 [src]="item?.icon"
