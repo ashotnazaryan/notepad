@@ -1,5 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  MatSnackBarRef,
+  MAT_SNACK_BAR_DATA
+} from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateModule } from '@ngx-translate/core';
 
+import { SharedModule } from '@shared/shared.module';
 import { PasswordGeneratorComponent } from './password-generator.component';
 
 describe('PasswordGeneratorComponent', () => {
@@ -8,7 +15,22 @@ describe('PasswordGeneratorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PasswordGeneratorComponent]
+      imports: [
+        BrowserAnimationsModule,
+        SharedModule,
+        TranslateModule.forRoot()
+      ],
+      declarations: [PasswordGeneratorComponent],
+      providers: [
+        {
+          provide: MatSnackBarRef,
+          useValue: {}
+        },
+        {
+          provide: MAT_SNACK_BAR_DATA,
+          useValue: {}
+        }
+      ]
     }).compileComponents();
   });
 
@@ -18,7 +40,7 @@ describe('PasswordGeneratorComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create password-generator component', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { StoreModule } from '@ngrx/store';
 
 import { GroceryNotificationsComponent } from './grocery-notifications.component';
 
@@ -8,6 +9,7 @@ describe('GroceryNotificationsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [StoreModule.forRoot({}, {})],
       declarations: [GroceryNotificationsComponent]
     }).compileComponents();
   });
@@ -18,7 +20,7 @@ describe('GroceryNotificationsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create grocery-notifications component', () => {
     expect(component).toBeTruthy();
   });
 });

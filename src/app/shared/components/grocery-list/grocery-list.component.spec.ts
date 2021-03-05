@@ -1,13 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { GroceryListComponent } from './grocery-list.component';
 
-describe('ListComponent', () => {
+describe('GroceryListComponent', () => {
   let component: GroceryListComponent;
   let fixture: ComponentFixture<GroceryListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [ReactiveFormsModule, TranslateModule.forRoot()],
       declarations: [GroceryListComponent]
     }).compileComponents();
   });
@@ -18,7 +21,7 @@ describe('ListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create grocery-list component', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { StoreModule } from '@ngrx/store';
 
 import { NotesNotificationsComponent } from './notes-notifications.component';
 
@@ -8,6 +9,7 @@ describe('NotesNotificationsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [StoreModule.forRoot({}, {})],
       declarations: [NotesNotificationsComponent]
     }).compileComponents();
   });
@@ -18,7 +20,7 @@ describe('NotesNotificationsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create notes-notifications component', () => {
     expect(component).toBeTruthy();
   });
 });

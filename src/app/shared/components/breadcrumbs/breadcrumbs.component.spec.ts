@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { BreadcrumbsComponent } from './breadcrumbs.component';
 
@@ -8,6 +9,7 @@ describe('BreadcrumbsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [TranslateModule.forRoot()],
       declarations: [BreadcrumbsComponent]
     }).compileComponents();
   });
@@ -18,7 +20,7 @@ describe('BreadcrumbsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create breadcrumbs component', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -8,5 +8,5 @@ import { ModulePage } from '@shared/models';
   styleUrls: ['./breadcrumbs.component.scss']
 })
 export class BreadcrumbsComponent {
-  @Input() item!: ModulePage;
+  @Input() item: ModulePage = { module: '', page: '' };
 }

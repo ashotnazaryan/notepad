@@ -58,9 +58,9 @@ export class GroceryDialogComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    const icons = this.data.content.map(({ icon }) => icon);
+    const icons = this.data.content?.map(({ icon }) => icon);
 
-    this.groceries = this.data.content.map((item) => ({
+    this.groceries = this.data.content?.map((item) => ({
       ...item,
       selected: false
     }));
@@ -83,7 +83,7 @@ export class GroceryDialogComponent implements OnInit, OnDestroy {
       ?.selected;
   };
 
-  private handleIconsLoaded = (icons: Array<Grocery['icon']>): void => {
+  private handleIconsLoaded = (icons: Array<Grocery['icon']> = []): void => {
     from(icons)
       .pipe(
         takeUntil(this.unsubscribe$),

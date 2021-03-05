@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { WeatherWidgetComponent } from './weather-widget.component';
 
@@ -8,6 +9,7 @@ describe('WeatherWidgetComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [TranslateModule.forRoot()],
       declarations: [WeatherWidgetComponent]
     }).compileComponents();
   });
@@ -18,7 +20,7 @@ describe('WeatherWidgetComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create weather-widget component', () => {
     expect(component).toBeTruthy();
   });
 });

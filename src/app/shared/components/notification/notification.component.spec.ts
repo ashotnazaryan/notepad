@@ -1,4 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  MatSnackBarRef,
+  MAT_SNACK_BAR_DATA
+} from '@angular/material/snack-bar';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { NotificationComponent } from './notification.component';
 
@@ -8,7 +13,18 @@ describe('NotificationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [NotificationComponent]
+      imports: [TranslateModule.forRoot()],
+      declarations: [NotificationComponent],
+      providers: [
+        {
+          provide: MatSnackBarRef,
+          useValue: {}
+        },
+        {
+          provide: MAT_SNACK_BAR_DATA,
+          useValue: {}
+        }
+      ]
     }).compileComponents();
   });
 
@@ -18,7 +34,7 @@ describe('NotificationComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create notification component', () => {
     expect(component).toBeTruthy();
   });
 });

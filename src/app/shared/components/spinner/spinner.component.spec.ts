@@ -18,7 +18,7 @@ describe('SpinnerComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create spinner component', () => {
     expect(component).toBeTruthy();
   });
 });

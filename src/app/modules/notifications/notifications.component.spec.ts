@@ -18,7 +18,7 @@ describe('NotificationsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create notifications component', () => {
     expect(component).toBeTruthy();
   });
 });

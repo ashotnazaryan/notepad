@@ -18,7 +18,7 @@ describe('ToolsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create tools component', () => {
     expect(component).toBeTruthy();
   });
 });

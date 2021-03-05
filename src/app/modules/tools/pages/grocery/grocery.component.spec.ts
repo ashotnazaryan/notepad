@@ -1,6 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { StoreModule } from '@ngrx/store';
+import { TranslateModule } from '@ngx-translate/core';
+import { Observable } from 'rxjs/internal/Observable';
+import { of } from 'rxjs/internal/observable/of';
 
 import { GroceryComponent } from './grocery.component';
+
+// TODO move to the shared mock
+export class MatDialogMock {
+  open(): { afterClosed: () => Observable<{ action: boolean }> } {
+    return {
+      afterClosed: () => of({ action: true })
+    };
+  }
+}
 
 describe('GroceryComponent', () => {
   let component: GroceryComponent;
@@ -8,7 +23,13 @@ describe('GroceryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [GroceryComponent]
+      imports: [
+        TranslateModule.forRoot(),
+        StoreModule.forRoot({}, {}),
+        MatSnackBarModule
+      ],
+      declarations: [GroceryComponent],
+      providers: [{ provide: MatDialog, useClass: MatDialogMock }]
     }).compileComponents();
   });
 
@@ -18,7 +39,7 @@ describe('GroceryComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create grocery component', () => {
     expect(component).toBeTruthy();
   });
 });

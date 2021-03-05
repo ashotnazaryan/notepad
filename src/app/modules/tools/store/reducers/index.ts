@@ -19,10 +19,7 @@ export interface State extends fromRoot.State {
   [toolsFeatureKey]: ToolsState;
 }
 
-export function reducers(
-  state: ToolsState | undefined,
-  action: Action
-): ToolsState {
+export function reducers(state: ToolsState, action: Action): ToolsState {
   return combineReducers({
     [fromGrocery.groceryFeatureKey]: fromGrocery.reducer,
     [fromNotes.notesFeatureKey]: fromNotes.reducer
@@ -34,11 +31,11 @@ export const selectToolsState = createFeatureSelector<State, ToolsState>(
 );
 
 export const selectGroceryState = createSelector(selectToolsState, (state) => {
-  return state[fromGrocery.groceryFeatureKey];
+  return state && state[fromGrocery.groceryFeatureKey];
 });
 
 export const selectNotesState = createSelector(selectToolsState, (state) => {
-  return state[fromNotes.notesFeatureKey];
+  return state && state[fromNotes.notesFeatureKey];
 });
 
 export const selectChosenGroceryList = createSelector(

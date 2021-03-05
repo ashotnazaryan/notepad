@@ -18,7 +18,7 @@ describe('TimeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create time component', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -25,4 +25,4 @@ export const reducer = createReducer(
 );
 
 export const selectModulePageFn = (state: State): State['modulePage'] =>
-  state.modulePage;
+  state?.modulePage;

@@ -18,7 +18,7 @@ describe('WidgetsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create widgets component', () => {
     expect(component).toBeTruthy();
   });
 });

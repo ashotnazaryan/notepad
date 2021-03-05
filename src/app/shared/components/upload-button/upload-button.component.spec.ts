@@ -18,7 +18,7 @@ describe('UploadButtonComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create upload-button', () => {
     expect(component).toBeTruthy();
   });
 });
