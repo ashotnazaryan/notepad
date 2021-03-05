@@ -29,7 +29,7 @@ export class FileService {
     newLink.click();
   };
 
-  upload = (file: File): Observable<string | ProgressEvent> => {
+  upload = (file: File): Observable<string | null | ProgressEvent> => {
     const fileReader = new FileReader();
 
     return new Observable((subscriber) => {
@@ -39,8 +39,8 @@ export class FileService {
         return;
       }
 
-      fileReader.onload = (event: ProgressEvent) => {
-        const result = (event.target as any)?.result as string;
+      fileReader.onload = (event: ProgressEvent<FileReader>) => {
+        const result = event.target?.result as string;
 
         subscriber.next(result);
       };

@@ -89,7 +89,10 @@ export class GroceryDialogComponent implements OnInit, OnDestroy {
         takeUntil(this.unsubscribe$),
         tap(() => this.loading$.next(true)),
         mergeMap(loadImage),
-        scan((acc, curr) => [...acc, curr], [] as any),
+        scan(
+          (acc, curr) => [...acc, curr],
+          [] as Array<HTMLImageElement | string>
+        ),
         finalize(() => this.loading$.next(false))
       )
       .subscribe();
