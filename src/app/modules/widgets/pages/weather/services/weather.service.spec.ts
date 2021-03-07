@@ -1,19 +1,19 @@
 import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
-import { BaseHttpService } from './http.service';
+import { WeatherService } from './weather.service';
 
-describe('BaseHttpService', () => {
-  let service: BaseHttpService;
+describe('WeatherService', () => {
+  let service: WeatherService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule]
     });
-    service = TestBed.inject(BaseHttpService);
+    service = TestBed.inject(WeatherService);
   });
 
-  it('BaseHttpService should be created', () => {
+  it('WeatherService should be created', () => {
     expect(service).toBeTruthy();
   });
 });

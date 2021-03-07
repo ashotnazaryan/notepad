@@ -5,10 +5,10 @@ import { Observable } from 'rxjs/internal/Observable';
 @Injectable({
   providedIn: 'root'
 })
-export class HttpService {
-  constructor(private http: HttpClient) {}
+export class BaseHttpService {
+  constructor(protected http: HttpClient) {}
 
-  get = <T>(url: string): Observable<T> => {
+  protected get = <T>(url: string): Observable<T> => {
     return this.http.get<T>(url);
   };
 }

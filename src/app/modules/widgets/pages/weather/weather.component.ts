@@ -5,8 +5,6 @@ import { finalize, switchMap, takeUntil, withLatestFrom } from 'rxjs/operators';
 import { Subject } from 'rxjs/internal/Subject';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
-import { APP_CONFIGS } from '@core/config';
-import { HttpService } from '@core/services/http.service';
 import { LocationService, NotificationService } from '@shared/services';
 import { ClientLocation, Language } from '@shared/models';
 import Weather, {
@@ -18,7 +16,7 @@ import { weatherNormalizer } from '@shared/utils';
 import * as fromRoot from '@shared/store/reducers';
 import { NotificationType } from '@shared/components/notification/notification.component';
 import { WeatherViewMode } from '@shared/components/weather-widget/weather-widget.component';
-import { zip } from 'rxjs/internal/observable/zip';
+import { WeatherService } from './services/weather.service';
 
 @Component({
   selector: 'app-weather',
@@ -33,11 +31,11 @@ export class WeatherComponent implements OnInit, OnDestroy {
   readonly WeatherViewMode = WeatherViewMode;
 
   constructor(
-    private http: HttpService,
     private location: LocationService,
     private store: Store<fromRoot.State>,
     private translate: TranslateService,
-    private notification: NotificationService
+    private notification: NotificationService,
+    private weatherService: WeatherService
   ) {}
 
   ngOnInit(): void {
@@ -54,15 +52,9 @@ export class WeatherComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.unsubscribe$),
         withLatestFrom(this.store.select(fromRoot.selectLanguage)),
-        switchMap(([data, { key }]: [ClientLocation, Language]) => {
-          const url = `${APP_CONFIGS.WEATHER_API.baseUrl}/data/2.5/weather?lang=${key}&lat=${data.latitude}&lon=${data.longitude}&units=metric&appid=${APP_CONFIGS.WEATHER_API.key}`;
-          const hourlyForecastUrl = `${APP_CONFIGS.WEATHER_API.baseUrl}/data/2.5/forecast?lang=${key}&lat=${data.latitude}&lon=${data.longitude}&units=metric&cnt=${this.forecastHours}&appid=${APP_CONFIGS.WEATHER_API.key}`;
-
-          return zip(
-            this.http.get<WeatherDTO>(url),
-            this.http.get<ForecastDTO>(hourlyForecastUrl)
-          );
-        }),
+        switchMap(([data, { key }]: [ClientLocation, Language]) =>
+          this.weatherService.getWeather(data, key, this.forecastHours)
+        ),
         finalize(() => this.loading$.next(false))
       )
       .subscribe(this.handleSuccess, this.handleError);

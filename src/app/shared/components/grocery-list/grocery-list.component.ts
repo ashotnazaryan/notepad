@@ -136,8 +136,12 @@ export class GroceryListComponent implements OnInit {
       (a, b) => a.key === b.key
     );
 
+    this.form.get('selectAll')?.setValue(this.allCheck);
+
     if (newItems.length) {
       newItems.forEach((item) => this.addItem(item));
+
+      return;
     }
 
     if (removedItems.length) {
@@ -146,17 +150,18 @@ export class GroceryListComponent implements OnInit {
 
         this.removeItem(index);
       });
+
+      return;
     }
 
     this.groceriesArr.patchValue(this.data);
-    this.form.get('selectAll')?.setValue(this.allCheck);
   };
 
   private createNewItem = (item?: Grocery): FormGroup => {
     return this.formBuilder.group({
-      // TODO use spread operator
       key: item?.key,
       notes: item?.notes,
+      selected: item?.selected,
       checked: item?.checked,
       icon: item?.icon,
       langKey: item?.langKey,

@@ -38,7 +38,6 @@ export class GroceryComponent implements OnInit {
     .select(fromTools.selectSelectedGroceryList)
     .pipe(takeUntil(this.unsubscribe$));
 
-  chosenGroceries: Array<Grocery> = [];
   customItem = new FormControl('', Validators.required);
   readonly ButtonSize = ButtonSize;
   readonly NotificationType = NotificationType;
@@ -69,7 +68,7 @@ export class GroceryComponent implements OnInit {
     const dialogRef = this.dialog.open(GroceryDialogComponent, options);
 
     dialogRef.componentInstance.grocerySelected.subscribe((item) => {
-      const newItem = {
+      const newItem: Grocery = {
         ...item,
         checked: !!item.checked
       };
@@ -85,7 +84,7 @@ export class GroceryComponent implements OnInit {
   };
 
   updateChosenGroceries = (items: Array<Grocery>): void => {
-    this.chosenGroceries = items.filter(({ checked }) => checked);
+    this.groceries = items;
   };
 
   updateSelectedGroceries = (item: Grocery): void => {
@@ -96,7 +95,7 @@ export class GroceryComponent implements OnInit {
   };
 
   checkAll = (checked: Grocery['checked']): void => {
-    this.chosenGroceries = this.groceries.map((item) => ({
+    this.groceries = this.groceries.map((item) => ({
       ...item,
       checked
     }));
@@ -110,7 +109,7 @@ export class GroceryComponent implements OnInit {
   };
 
   remind = (): void => {
-    if (!this.chosenGroceries.length) {
+    if (!this.groceries.length) {
       this.notification.showNotification(
         NotificationType.error,
         'NOTIFICATIONS_EMPTY_GROCERY_LIST'
@@ -119,13 +118,15 @@ export class GroceryComponent implements OnInit {
       return;
     }
 
+    const chosenGroceries = this.groceries.filter(({ checked }) => checked);
+
     this.groceries = differenceWith(
       this.groceries,
-      this.chosenGroceries,
+      chosenGroceries,
       (a, b) => a.key === b.key
     );
     this.store.dispatch(
-      SetChosenGroceryList({ chosenGroceryList: this.chosenGroceries })
+      SetChosenGroceryList({ chosenGroceryList: chosenGroceries })
     );
     this.store.dispatch(
       SetSelectedGroceryList({ selectedGroceryList: this.groceries })
@@ -134,7 +135,6 @@ export class GroceryComponent implements OnInit {
       NotificationType.success,
       'NOTIFICATIONS_ADDED_GROCERY'
     );
-    this.chosenGroceries = [];
   };
 
   addToGroceries = (): void => {
