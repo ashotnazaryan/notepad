@@ -34,6 +34,12 @@ export const MENU_ITEMS: { [key: string]: Array<Menu> } = {
       name: `${ROUTES.widgets.sub_routes.weather.name}`,
       route: `${ROUTES.widgets.route}/${ROUTES.widgets.sub_routes.weather.route}`,
       langKey: `${ROUTES.widgets.sub_routes.weather.langKey}`
+    },
+    {
+      key: `${ROUTES.widgets.route}/${ROUTES.widgets.sub_routes.game.route}`,
+      name: `${ROUTES.widgets.sub_routes.game.name}`,
+      route: `${ROUTES.widgets.route}/${ROUTES.widgets.sub_routes.game.route}`,
+      langKey: `${ROUTES.widgets.sub_routes.game.langKey}`
     }
   ],
   notifications: [

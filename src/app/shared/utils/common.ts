@@ -27,7 +27,7 @@ export const weatherNormalizer = (weather: Weather): ClientWeather => ({
   location: weather?.location,
   temperature: getRoundedTemperature(weather.temperature),
   description: capitalize(weather?.description),
-  icon: `assets/icons/weather/${WEATHER_ICONS[weather.icon]}.svg`,
+  icon: `assets/icons/weather/animated/${WEATHER_ICONS[weather.icon]}.svg`,
   feelsLike: getRoundedTemperature(weather.feelsLike),
   humidity: `${weather?.humidity} %`,
   wind: `${Math.round(weather?.wind)}`,

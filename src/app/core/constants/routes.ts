@@ -44,6 +44,12 @@ export const ROUTES: AppRoute = {
         route: 'weather',
         name: 'Weather',
         langKey: 'GENERAL_PAGES_WEATHER'
+      },
+      game: {
+        key: 'game',
+        route: 'game',
+        name: 'Game',
+        langKey: 'GENERAL_PAGES_GAME'
       }
     }
   },

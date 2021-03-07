@@ -5,6 +5,7 @@ import { ROUTES } from '@core/constants';
 import { WidgetsComponent } from './widgets.component';
 import { TimeComponent } from './pages/time/time.component';
 import { WeatherComponent } from './pages/weather/weather.component';
+import { GameComponent } from './pages/game/game.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,13 @@ const routes: Routes = [
         component: WeatherComponent,
         data: {
           title: `${ROUTES.widgets.sub_routes.weather.langKey}`
+        }
+      },
+      {
+        path: `${ROUTES.widgets.sub_routes.game.route}`,
+        component: GameComponent,
+        data: {
+          title: `${ROUTES.widgets.sub_routes.game.langKey}`
         }
       }
     ]
