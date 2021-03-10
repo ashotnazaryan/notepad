@@ -9,7 +9,7 @@ import Weather, { ClientWeather, WEATHER_ICONS } from '@shared/models/location';
 
 export const getModulePage = (event: Event): ModulePage => {
   // FIXME https://github.com/angular/angular/issues/15439
-  const normalizedUrls = (event as NavigationEnd).url
+  const normalizedUrls = (event as NavigationEnd).urlAfterRedirects
     .split('/')
     ?.filter(identity);
   const module = normalizedUrls[0];
