@@ -69,7 +69,8 @@
             *ngFor="let item of data?.forecast"
             class="flex flex-column align-items-center mx-2"
           >
-            <p class="m-0">{{ item?.time }}</p>
+            <p class="m-0">{{ item?.dateTime?.date }}</p>
+            <p class="m-0">{{ item?.dateTime?.time }}</p>
             <div class="flex flex-column align-items-center my-1">
               <p
                 class="mb-1"

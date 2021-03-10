@@ -36,7 +36,10 @@ export const weatherNormalizer = (weather: Weather): ClientWeather => ({
   precipitationProbability: getPrecipitationProbability(
     weather.precipitationProbability
   ),
-  time: `${moment(weather?.time).format('D MMMM')}`
+  dateTime: {
+    date: `${moment(weather?.dateTime?.date).format('D MMMM')}`,
+    time: `${moment(weather?.dateTime?.time).format('h:mm A')}`
+  }
 });
 
 const getRoundedTemperature = (temperature: number): string => {

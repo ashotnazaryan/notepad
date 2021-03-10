@@ -83,7 +83,10 @@ export interface ClientWeather {
   wind?: string;
   minTemperature?: string;
   maxTemperature?: string;
-  time?: string;
+  dateTime?: {
+    date?: string;
+    time?: string;
+  };
   forecast?: Array<ClientWeather>;
 }
 
@@ -98,7 +101,10 @@ export default class Weather {
   minTemperature: number;
   maxTemperature: number;
   precipitationProbability?: number;
-  time?: string;
+  dateTime?: {
+    date?: string;
+    time?: string;
+  };
   forecast?: Array<WeatherDTO>;
 
   constructor(dto: WeatherDTO) {
@@ -112,7 +118,7 @@ export default class Weather {
     this.minTemperature = dto.main.temp_min;
     this.maxTemperature = dto.main.temp_max;
     this.precipitationProbability = dto.pop;
-    this.time = dto.dt_txt;
+    this.dateTime = { date: dto.dt_txt, time: dto.dt_txt };
     this.forecast = dto.forecast;
   }
 }

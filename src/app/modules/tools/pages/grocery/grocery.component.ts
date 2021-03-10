@@ -109,7 +109,9 @@ export class GroceryComponent implements OnInit {
   };
 
   remind = (): void => {
-    if (!this.groceries.length) {
+    const chosenGroceries = this.groceries.filter(({ checked }) => checked);
+
+    if (!chosenGroceries.length) {
       this.notification.showNotification(
         NotificationType.error,
         'NOTIFICATIONS_EMPTY_GROCERY_LIST'
@@ -117,8 +119,6 @@ export class GroceryComponent implements OnInit {
 
       return;
     }
-
-    const chosenGroceries = this.groceries.filter(({ checked }) => checked);
 
     this.groceries = differenceWith(
       this.groceries,
