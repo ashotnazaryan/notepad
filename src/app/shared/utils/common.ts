@@ -55,7 +55,7 @@ const getPrecipitationProbability = (
     return '';
   }
 
-  return `${parseFloat(precipitationProbability.toFixed(2)) * 100} %`;
+  return `${Math.round(precipitationProbability * 100)} %`;
 };
 
 export const loadImage = (path = ''): Observable<HTMLImageElement | string> => {
