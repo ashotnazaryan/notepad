@@ -1,0 +1,19 @@
+@import 'src/app/styles/core';
+@import 'src/app/styles/components';
+
+:host {
+  display: block;
+}
+
+.login-container {
+  &__button-wrapper {
+    &__icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    &__text {
+      @extend .button-text;
+    }
+  }
+}

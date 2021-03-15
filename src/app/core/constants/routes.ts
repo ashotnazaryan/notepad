@@ -1,6 +1,20 @@
-import { AppRoute } from '@shared/models';
+import { AppRoute } from '@core/models';
 
 export const ROUTES: AppRoute = {
+  authentication: {
+    key: 'authentication',
+    route: 'authentication',
+    name: 'Authentication',
+    langKey: 'GENERAL_PAGES_AUTHENTICATION',
+    sub_routes: {
+      login: {
+        key: 'login',
+        route: 'login',
+        name: 'Login',
+        langKey: 'GENERAL_PAGES_LOGIN'
+      }
+    }
+  },
   tools: {
     key: 'tools',
     route: 'tools',

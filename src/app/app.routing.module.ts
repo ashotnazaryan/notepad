@@ -11,6 +11,13 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: `${ROUTES.authentication.route}`,
+    loadChildren: () =>
+      import('@modules/authentication/authentication.module').then(
+        (m) => m.AuthenticationModule
+      )
+  },
+  {
     path: `${ROUTES.tools.route}`,
     loadChildren: () =>
       import('@modules/tools/tools.module').then((m) => m.ToolsModule)

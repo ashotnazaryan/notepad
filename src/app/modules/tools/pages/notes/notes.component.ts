@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
 import { Store } from '@ngrx/store';
@@ -20,7 +20,7 @@ import { paperTypes } from './constants/paper-types';
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.scss']
 })
-export class NotesComponent implements OnInit {
+export class NotesComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject();
   form: FormGroup = this.formBuilder.group({ paper: null });
   paperTypes = paperTypes;
@@ -103,4 +103,9 @@ export class NotesComponent implements OnInit {
   clear = (): void => {
     this.form.reset();
   };
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
 }

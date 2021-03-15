@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
+import firebase from 'firebase/app';
 
+import { environment } from '@environments/environment';
 import { APP_CONFIGS } from '@core/config';
 
 @Component({
@@ -25,9 +27,15 @@ export class AppComponent implements OnInit {
     this.translate.onLangChange.subscribe((data) => {
       this.titleService.setTitle(data.translations[this.pageTitleKey]);
     });
+
+    this.initFirebase();
   }
 
   handlePageTitleKeyReceived = (title: string): void => {
     this.pageTitleKey = title;
+  };
+
+  private initFirebase = (): void => {
+    firebase.initializeApp(environment.FIREBASE);
   };
 }

@@ -7,16 +7,16 @@ import {
   Action,
   ActionReducerMap
 } from '@ngrx/store';
-import * as fromRouter from '@ngrx/router-store';
 
 import { environment } from '@environments/environment';
 import * as fromModulePage from './module-page.reducer';
 import * as fromLanguage from './language.reducer';
+import * as fromUser from './user.reducer';
 
 export interface State {
   [fromModulePage.modulePageFeatureKey]: fromModulePage.State;
   [fromLanguage.languageFeatureKey]: fromLanguage.State;
-  router: fromRouter.RouterReducerState<any>;
+  [fromUser.userFeatureKey]: fromUser.State;
 }
 
 export const ROOT_REDUCERS = new InjectionToken<
@@ -25,7 +25,7 @@ export const ROOT_REDUCERS = new InjectionToken<
   factory: () => ({
     [fromModulePage.modulePageFeatureKey]: fromModulePage.reducer,
     [fromLanguage.languageFeatureKey]: fromLanguage.reducer,
-    router: fromRouter.routerReducer
+    [fromUser.userFeatureKey]: fromUser.reducer
   })
 });
 
@@ -57,6 +57,11 @@ export const selectLanguageState = createFeatureSelector<
   fromLanguage.State
 >(fromLanguage.languageFeatureKey);
 
+export const selectUserState = createFeatureSelector<
+  State,
+  fromUser.State
+>(fromUser.userFeatureKey);
+
 export const selectModulePage = createSelector(
   selectModulePageState,
   fromModulePage.selectModulePageFn
@@ -67,9 +72,7 @@ export const selectLanguage = createSelector(
   fromLanguage.selectLanguageFn
 );
 
-export const selectRouter = createFeatureSelector<
-  State,
-  fromRouter.RouterReducerState
->('router');
-
-export const { selectRouteData } = fromRouter.getSelectors(selectRouter);
+export const selectUser = createSelector(
+  selectUserState,
+  fromUser.selectUserFn
+);

@@ -15,13 +15,15 @@ import { of } from 'rxjs/internal/observable/of';
 import { combineLatest } from 'rxjs/internal/observable/combineLatest';
 import { filter, map, mergeMap, takeUntil, tap } from 'rxjs/operators';
 import * as moment from 'moment';
+import { isEmpty } from 'lodash';
 
 import { MENU_ITEMS } from '@core/constants';
+import { GoogleUser, ModulePage } from '@core/models';
 import { LANGUAGES } from '@shared/constants';
 import { SetModulePage } from '@shared/store/actions/module-page.actions';
 import * as fromRoot from '@shared/store/reducers';
 import * as fromTools from '@modules/tools/store/reducers';
-import { Language, ModulePage } from '@shared/models';
+import { Language } from '@shared/models';
 import { getModulePage } from '@shared/utils';
 import { SetLanguage } from '@shared/store/actions/language.actions';
 import { ButtonSize } from '@shared/components/button/button.component';
@@ -48,6 +50,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     .pipe(takeUntil(this.unsubscribe$));
 
   totalCount$: Observable<number> = of(0);
+
+  user$: Observable<GoogleUser> = this.store
+    .select(fromRoot.selectUser)
+    .pipe(takeUntil(this.unsubscribe$));
+
   readonly ButtonSize = ButtonSize;
 
   constructor(
@@ -87,7 +94,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
           return route;
         }),
         filter((route) => route.outlet === 'primary'),
-        mergeMap((route) => route.data)
+        mergeMap((route) => route.data),
+        filter((data) => !isEmpty(data))
       )
       .subscribe((data) => {
         this.pageTitleKeyReceived.emit(data.title as string);

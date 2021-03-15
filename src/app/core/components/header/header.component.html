@@ -73,6 +73,9 @@
             </span>
           </button>
         </mat-menu>
+        <div>
+          {{(user$ | async)?.name}}
+        </div>
       </div>
     </div>
   </mat-toolbar>
