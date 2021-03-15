@@ -23,6 +23,7 @@ import { LANGUAGES } from '@shared/constants';
 import { SetModulePage } from '@shared/store/actions/module-page.actions';
 import * as fromRoot from '@shared/store/reducers';
 import * as fromTools from '@modules/tools/store/reducers';
+import * as fromAuth from '@modules/authentication/store/reducers';
 import { Language } from '@shared/models';
 import { getModulePage } from '@shared/utils';
 import { SetLanguage } from '@shared/store/actions/language.actions';
@@ -52,7 +53,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   totalCount$: Observable<number> = of(0);
 
   user$: Observable<GoogleUser> = this.store
-    .select(fromRoot.selectUser)
+    .select(fromAuth.selectUser)
     .pipe(takeUntil(this.unsubscribe$));
 
   readonly ButtonSize = ButtonSize;
@@ -61,7 +62,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private titleService: Title,
-    private store: Store<fromRoot.State & fromTools.State>,
+    private store: Store<fromRoot.State & fromTools.State & fromAuth.State>,
     private translate: TranslateService
   ) {}
 

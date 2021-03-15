@@ -1,23 +1,31 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { catchError, exhaustMap, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs/internal/observable/of';
 
+import { ROUTES } from '@core/constants';
 import { AuthenticationService } from '@modules/authentication/services/authentication.service';
-import { UserActions } from '../actions';
-import { Router } from '@angular/router';
+import { LoginActions } from '../actions';
 
 @Injectable()
-export class UserEffects {
+export class LoginEffects {
   login$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(UserActions.Login),
+      ofType(LoginActions.Login),
       map((action) => action.provider),
       exhaustMap((provider) =>
         this.authenticationService.login(provider).pipe(
-          map((user) => UserActions.LoginSuccess(user)),
+          map((user) => {
+            const userStr = JSON.stringify(user);
+
+            localStorage.setItem('user', userStr);
+            console.log('User: ', user);
+
+            return LoginActions.LoginSuccess(user);
+          }),
           catchError(() =>
-            of(UserActions.LoginFail({ message: 'Login failed' }))
+            of(LoginActions.LoginFail({ error: 'Login failed' }))
           )
         )
       )
@@ -27,17 +35,12 @@ export class UserEffects {
   loginSuccess$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(UserActions.LoginSuccess),
-        tap(() => this.router.navigate(['/tools/notes']))
-      ),
-    { dispatch: false }
-  );
-
-  loginFail$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(UserActions.LoginFail),
-        tap(() => this.router.navigate(['/login']))
+        ofType(LoginActions.LoginSuccess),
+        tap(() =>
+          this.router.navigate([
+            `${ROUTES.tools.route}/${ROUTES.tools.sub_routes.notes.route}`
+          ])
+        )
       ),
     { dispatch: false }
   );

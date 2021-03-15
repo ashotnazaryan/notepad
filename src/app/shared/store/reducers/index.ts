@@ -11,12 +11,10 @@ import {
 import { environment } from '@environments/environment';
 import * as fromModulePage from './module-page.reducer';
 import * as fromLanguage from './language.reducer';
-import * as fromUser from './user.reducer';
 
 export interface State {
   [fromModulePage.modulePageFeatureKey]: fromModulePage.State;
   [fromLanguage.languageFeatureKey]: fromLanguage.State;
-  [fromUser.userFeatureKey]: fromUser.State;
 }
 
 export const ROOT_REDUCERS = new InjectionToken<
@@ -24,8 +22,7 @@ export const ROOT_REDUCERS = new InjectionToken<
 >('Root reducers token', {
   factory: () => ({
     [fromModulePage.modulePageFeatureKey]: fromModulePage.reducer,
-    [fromLanguage.languageFeatureKey]: fromLanguage.reducer,
-    [fromUser.userFeatureKey]: fromUser.reducer
+    [fromLanguage.languageFeatureKey]: fromLanguage.reducer
   })
 });
 
@@ -57,11 +54,6 @@ export const selectLanguageState = createFeatureSelector<
   fromLanguage.State
 >(fromLanguage.languageFeatureKey);
 
-export const selectUserState = createFeatureSelector<
-  State,
-  fromUser.State
->(fromUser.userFeatureKey);
-
 export const selectModulePage = createSelector(
   selectModulePageState,
   fromModulePage.selectModulePageFn
@@ -70,9 +62,4 @@ export const selectModulePage = createSelector(
 export const selectLanguage = createSelector(
   selectLanguageState,
   fromLanguage.selectLanguageFn
-);
-
-export const selectUser = createSelector(
-  selectUserState,
-  fromUser.selectUserFn
 );
