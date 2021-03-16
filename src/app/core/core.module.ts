@@ -10,7 +10,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { APP_CONFIGS } from './config';
 import { SharedModule } from '@shared/shared.module';
-import { HeaderComponent } from './components/header/header.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -24,7 +23,7 @@ export function appInitializerFactory(translate: TranslateService) {
 }
 
 @NgModule({
-  declarations: [HeaderComponent],
+  declarations: [],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -37,7 +36,7 @@ export function appInitializerFactory(translate: TranslateService) {
       }
     })
   ],
-  exports: [HttpClientModule, SharedModule, HeaderComponent],
+  exports: [HttpClientModule, SharedModule],
   providers: [
     {
       provide: APP_INITIALIZER,

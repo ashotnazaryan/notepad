@@ -3,7 +3,8 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import { Observable } from 'rxjs/internal/Observable';
 import { from } from 'rxjs/internal/observable/from';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
+import { of } from 'rxjs/internal/observable/of';
 
 import { GoogleUser, LoginProvider } from '@core/models';
 
@@ -11,6 +12,16 @@ import { GoogleUser, LoginProvider } from '@core/models';
   providedIn: 'root'
 })
 export class AuthenticationService {
+  get loggedIn(): boolean {
+    const user: GoogleUser = JSON.parse(localStorage.getItem('user') || '{}');
+
+    return !!user?.accessToken;
+  }
+
+  get user(): GoogleUser {
+    return JSON.parse(localStorage.getItem('user') || '{}');
+  }
+
   login = (provider: LoginProvider): Observable<GoogleUser> => {
     const authProvider = this.getProvider(provider);
     const firebase$ = from(firebase.auth().signInWithPopup(authProvider));
@@ -19,8 +30,10 @@ export class AuthenticationService {
       map((data) => ({
         name: data.user?.displayName,
         email: data.user?.email,
-        photo: data.user?.photoURL
-      }))
+        photo: data.user?.photoURL,
+        accessToken: (data.credential as any)?.accessToken
+      })),
+      catchError((error) => of(error))
     );
   };
 

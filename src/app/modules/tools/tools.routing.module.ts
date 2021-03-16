@@ -14,28 +14,28 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: `${ROUTES.tools.sub_routes.notes.route}`,
+        redirectTo: `${ROUTES.admin.sub_routes?.tools.sub_routes?.notes.route}`,
         pathMatch: 'full'
       },
       {
-        path: `${ROUTES.tools.sub_routes.notes.route}`,
+        path: `${ROUTES.admin.sub_routes?.tools.sub_routes?.notes.route}`,
         component: NotesComponent,
         data: {
-          title: `${ROUTES.tools.sub_routes.notes.langKey}`
+          title: `${ROUTES.admin.sub_routes?.tools.sub_routes?.notes.langKey}`
         }
       },
       {
-        path: `${ROUTES.tools.sub_routes.grocery.route}`,
+        path: `${ROUTES.admin.sub_routes?.tools.sub_routes?.grocery.route}`,
         component: GroceryComponent,
         data: {
-          title: `${ROUTES.tools.sub_routes.grocery.langKey}`
+          title: `${ROUTES.admin.sub_routes?.tools.sub_routes?.grocery.langKey}`
         }
       },
       {
-        path: `${ROUTES.tools.sub_routes.password_generator.route}`,
+        path: `${ROUTES.admin.sub_routes?.tools.sub_routes?.password_generator.route}`,
         component: PasswordGeneratorComponent,
         data: {
-          title: `${ROUTES.tools.sub_routes.password_generator.langKey}`
+          title: `${ROUTES.admin.sub_routes?.tools.sub_routes?.password_generator.langKey}`
         }
       }
     ]

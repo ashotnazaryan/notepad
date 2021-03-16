@@ -12,14 +12,14 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: `${ROUTES.authentication.sub_routes.login.route}`,
+        redirectTo: `${ROUTES.authentication.sub_routes?.login.route}`,
         pathMatch: 'full'
       },
       {
-        path: `${ROUTES.authentication.sub_routes.login.route}`,
+        path: `${ROUTES.authentication.sub_routes?.login.route}`,
         component: LoginComponent,
         data: {
-          title: `${ROUTES.authentication.sub_routes.login.langKey}`
+          title: `${ROUTES.authentication.sub_routes?.login.langKey}`
         }
       }
     ]

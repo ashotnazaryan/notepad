@@ -14,28 +14,28 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: `${ROUTES.widgets.sub_routes.time.route}`,
+        redirectTo: `${ROUTES.admin.sub_routes?.widgets.sub_routes?.time.route}`,
         pathMatch: 'full'
       },
       {
-        path: `${ROUTES.widgets.sub_routes.time.route}`,
+        path: `${ROUTES.admin.sub_routes?.widgets.sub_routes?.time.route}`,
         component: TimeComponent,
         data: {
-          title: `${ROUTES.widgets.sub_routes.time.langKey}`
+          title: `${ROUTES.admin.sub_routes?.widgets.sub_routes?.time.langKey}`
         }
       },
       {
-        path: `${ROUTES.widgets.sub_routes.weather.route}`,
+        path: `${ROUTES.admin.sub_routes?.widgets.sub_routes?.weather.route}`,
         component: WeatherComponent,
         data: {
-          title: `${ROUTES.widgets.sub_routes.weather.langKey}`
+          title: `${ROUTES.admin.sub_routes?.widgets.sub_routes?.weather.langKey}`
         }
       },
       {
-        path: `${ROUTES.widgets.sub_routes.game.route}`,
+        path: `${ROUTES.admin.sub_routes?.widgets.sub_routes?.game.route}`,
         component: GameComponent,
         data: {
-          title: `${ROUTES.widgets.sub_routes.game.langKey}`
+          title: `${ROUTES.admin.sub_routes?.widgets.sub_routes?.game.langKey}`
         }
       }
     ]

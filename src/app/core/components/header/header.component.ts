@@ -1,33 +1,24 @@
-import {
-  Component,
-  EventEmitter,
-  OnDestroy,
-  OnInit,
-  Output
-} from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { Title } from '@angular/platform-browser';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs/internal/Observable';
 import { Subject } from 'rxjs/internal/Subject';
 import { of } from 'rxjs/internal/observable/of';
 import { combineLatest } from 'rxjs/internal/observable/combineLatest';
-import { filter, map, mergeMap, takeUntil, tap } from 'rxjs/operators';
+import { map, takeUntil, tap } from 'rxjs/operators';
 import * as moment from 'moment';
-import { isEmpty } from 'lodash';
 
-import { MENU_ITEMS } from '@core/constants';
+import { MENU_ITEMS, ROUTES } from '@core/constants';
 import { GoogleUser, ModulePage } from '@core/models';
 import { LANGUAGES } from '@shared/constants';
-import { SetModulePage } from '@shared/store/actions/module-page.actions';
 import * as fromRoot from '@shared/store/reducers';
 import * as fromTools from '@modules/tools/store/reducers';
 import * as fromAuth from '@modules/authentication/store/reducers';
 import { Language } from '@shared/models';
-import { getModulePage } from '@shared/utils';
 import { SetLanguage } from '@shared/store/actions/language.actions';
 import { ButtonSize } from '@shared/components/button/button.component';
+import { AuthenticationService } from '@modules/authentication/services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -35,8 +26,6 @@ import { ButtonSize } from '@shared/components/button/button.component';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  @Output() readonly pageTitleKeyReceived = new EventEmitter<string>();
-
   private unsubscribe$ = new Subject();
   clockFormat = 'h:mm A';
   languages = LANGUAGES;
@@ -51,23 +40,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
     .pipe(takeUntil(this.unsubscribe$));
 
   totalCount$: Observable<number> = of(0);
-
-  user$: Observable<GoogleUser> = this.store
-    .select(fromAuth.selectUser)
-    .pipe(takeUntil(this.unsubscribe$));
-
+  user$: Observable<GoogleUser> = of(this.authentication.user);
   readonly ButtonSize = ButtonSize;
 
   constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private titleService: Title,
     private store: Store<fromRoot.State & fromTools.State & fromAuth.State>,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private authentication: AuthenticationService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.handleRouting();
     this.setNotificationsCount();
   }
 
@@ -77,34 +60,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.store.dispatch(SetLanguage(language));
   };
 
-  private handleRouting = (): void => {
-    this.router.events
-      .pipe(
-        filter((event) => event instanceof NavigationEnd),
-        tap((route) => {
-          const modulePage = getModulePage(route);
-
-          this.store.dispatch(SetModulePage(modulePage));
-        }),
-        map(() => this.activatedRoute),
-        map((route) => {
-          while (route.firstChild) {
-            route = route.firstChild;
-          }
-
-          return route;
-        }),
-        filter((route) => route.outlet === 'primary'),
-        mergeMap((route) => route.data),
-        filter((data) => !isEmpty(data))
-      )
-      .subscribe((data) => {
-        this.pageTitleKeyReceived.emit(data.title as string);
-
-        this.translate.get(data.title).subscribe((title: string) => {
-          this.titleService.setTitle(title);
-        });
-      });
+  logout = (): void => {
+    this.user$ = of({});
+    localStorage.removeItem('user');
+    this.router.navigate([`${ROUTES.authentication.route}`]);
   };
 
   private setNotificationsCount = (): void => {

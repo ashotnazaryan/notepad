@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ROUTES } from '@core/constants';
+import { AuthGuard } from '@core/guards/auth.guard';
 import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: `${ROUTES.tools.route}`,
+    redirectTo: `${ROUTES.admin.route}`,
     pathMatch: 'full'
   },
   {
@@ -18,21 +19,10 @@ const routes: Routes = [
       )
   },
   {
-    path: `${ROUTES.tools.route}`,
+    path: `${ROUTES.admin.route}`,
+    canLoad: [AuthGuard],
     loadChildren: () =>
-      import('@modules/tools/tools.module').then((m) => m.ToolsModule)
-  },
-  {
-    path: `${ROUTES.widgets.route}`,
-    loadChildren: () =>
-      import('@modules/widgets/widgets.module').then((m) => m.WidgetsModule)
-  },
-  {
-    path: `${ROUTES.notifications.route}`,
-    loadChildren: () =>
-      import('@modules/notifications/notifications.module').then(
-        (m) => m.NotificationsModule
-      )
+      import('@modules/admin/admin.module').then((m) => m.AdminModule)
   },
   {
     path: '**',

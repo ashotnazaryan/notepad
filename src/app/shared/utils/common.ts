@@ -8,18 +8,17 @@ import { ModulePage } from '@core/models';
 import Weather, { ClientWeather, WEATHER_ICONS } from '@shared/models/location';
 
 export const getModulePage = (event: Event): ModulePage => {
-  // FIXME https://github.com/angular/angular/issues/15439
   const normalizedUrls = (event as NavigationEnd).urlAfterRedirects
     .split('/')
     ?.filter(identity);
   const module = normalizedUrls[0];
   const page = normalizedUrls[1];
-  const moduleRoute = get(ROUTES, module) || { langKey: '' };
-  const pageRoute = get(ROUTES[module]?.sub_routes, page) || { langKey: '' };
+  const moduleRoute = get(ROUTES.admin.sub_routes, module);
+  const pageRoute = get(moduleRoute?.sub_routes, page);
 
   return {
-    module: moduleRoute.langKey,
-    page: pageRoute.langKey
+    module: moduleRoute?.langKey || '',
+    page: pageRoute?.langKey || ''
   };
 };
 

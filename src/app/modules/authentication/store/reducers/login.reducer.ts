@@ -25,3 +25,4 @@ export const reducer = createReducer(
 );
 
 export const selectUserFn = (state: State): State['user'] => state?.user;
+export const selectLoggedInFn = (state: State): boolean => !!state?.user;

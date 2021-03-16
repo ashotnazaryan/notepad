@@ -13,21 +13,21 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: `${ROUTES.notifications.sub_routes.grocery.route}`,
+        redirectTo: `${ROUTES.admin.sub_routes?.notifications.sub_routes?.grocery.route}`,
         pathMatch: 'full'
       },
       {
-        path: `${ROUTES.notifications.sub_routes.grocery.route}`,
+        path: `${ROUTES.admin.sub_routes?.notifications.sub_routes?.grocery.route}`,
         component: GroceryNotificationsComponent,
         data: {
-          title: `${ROUTES.notifications.sub_routes.grocery.langKey}`
+          title: `${ROUTES.admin.sub_routes?.notifications.sub_routes?.grocery.langKey}`
         }
       },
       {
-        path: `${ROUTES.notifications.sub_routes.notes.route}`,
+        path: `${ROUTES.admin.sub_routes?.notifications.sub_routes?.notes.route}`,
         component: NotesNotificationsComponent,
         data: {
-          title: `${ROUTES.notifications.sub_routes.notes.langKey}`
+          title: `${ROUTES.admin.sub_routes?.notifications.sub_routes?.notes.langKey}`
         }
       }
     ]

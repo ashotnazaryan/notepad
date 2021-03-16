@@ -36,11 +36,7 @@ export class LoginEffects {
     () =>
       this.actions$.pipe(
         ofType(LoginActions.LoginSuccess),
-        tap(() =>
-          this.router.navigate([
-            `${ROUTES.tools.route}/${ROUTES.tools.sub_routes.notes.route}`
-          ])
-        )
+        tap(() => this.router.navigate([`${ROUTES.admin.route}`]))
       ),
     { dispatch: false }
   );

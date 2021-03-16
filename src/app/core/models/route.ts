@@ -4,18 +4,11 @@ export interface ModulePage {
 }
 
 export interface AppRoute {
-  [key: string]: {
+  [prop: string]: {
     key: string;
     route: string;
     name: string;
     langKey: string;
-    sub_routes: {
-      [key: string]: {
-        key: string;
-        route: string;
-        name: string;
-        langKey: string;
-      };
-    };
+    sub_routes?: AppRoute;
   };
 }

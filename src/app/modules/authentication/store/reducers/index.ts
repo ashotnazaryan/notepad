@@ -38,3 +38,8 @@ export const selectUser = createSelector(
   selectLoginState,
   fromLogin.selectUserFn
 );
+
+export const selectLoggedIn = createSelector(
+  selectLoginState,
+  fromLogin.selectLoggedInFn
+);

@@ -2,6 +2,7 @@ export interface GoogleUser {
   name?: string | null;
   email?: string | null;
   photo?: string | null;
+  accessToken?: string | null;
 }
 
 export interface User<T> {

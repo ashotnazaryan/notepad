@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
 import firebase from 'firebase/app';
 
@@ -14,26 +12,14 @@ import { APP_CONFIGS } from '@core/config';
 })
 export class AppComponent implements OnInit {
   defaultLanguageKey = APP_CONFIGS.DEFAULT_LANGUAGE_KEY;
-  pageTitleKey = '';
 
-  constructor(
-    private titleService: Title,
-    private translate: TranslateService
-  ) {
+  constructor() {
     moment.locale(this.defaultLanguageKey);
   }
 
   ngOnInit(): void {
-    this.translate.onLangChange.subscribe((data) => {
-      this.titleService.setTitle(data.translations[this.pageTitleKey]);
-    });
-
     this.initFirebase();
   }
-
-  handlePageTitleKeyReceived = (title: string): void => {
-    this.pageTitleKey = title;
-  };
 
   private initFirebase = (): void => {
     firebase.initializeApp(environment.FIREBASE);
