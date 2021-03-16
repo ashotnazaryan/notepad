@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
-import { GoogleUser, LoginProvider } from '@core/models';
+import { LoginProvider } from '@core/models';
+import User, { GoogleUserDTO } from '@core/models/user';
 
 export const Login = createAction(
   '[Login] Login',
@@ -9,7 +10,7 @@ export const Login = createAction(
 
 export const LoginSuccess = createAction(
   '[Login] Login success',
-  props<GoogleUser>() // TODO make User generic
+  props<User<GoogleUserDTO>>() // TODO make User generic
 );
 
 export const LoginFail = createAction(

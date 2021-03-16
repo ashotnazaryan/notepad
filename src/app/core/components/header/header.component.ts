@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs/internal/Observable';
@@ -9,7 +10,8 @@ import { map, takeUntil, tap } from 'rxjs/operators';
 import * as moment from 'moment';
 
 import { MENU_ITEMS, ROUTES } from '@core/constants';
-import { GoogleUser, ModulePage } from '@core/models';
+import { ModulePage } from '@core/models';
+import User, { GoogleUserDTO } from '@core/models/user';
 import { LANGUAGES } from '@shared/constants';
 import * as fromRoot from '@shared/store/reducers';
 import * as fromTools from '@modules/tools/store/reducers';
@@ -18,7 +20,6 @@ import { Language } from '@shared/models';
 import { SetLanguage } from '@shared/store/actions/language.actions';
 import { ButtonSize } from '@shared/components/button/button.component';
 import { AuthenticationService } from '@modules/authentication/services/authentication.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -40,7 +41,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     .pipe(takeUntil(this.unsubscribe$));
 
   totalCount$: Observable<number> = of(0);
-  user$: Observable<GoogleUser> = of(this.authentication.user);
+  user$: Observable<User<GoogleUserDTO>> = of(this.authentication.user);
   readonly ButtonSize = ButtonSize;
 
   constructor(
@@ -61,9 +62,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   };
 
   logout = (): void => {
-    this.user$ = of({});
-    localStorage.removeItem('user');
-    this.router.navigate([`${ROUTES.authentication.route}`]);
+    this.authentication
+      .logout()
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(() => {
+        this.user$ = of({});
+        localStorage.removeItem('user');
+        this.router.navigate([`${ROUTES.authentication.route}`]);
+      });
   };
 
   private setNotificationsCount = (): void => {
