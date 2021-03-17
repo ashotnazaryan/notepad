@@ -43,3 +43,8 @@ export const selectLoggedIn = createSelector(
   selectLoginState,
   fromLogin.selectLoggedInFn
 );
+
+export const selectLoggedInError = createSelector(
+  selectLoginState,
+  fromLogin.selectLoggedInErrorFn
+);

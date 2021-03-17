@@ -15,5 +15,13 @@ export const LoginSuccess = createAction(
 
 export const LoginFail = createAction(
   '[Login] Login fail',
-  props<{ error: string }>()
+  props<{ message: string }>()
+);
+
+export const Logout = createAction('[Login] Logout');
+export const LogoutSuccess = createAction('[Login] Logout success');
+
+export const LogoutFail = createAction(
+  '[Login] Logout fail',
+  props<{ message: string }>()
 );

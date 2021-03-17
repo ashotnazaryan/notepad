@@ -9,7 +9,7 @@ import { combineLatest } from 'rxjs/internal/observable/combineLatest';
 import { map, takeUntil, tap } from 'rxjs/operators';
 import * as moment from 'moment';
 
-import { MENU_ITEMS, ROUTES } from '@core/constants';
+import { MENU_ITEMS } from '@core/constants';
 import { ModulePage } from '@core/models';
 import User, { GoogleUserDTO } from '@core/models/user';
 import { LANGUAGES } from '@shared/constants';
@@ -20,6 +20,7 @@ import { Language } from '@shared/models';
 import { SetLanguage } from '@shared/store/actions/language.actions';
 import { ButtonSize } from '@shared/components/button/button.component';
 import { AuthenticationService } from '@modules/authentication/services/authentication.service';
+import { Logout } from '@modules/authentication/store/actions/login.actions';
 
 @Component({
   selector: 'app-header',
@@ -62,14 +63,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   };
 
   logout = (): void => {
-    this.authentication
-      .logout()
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(() => {
-        this.user$ = of({});
-        localStorage.removeItem('user');
-        this.router.navigate([`${ROUTES.authentication.route}`]);
-      });
+    this.store.dispatch(Logout());
   };
 
   private setNotificationsCount = (): void => {

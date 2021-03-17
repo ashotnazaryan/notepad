@@ -1,1 +1,9 @@
-<router-outlet></router-outlet>
+<app-spinner
+  *ngIf="appLoading$ | async"
+  [absolute]="true"
+  [strokeWidth]="5"
+  [diameter]="70">
+</app-spinner>
+<div class="app-container" [ngClass]="{'opacity-05 pointer-events-none': appLoading$ | async}">
+  <router-outlet></router-outlet>
+</div>

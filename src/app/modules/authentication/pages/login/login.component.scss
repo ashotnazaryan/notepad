@@ -6,6 +6,12 @@
 }
 
 .login-container {
+  width: 300px;
+
+  mat-card {
+    min-height: 250px;
+  }
+
   &__button-wrapper {
     &__icon {
       width: 24px;

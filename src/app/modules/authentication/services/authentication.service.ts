@@ -3,8 +3,6 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import { Observable } from 'rxjs/internal/Observable';
 import { from } from 'rxjs/internal/observable/from';
-import { catchError, map } from 'rxjs/operators';
-import { of } from 'rxjs/internal/observable/of';
 
 import User, { GoogleUserDTO, LoginProvider } from '@core/models/user';
 
@@ -24,20 +22,16 @@ export class AuthenticationService {
     return JSON.parse(localStorage.getItem('user') || '{}');
   }
 
-  login = (provider: LoginProvider): Observable<User<GoogleUserDTO>> => {
+  login = (
+    provider: LoginProvider
+  ): Observable<firebase.auth.UserCredential> => {
     const authProvider = this.getProvider(provider);
-    const firebase$ = from(firebase.auth().signInWithPopup(authProvider));
 
-    return firebase$.pipe(
-      map((data) => new User<GoogleUserDTO>(data, provider)),
-      catchError((error) => of(error))
-    );
+    return from(firebase.auth().signInWithPopup(authProvider));
   };
 
   logout = (): Observable<void> => {
-    const firebase$ = from(firebase.auth().signOut());
-
-    return firebase$.pipe(catchError((error) => of(error)));
+    return from(firebase.auth().signOut());
   };
 
   private getProvider = (provider: LoginProvider) => {

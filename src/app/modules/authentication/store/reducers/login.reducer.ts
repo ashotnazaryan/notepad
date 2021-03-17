@@ -7,6 +7,7 @@ export const loginFeatureKey = 'login';
 
 export interface State {
   user: User<GoogleUserDTO>; // TODO make User generic
+  errorMessage?: string;
 }
 
 const initialState: State = {
@@ -21,8 +22,15 @@ export const reducer = createReducer(
   on(LoginActions.LoginSuccess, (state, user) => ({
     ...state,
     user
+  })),
+
+  on(LoginActions.LoginFail, (state, { message }) => ({
+    ...state,
+    errorMessage: message
   }))
 );
 
 export const selectUserFn = (state: State): State['user'] => state?.user;
 export const selectLoggedInFn = (state: State): boolean => !!state?.user;
+export const selectLoggedInErrorFn = (state: State): State['errorMessage'] =>
+  state?.errorMessage;
