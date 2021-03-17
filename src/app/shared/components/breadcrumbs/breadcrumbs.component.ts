@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { ModulePage } from '@shared/models';
+import { ModulePage } from '@core/models';
 
 @Component({
   selector: 'app-breadcrumbs',

@@ -7,26 +7,23 @@ import {
   TranslateService
 } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { StoreModule } from '@ngrx/store';
 
 import { APP_CONFIGS } from './config';
 import { SharedModule } from '@shared/shared.module';
-import * as fromTools from '@modules/tools/store/reducers';
-import { HeaderComponent } from './components/header/header.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
 }
 
 export function appInitializerFactory(translate: TranslateService) {
-  return (): Promise<any> => {
+  return (): Promise<unknown> => {
     translate.setDefaultLang(APP_CONFIGS.DEFAULT_LANGUAGE_KEY);
     return translate.use(APP_CONFIGS.DEFAULT_LANGUAGE_KEY).toPromise();
   };
 }
 
 @NgModule({
-  declarations: [HeaderComponent],
+  declarations: [],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -37,10 +34,9 @@ export function appInitializerFactory(translate: TranslateService) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    }),
-    StoreModule.forFeature(fromTools.toolsFeatureKey, fromTools.reducers)
+    })
   ],
-  exports: [HttpClientModule, SharedModule, HeaderComponent],
+  exports: [HttpClientModule, SharedModule],
   providers: [
     {
       provide: APP_INITIALIZER,

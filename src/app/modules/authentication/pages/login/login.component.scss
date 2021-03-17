@@ -1,0 +1,25 @@
+@import 'src/app/styles/core';
+@import 'src/app/styles/components';
+
+:host {
+  display: block;
+}
+
+.login-container {
+  width: 300px;
+
+  mat-card {
+    min-height: 250px;
+  }
+
+  &__button-wrapper {
+    &__icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    &__text {
+      @extend .button-text;
+    }
+  }
+}

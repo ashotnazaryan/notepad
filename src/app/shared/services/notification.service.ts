@@ -3,7 +3,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import {
   NotificationComponent,
-  NotificationData
+  NotificationData,
+  NotificationType
 } from '@shared/components/notification/notification.component';
 
 @Injectable({
@@ -13,8 +14,8 @@ export class NotificationService {
   constructor(private snackBar: MatSnackBar) {}
 
   showNotification = (
-    type: NotificationData['type'],
-    message: NotificationData['message']
+    type: NotificationData['type'] = NotificationType.error,
+    message: NotificationData['message'] = 'NOTIFICATIONS_COMMON_SOMETHING_WENT_WRONG'
   ): void => {
     const options: NotificationOptions = {
       data: {

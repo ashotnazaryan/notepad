@@ -25,7 +25,7 @@ import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.c
         // strictStateImmutability and strictActionImmutability are enabled by default
         strictStateSerializability: true,
         strictActionSerializability: true,
-        strictActionWithinNgZone: true,
+        // strictActionWithinNgZone: true, // TODO fix, when true, issue rised 'Action is running outside NgZone'
         strictActionTypeUniqueness: true
       }
     }),

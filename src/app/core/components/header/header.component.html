@@ -73,6 +73,16 @@
             </span>
           </button>
         </mat-menu>
+        <app-button
+          icon="fingerprint"
+          color="primary"
+          [size]="ButtonSize.small"
+          [text]="(user$ | async)?.name!"
+          [matMenuTriggerFor]="user">
+        </app-button>
+        <mat-menu #user="matMenu">
+          <button mat-menu-item (click)="logout()">Log out</button>
+        </mat-menu>
       </div>
     </div>
   </mat-toolbar>

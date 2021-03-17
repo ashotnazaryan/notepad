@@ -19,7 +19,10 @@ export interface State extends fromRoot.State {
   [toolsFeatureKey]: ToolsState;
 }
 
-export function reducers(state: ToolsState, action: Action): ToolsState {
+export function reducers(
+  state: ToolsState | undefined,
+  action: Action
+): ToolsState {
   return combineReducers({
     [fromGrocery.groceryFeatureKey]: fromGrocery.reducer,
     [fromNotes.notesFeatureKey]: fromNotes.reducer

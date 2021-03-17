@@ -1,9 +1,7 @@
-@import 'src/app/styles/core';
-
 :host {
   display: block;
 }
 
-.main-container {
-  min-height: $main-container-height;
+.app-container {
+  min-height: 100vh;
 }

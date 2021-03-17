@@ -1,0 +1,23 @@
+<div class="login-container absolute-center position-relative">
+  <mat-card class="flex flex-column justify-content-between">
+    <mat-toolbar color="primary" class="position-absolute t-0 l-0">
+      <mat-card-header>
+          <mat-card-title class="m-0">{{'LOGIN_WITH' | translate}}</mat-card-title>
+      </mat-card-header>
+    </mat-toolbar>
+    <mat-card-content></mat-card-content>
+    <mat-card-actions>
+      <app-button 
+        color="primary"
+        (clicked)="login(LoginProvider.GOOGLE)"
+        >
+        <ng-template #customTemplate>
+          <div class="login-container__button-wrapper flex flex-row align-items-center justify-content-between w-100">
+            <img class="login-container__button-wrapper__icon" src="assets/icons/google-icon.svg" />
+            <span class="login-container__button-wrapper__text mx-1">{{'GENERAL_BUTTONS_LOGIN' | translate}}</span>
+          </div>
+        </ng-template>
+      </app-button>
+    </mat-card-actions>
+  </mat-card>
+</div>
