@@ -12,14 +12,14 @@ import {
   ShowLoading
 } from '@shared/store/actions/loading.actions';
 import { AuthenticationService } from '@modules/authentication/services/authentication.service';
-import { LoginActions } from '../actions';
+import { AuthActions } from '../actions';
 import * as fromAuth from '../reducers';
 
 @Injectable()
 export class LoginEffects {
   login$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(LoginActions.Login),
+      ofType(AuthActions.Login),
       map((action) => action.provider),
       tap(() => this.store.dispatch(ShowLoading())),
       exhaustMap((provider) =>
@@ -31,12 +31,12 @@ export class LoginEffects {
             localStorage.setItem('user', userStr);
             console.log('User: ', normalizedUser);
 
-            return LoginActions.LoginSuccess(normalizedUser);
+            return AuthActions.LoginSuccess(normalizedUser);
           }),
           catchError(({ message }) => {
             this.store.dispatch(HideLoading());
 
-            return of(LoginActions.LoginFail({ message }));
+            return of(AuthActions.LoginFail({ message }));
           })
         )
       )
@@ -46,7 +46,7 @@ export class LoginEffects {
   loginSuccess$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(LoginActions.LoginSuccess),
+        ofType(AuthActions.LoginSuccess),
         tap(() => this.router.navigate([`${ROUTES.admin.route}`])),
         tap(() => this.store.dispatch(HideLoading()))
       ),
@@ -55,19 +55,19 @@ export class LoginEffects {
 
   logout$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(LoginActions.Logout),
+      ofType(AuthActions.Logout),
       tap(() => this.store.dispatch(ShowLoading())),
       exhaustMap(() =>
         this.authentication.logout().pipe(
           map(() => {
             localStorage.removeItem('user');
 
-            return LoginActions.LogoutSuccess();
+            return AuthActions.LogoutSuccess();
           }),
           catchError(({ message }) => {
             this.store.dispatch(HideLoading());
 
-            return of(LoginActions.LogoutFail({ message }));
+            return of(AuthActions.LogoutFail({ message }));
           })
         )
       )
@@ -77,7 +77,7 @@ export class LoginEffects {
   logoutSuccess$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(LoginActions.LogoutSuccess),
+        ofType(AuthActions.LogoutSuccess),
         tap(() => this.router.navigate([`${ROUTES.authentication.route}`])),
         tap(() => this.store.dispatch(HideLoading()))
       ),

@@ -1,1 +1,1 @@
-export * from './login.effects';
+export * from './auth.effects';

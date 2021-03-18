@@ -24,6 +24,7 @@ export class ButtonComponent {
   @Input() color = 'default';
   @Input() size: ButtonSize = ButtonSize.large;
   @Input() icon?: string;
+  @Input() iconPosition?: 'left' | 'right' = 'left';
   @Input() text?: string;
   @Output() readonly clicked = new EventEmitter<MouseEvent>();
   @ContentChild('customTemplate', { static: true })

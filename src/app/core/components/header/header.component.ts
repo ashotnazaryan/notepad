@@ -20,7 +20,7 @@ import { Language } from '@shared/models';
 import { SetLanguage } from '@shared/store/actions/language.actions';
 import { ButtonSize } from '@shared/components/button/button.component';
 import { AuthenticationService } from '@modules/authentication/services/authentication.service';
-import { Logout } from '@modules/authentication/store/actions/login.actions';
+import { Logout } from '@modules/authentication/store/actions/auth.actions';
 
 @Component({
   selector: 'app-header',

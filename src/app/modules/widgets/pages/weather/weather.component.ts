@@ -1,9 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
-import { finalize, switchMap, takeUntil, withLatestFrom } from 'rxjs/operators';
+import {
+  finalize,
+  switchMap,
+  takeUntil,
+  tap,
+  withLatestFrom
+} from 'rxjs/operators';
 import { Subject } from 'rxjs/internal/Subject';
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { Observable } from 'rxjs/internal/Observable';
 
 import { LocationService, NotificationService } from '@shared/services';
 import { ClientLocation, Language } from '@shared/models';
@@ -16,6 +22,10 @@ import { weatherNormalizer } from '@shared/utils';
 import * as fromRoot from '@shared/store/reducers';
 import { NotificationType } from '@shared/components/notification/notification.component';
 import { WeatherViewMode } from '@shared/components/weather-widget/weather-widget.component';
+import {
+  HideLoading,
+  ShowLoading
+} from '@shared/store/actions/loading.actions';
 import { WeatherService } from './services/weather.service';
 
 @Component({
@@ -25,9 +35,13 @@ import { WeatherService } from './services/weather.service';
 })
 export class WeatherComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject();
-  loading$ = new BehaviorSubject<boolean>(false);
   weather: ClientWeather = {};
   forecastHours = 40;
+
+  loading$: Observable<boolean> = this.store
+    .select(fromRoot.selectLoading)
+    .pipe(takeUntil(this.unsubscribe$));
+
   readonly WeatherViewMode = WeatherViewMode;
 
   constructor(
@@ -40,22 +54,20 @@ export class WeatherComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getWeather();
-
     this.translate.onLangChange.subscribe(() => this.getWeather());
   }
 
   getWeather = (): void => {
-    this.loading$.next(true);
-
     this.location
       .getLocation()
       .pipe(
         takeUntil(this.unsubscribe$),
+        tap(() => this.store.dispatch(ShowLoading())),
         withLatestFrom(this.store.select(fromRoot.selectLanguage)),
         switchMap(([data, { key }]: [ClientLocation, Language]) =>
           this.weatherService.getWeather(data, key, this.forecastHours)
         ),
-        finalize(() => this.loading$.next(false))
+        finalize(() => this.store.dispatch(HideLoading()))
       )
       .subscribe(this.handleSuccess, this.handleError);
   };

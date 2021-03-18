@@ -5,12 +5,12 @@ import {
   Action
 } from '@ngrx/store';
 import * as fromRoot from '@shared/store/reducers';
-import * as fromLogin from './login.reducer';
+import * as fromAuth from './auth.reducer';
 
 export const authFeatureKey = 'auth';
 
 export interface AuthState {
-  [fromLogin.loginFeatureKey]: fromLogin.State;
+  [fromAuth.authFeatureKey]: fromAuth.State;
 }
 
 export interface State extends fromRoot.State {
@@ -22,7 +22,7 @@ export function reducers(
   action: Action
 ): AuthState {
   return combineReducers({
-    [fromLogin.loginFeatureKey]: fromLogin.reducer
+    [fromAuth.authFeatureKey]: fromAuth.reducer
   })(state, action);
 }
 
@@ -31,20 +31,20 @@ export const selectAuthState = createFeatureSelector<State, AuthState>(
 );
 
 export const selectLoginState = createSelector(selectAuthState, (state) => {
-  return state && state[fromLogin.loginFeatureKey];
+  return state && state[fromAuth.authFeatureKey];
 });
 
 export const selectUser = createSelector(
   selectLoginState,
-  fromLogin.selectUserFn
+  fromAuth.selectUserFn
 );
 
 export const selectLoggedIn = createSelector(
   selectLoginState,
-  fromLogin.selectLoggedInFn
+  fromAuth.selectLoggedInFn
 );
 
 export const selectLoggedInError = createSelector(
   selectLoginState,
-  fromLogin.selectLoggedInErrorFn
+  fromAuth.selectLoggedInErrorFn
 );

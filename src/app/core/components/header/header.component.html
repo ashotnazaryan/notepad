@@ -47,6 +47,7 @@
           </ng-container>
         </mat-menu>
         <app-button
+          class="mx-2"
           icon="notifications_active"
           color="primary"
           [size]="ButtonSize.icon"
@@ -75,6 +76,7 @@
         </mat-menu>
         <app-button
           icon="fingerprint"
+          iconPosition="right"
           color="primary"
           [size]="ButtonSize.small"
           [text]="(user$ | async)?.name!"
