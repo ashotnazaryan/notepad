@@ -1,9 +1,9 @@
 <app-button color="primary">
   <ng-template #customTemplate>
-    <div class="button-wrapper" (click)="fileToUpload.click()">
-      <label for="fileToUpload" class="flex flex-row align-items-center justify-content-between">
+    <div class="button-wrapper w-100" (click)="fileToUpload.click()">
+      <label for="fileToUpload" class="flex flex-row align-items-center justify-content-between w-100">
         <mat-icon>drive_folder_upload</mat-icon>
-        <span class="button-wrapper__text mx-1">{{'GENERAL_BUTTONS_UPLOAD' | translate}}</span>
+        <span class="button-wrapper__text ellipsis-text mx-1">{{'GENERAL_BUTTONS_UPLOAD' | translate}}</span>
       </label>
       <input #fileToUpload type="file" accept="accept" (change)="upload($event)">
     </div>

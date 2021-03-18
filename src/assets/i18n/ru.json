@@ -10,6 +10,7 @@
   "GENERAL_BUTTONS_GENERATE": "Сгенерировать",
   "GENERAL_BUTTONS_COPY": "Копировать",
   "GENERAL_BUTTONS_LOGIN": "Вход",
+  "GENERAL_BUTTONS_LOGOUT": "Выход",
   "GENERAL_TOOLTIPS_TOOLS": "Инструменты",
   "GENERAL_TOOLTIPS_WIDGETS": "Виджеты",
   "GENERAL_TOOLTIPS_REMOVE": "Удалить",

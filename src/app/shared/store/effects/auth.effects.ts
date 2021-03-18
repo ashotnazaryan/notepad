@@ -29,7 +29,6 @@ export class AuthEffects {
             const userStr = JSON.stringify(normalizedUser);
 
             localStorage.setItem('user', userStr);
-            console.log('User: ', normalizedUser);
 
             return AuthActions.LoginSuccess(normalizedUser);
           }),

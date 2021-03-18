@@ -35,8 +35,8 @@ import { WeatherService } from './services/weather.service';
 })
 export class WeatherComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject();
-  weather: ClientWeather = {};
   forecastHours = 40;
+  weather?: ClientWeather;
 
   loading$: Observable<boolean> = this.store
     .select(fromRoot.selectLoading)

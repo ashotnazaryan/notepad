@@ -31,7 +31,7 @@
           </app-breadcrumbs>
         </div>
       </div>
-      <div class="header-container__content flex flex-row flex-grow-1 justify-content-end align-items-center">
+      <div class="header-container__content flex flex-row flex-wrap flex-grow-1 justify-content-end align-items-center">
         <app-clock [timeFormat]="clockFormat" class="ellipsis-text"></app-clock>
         <!-- TODO move to component -->
         <app-button
@@ -83,7 +83,7 @@
           [matMenuTriggerFor]="user">
         </app-button>
         <mat-menu #user="matMenu">
-          <button mat-menu-item (click)="logout()">Log out</button>
+          <button mat-menu-item (click)="logout()">{{'GENERAL_BUTTONS_LOGOUT' | translate}}</button>
         </mat-menu>
       </div>
     </div>

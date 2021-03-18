@@ -1,6 +1,7 @@
 app-button {
   button {
     height: 40px !important;
+    max-width: 160px;
 
     .mat-button-wrapper {
       @extend .flex;

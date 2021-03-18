@@ -1,5 +1,6 @@
 <button
   mat-flat-button
+  class="w-100"
   [disabled]="disabled"
   [color]="color"
   [class.icon]="size === ButtonSize.icon"
@@ -12,7 +13,7 @@
   </ng-container>
   <ng-template #standard>
     <mat-icon *ngIf="icon && iconPosition === 'left'">{{icon}}</mat-icon>
-    <span *ngIf="text" class="text mx-1">{{text}}</span>
+    <span *ngIf="text" class="text mx-1 ellipsis-text">{{text}}</span>
     <mat-icon *ngIf="icon && iconPosition === 'right'">{{icon}}</mat-icon>
   </ng-template>
 </button>

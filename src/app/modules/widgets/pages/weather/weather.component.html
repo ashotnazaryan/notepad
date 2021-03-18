@@ -1,1 +1,1 @@
-<app-weather-widget *ngIf="!(loading$ | async)" [data]="weather"></app-weather-widget>
+<app-weather-widget *ngIf="!(loading$ | async) && weather" [data]="weather"></app-weather-widget>
