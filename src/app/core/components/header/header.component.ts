@@ -14,13 +14,13 @@ import { ModulePage } from '@core/models';
 import User, { GoogleUserDTO } from '@core/models/user';
 import { LANGUAGES } from '@shared/constants';
 import * as fromRoot from '@shared/store/reducers';
+import * as fromAuth from '@shared/store/reducers';
 import * as fromTools from '@modules/tools/store/reducers';
-import * as fromAuth from '@modules/authentication/store/reducers';
 import { Language } from '@shared/models';
 import { SetLanguage } from '@shared/store/actions/language.actions';
 import { ButtonSize } from '@shared/components/button/button.component';
 import { AuthenticationService } from '@modules/authentication/services/authentication.service';
-import { Logout } from '@modules/authentication/store/actions/auth.actions';
+import { Logout } from '@shared/store/actions/auth.actions';
 
 @Component({
   selector: 'app-header',

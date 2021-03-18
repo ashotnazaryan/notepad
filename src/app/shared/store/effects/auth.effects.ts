@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
@@ -16,7 +16,7 @@ import { AuthActions } from '../actions';
 import * as fromAuth from '../reducers';
 
 @Injectable()
-export class LoginEffects {
+export class AuthEffects {
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.Login),
@@ -47,7 +47,12 @@ export class LoginEffects {
     () =>
       this.actions$.pipe(
         ofType(AuthActions.LoginSuccess),
-        tap(() => this.router.navigate([`${ROUTES.admin.route}`])),
+        tap(() =>
+          this.ngZone
+            // https://github.com/angular/angular/issues/25837
+            .run(() => this.router.navigate([`${ROUTES.admin.route}`]))
+            .then()
+        ),
         tap(() => this.store.dispatch(HideLoading()))
       ),
     { dispatch: false }
@@ -78,7 +83,12 @@ export class LoginEffects {
     () =>
       this.actions$.pipe(
         ofType(AuthActions.LogoutSuccess),
-        tap(() => this.router.navigate([`${ROUTES.authentication.route}`])),
+        tap(() =>
+          this.ngZone
+            // https://github.com/angular/angular/issues/25837
+            .run(() => this.router.navigate([`${ROUTES.authentication.route}`]))
+            .then()
+        ),
         tap(() => this.store.dispatch(HideLoading()))
       ),
     { dispatch: false }
@@ -88,6 +98,7 @@ export class LoginEffects {
     private actions$: Actions,
     private store: Store<fromAuth.State>,
     private router: Router,
-    private authentication: AuthenticationService
+    private authentication: AuthenticationService,
+    private ngZone: NgZone
   ) {}
 }

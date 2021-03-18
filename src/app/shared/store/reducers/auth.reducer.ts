@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { AuthActions } from '../actions';
 import User, { GoogleUserDTO } from '@core/models/user';
+import { AuthActions } from '../actions';
 
 export const authFeatureKey = 'auth';
 

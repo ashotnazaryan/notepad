@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from '@core/core.module';
 import { SharedModule } from '@shared/shared.module';
 import { ROOT_REDUCERS, metaReducers } from '@shared/store/reducers';
+import { AuthEffects } from '@shared/store/effects';
 import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.component';
 
 @NgModule({
@@ -29,7 +30,7 @@ import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.c
         strictActionTypeUniqueness: true
       }
     }),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([AuthEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
