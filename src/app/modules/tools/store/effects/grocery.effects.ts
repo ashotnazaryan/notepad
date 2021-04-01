@@ -5,7 +5,7 @@ import { map, switchMap } from 'rxjs/operators';
 
 import { GroceryActions } from '../actions';
 import * as fromTools from '../reducers';
-import { selectChosenGroceryList } from '../reducers';
+import { selectChosenGroceryList } from '../selectors';
 
 @Injectable()
 export class GroceryEffects {

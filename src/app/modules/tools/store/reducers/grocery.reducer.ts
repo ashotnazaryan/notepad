@@ -46,13 +46,3 @@ export const reducer = createReducer(
     })
   )
 );
-
-export const selectChosenGroceryListFn = (
-  state: State
-): State['chosenGroceryList'] => state?.chosenGroceryList;
-export const selectChosenGroceriesCountFn = (
-  state: State
-): State['chosenGroceriesCount'] => state?.chosenGroceriesCount;
-export const selectSelectedGroceryListFn = (
-  state: State
-): State['selectedGroceryList'] => state?.selectedGroceryList;

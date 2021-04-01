@@ -22,6 +22,7 @@ import { from } from 'rxjs/internal/observable/from';
 import { Grocery } from '@shared/models';
 import { loadImage } from '@shared/utils';
 import * as fromTools from '@modules/tools/store/reducers';
+import { selectSelectedGroceryList } from '@modules/tools/store/selectors';
 
 export interface GroceryDialogData {
   title: string;
@@ -46,7 +47,7 @@ export class GroceryDialogComponent implements OnInit, OnDestroy {
   selectedGroceries?: Array<Grocery>;
 
   selectedGroceries$: Observable<Array<Grocery>> = this.store
-    .select(fromTools.selectSelectedGroceryList)
+    .select(selectSelectedGroceryList)
     .pipe(takeUntil(this.unsubscribe$));
 
   loading$ = new BehaviorSubject<boolean>(false);

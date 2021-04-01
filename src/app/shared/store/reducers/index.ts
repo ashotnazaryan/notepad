@@ -81,7 +81,7 @@ export const selectLanguage = createSelector(
 
 export const selectLoading = createSelector(
   selectLoadingState,
-  fromLoading.selectLoadingeFn
+  fromLoading.selectLoadingFn
 );
 
 export const selectUser = createSelector(
@@ -98,26 +98,3 @@ export const selectLoggedInError = createSelector(
   selectAuthState,
   fromAuth.selectLoggedInErrorFn
 );
-
-// export const selectAuthState = createFeatureSelector<State, AuthState>(
-//   authFeatureKey
-// );
-
-// export const selectLoginState = createSelector(selectAuthState, (state) => {
-//   return state && state[fromAuth.authFeatureKey];
-// });
-
-// export const selectUser = createSelector(
-//   selectLoginState,
-//   fromAuth.selectUserFn
-// );
-
-// export const selectLoggedIn = createSelector(
-//   selectLoginState,
-//   fromAuth.selectLoggedInFn
-// );
-
-// export const selectLoggedInError = createSelector(
-//   selectLoginState,
-//   fromAuth.selectLoggedInErrorFn
-// );

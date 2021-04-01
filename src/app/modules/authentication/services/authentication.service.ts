@@ -5,15 +5,17 @@ import { Observable } from 'rxjs/internal/Observable';
 import { from } from 'rxjs/internal/observable/from';
 
 import User, { GoogleUserDTO, LoginProvider } from '@core/models/user';
+import { CacheService } from '@shared/services/cache.service';
+import { CacheKey } from '@shared/models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
+  constructor(private cache: CacheService) {}
+
   get loggedIn(): boolean {
-    const user: User<GoogleUserDTO> = JSON.parse(
-      localStorage.getItem('user') || '{}'
-    );
+    const user = this.cache.getItem<User<GoogleUserDTO>>(CacheKey.USER);
 
     return !!user?.accessToken;
   }

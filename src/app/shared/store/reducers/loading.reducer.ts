@@ -26,5 +26,5 @@ export const reducer = createReducer(
   }))
 );
 
-export const selectLoadingeFn = (state: State): State['loading'] =>
+export const selectLoadingFn = (state: State): State['loading'] =>
   state?.loading;

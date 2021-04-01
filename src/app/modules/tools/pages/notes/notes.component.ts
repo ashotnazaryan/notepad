@@ -11,7 +11,8 @@ import { FileService, NotificationService } from '@shared/services';
 import { NotificationType } from '@shared/components/notification/notification.component';
 import { KeyName } from '@shared/models';
 import * as fromTools from '@modules/tools/store/reducers';
-import { SetNotes } from '@modules/tools/store/actions/notes.actions';
+import { NotesActions } from '@modules/tools/store/actions';
+import { selectNotes } from '@modules/tools/store/selectors';
 import { Note } from './models/note';
 import { paperTypes } from './constants/paper-types';
 
@@ -27,7 +28,7 @@ export class NotesComponent implements OnInit, OnDestroy {
   paperType: KeyName['key'] = this.paperTypes[0].key;
 
   notes$: Observable<Array<Note>> = this.store
-    .select(fromTools.selectNotes)
+    .select(selectNotes)
     .pipe(takeUntil(this.unsubscribe$));
 
   notes: Array<Note> = [];
@@ -92,7 +93,7 @@ export class NotesComponent implements OnInit, OnDestroy {
 
     this.notes = [...this.notes, data];
 
-    this.store.dispatch(SetNotes({ notes: this.notes }));
+    this.store.dispatch(NotesActions.SetNotes({ notes: this.notes }));
     this.notification.showNotification(
       NotificationType.success,
       'NOTIFICATIONS_ADDED_NOTES'

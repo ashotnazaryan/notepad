@@ -13,3 +13,7 @@ export enum ClockSize {
   small,
   large
 }
+
+export enum CacheKey {
+  USER = 'user'
+}

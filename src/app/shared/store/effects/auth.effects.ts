@@ -11,6 +11,8 @@ import {
   HideLoading,
   ShowLoading
 } from '@shared/store/actions/loading.actions';
+import { CacheService } from '@shared/services/cache.service';
+import { CacheKey } from '@shared/models';
 import { AuthenticationService } from '@modules/authentication/services/authentication.service';
 import { AuthActions } from '../actions';
 import * as fromAuth from '../reducers';
@@ -26,9 +28,8 @@ export class AuthEffects {
         this.authentication.login(provider).pipe(
           map((user) => {
             const normalizedUser = new User<GoogleUserDTO>(user, provider);
-            const userStr = JSON.stringify(normalizedUser);
 
-            localStorage.setItem('user', userStr);
+            this.cache.setItem(CacheKey.USER, normalizedUser);
 
             return AuthActions.LoginSuccess(normalizedUser);
           }),
@@ -98,6 +99,7 @@ export class AuthEffects {
     private store: Store<fromAuth.State>,
     private router: Router,
     private authentication: AuthenticationService,
+    private cache: CacheService,
     private ngZone: NgZone
   ) {}
 }
