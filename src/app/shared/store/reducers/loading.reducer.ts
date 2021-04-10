@@ -25,6 +25,3 @@ export const reducer = createReducer(
     loading: false
   }))
 );
-
-export const selectLoadingFn = (state: State): State['loading'] =>
-  state?.loading;

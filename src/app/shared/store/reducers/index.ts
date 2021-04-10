@@ -1,6 +1,5 @@
 import { InjectionToken } from '@angular/core';
 import {
-  createSelector,
   createFeatureSelector,
   ActionReducer,
   MetaReducer,
@@ -61,18 +60,3 @@ export const selectLoadingState = createFeatureSelector<
   State,
   fromLoading.State
 >(fromLoading.loadingFeatureKey);
-
-export const selectModulePage = createSelector(
-  selectModulePageState,
-  fromModulePage.selectModulePageFn
-);
-
-export const selectLanguage = createSelector(
-  selectLanguageState,
-  fromLanguage.selectLanguageFn
-);
-
-export const selectLoading = createSelector(
-  selectLoadingState,
-  fromLoading.selectLoadingFn
-);

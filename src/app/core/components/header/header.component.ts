@@ -16,8 +16,8 @@ import { LANGUAGES } from '@shared/constants';
 import * as fromRoot from '@shared/store/reducers';
 import * as fromAuth from '@shared/store/reducers';
 import * as fromTools from '@modules/tools/store/reducers';
-import { Language } from '@shared/models';
 import { SetLanguage } from '@shared/store/actions/language.actions';
+import { Language } from '@shared/models';
 import {
   selectChosenGroceriesCount,
   selectNotesCount
@@ -25,6 +25,7 @@ import {
 import { ButtonSize } from '@shared/components/button/button.component';
 import { AuthenticationService } from '@modules/authentication/services/authentication.service';
 import { Logout } from '@modules/authentication/store/actions/login.actions';
+import { selectLanguage, selectModulePage } from '@shared/store/selectors';
 
 @Component({
   selector: 'app-header',
@@ -38,11 +39,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   menuItems = MENU_ITEMS;
 
   modulePage$: Observable<ModulePage> = this.store
-    .select(fromRoot.selectModulePage)
+    .select(selectModulePage)
     .pipe(takeUntil(this.unsubscribe$));
 
   currentLanguage$: Observable<Language> = this.store
-    .select(fromRoot.selectLanguage)
+    .select(selectLanguage)
     .pipe(takeUntil(this.unsubscribe$));
 
   totalCount$: Observable<number> = of(0);

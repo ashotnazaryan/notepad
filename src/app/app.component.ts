@@ -13,8 +13,9 @@ import firebase from 'firebase/app';
 import { environment } from '@environments/environment';
 import { APP_CONFIGS } from '@core/config';
 import { getModulePage } from '@shared/utils';
-import { SetModulePage } from '@shared/store/actions/module-page.actions';
 import * as fromRoot from '@shared/store/reducers';
+import { SetModulePage } from '@shared/store/actions/module-page.actions';
+import { selectLoading } from '@shared/store/selectors';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +27,7 @@ export class AppComponent implements OnInit {
   pageTitleKey = '';
   defaultLanguageKey = APP_CONFIGS.DEFAULT_LANGUAGE_KEY;
   appLoading$: Observable<boolean> = this.store
-    .select(fromRoot.selectLoading)
+    .select(selectLoading)
     .pipe(takeUntil(this.unsubscribe$));
 
   constructor(
