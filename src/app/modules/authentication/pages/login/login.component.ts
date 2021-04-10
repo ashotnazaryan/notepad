@@ -5,9 +5,10 @@ import { filter, takeUntil } from 'rxjs/operators';
 
 import { LoginProvider } from '@core/models';
 import { NotificationService } from '@shared/services';
-import * as fromAuth from '@shared/store/reducers';
-import { Login } from '@shared/store/actions/auth.actions';
 import { NotificationType } from '@shared/components/notification/notification.component';
+import * as fromAuth from '@modules/authentication/store/reducers';
+import { Login } from '@modules/authentication/store/actions/login.actions';
+import { selectLoggedInError } from '@modules/authentication/store/selectors';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.store
-      .select(fromAuth.selectLoggedInError)
+      .select(selectLoggedInError)
       .pipe(
         takeUntil(this.unsubscribe$),
         filter((message) => !!message)

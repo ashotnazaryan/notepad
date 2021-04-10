@@ -12,13 +12,11 @@ import { environment } from '@environments/environment';
 import * as fromModulePage from './module-page.reducer';
 import * as fromLanguage from './language.reducer';
 import * as fromLoading from './loading.reducer';
-import * as fromAuth from './auth.reducer';
 
 export interface State {
   [fromModulePage.modulePageFeatureKey]: fromModulePage.State;
   [fromLanguage.languageFeatureKey]: fromLanguage.State;
   [fromLoading.loadingFeatureKey]: fromLoading.State;
-  [fromAuth.authFeatureKey]: fromAuth.State;
 }
 
 export const ROOT_REDUCERS = new InjectionToken<
@@ -27,8 +25,7 @@ export const ROOT_REDUCERS = new InjectionToken<
   factory: () => ({
     [fromModulePage.modulePageFeatureKey]: fromModulePage.reducer,
     [fromLanguage.languageFeatureKey]: fromLanguage.reducer,
-    [fromLoading.loadingFeatureKey]: fromLoading.reducer,
-    [fromAuth.authFeatureKey]: fromAuth.reducer
+    [fromLoading.loadingFeatureKey]: fromLoading.reducer
   })
 });
 
@@ -65,10 +62,6 @@ export const selectLoadingState = createFeatureSelector<
   fromLoading.State
 >(fromLoading.loadingFeatureKey);
 
-export const selectAuthState = createFeatureSelector<State, fromAuth.State>(
-  fromAuth.authFeatureKey
-);
-
 export const selectModulePage = createSelector(
   selectModulePageState,
   fromModulePage.selectModulePageFn
@@ -82,19 +75,4 @@ export const selectLanguage = createSelector(
 export const selectLoading = createSelector(
   selectLoadingState,
   fromLoading.selectLoadingFn
-);
-
-export const selectUser = createSelector(
-  selectAuthState,
-  fromAuth.selectUserFn
-);
-
-export const selectLoggedIn = createSelector(
-  selectAuthState,
-  fromAuth.selectLoggedInFn
-);
-
-export const selectLoggedInError = createSelector(
-  selectAuthState,
-  fromAuth.selectLoggedInErrorFn
 );

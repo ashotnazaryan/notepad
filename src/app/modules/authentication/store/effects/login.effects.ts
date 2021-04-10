@@ -14,14 +14,14 @@ import {
 import { CacheService } from '@shared/services/cache.service';
 import { CacheKey } from '@shared/models';
 import { AuthenticationService } from '@modules/authentication/services/authentication.service';
-import { AuthActions } from '../actions';
+import { LoginActions } from '../actions';
 import * as fromAuth from '../reducers';
 
 @Injectable()
-export class AuthEffects {
+export class LoginEffects {
   login$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(AuthActions.Login),
+      ofType(LoginActions.Login),
       map((action) => action.provider),
       tap(() => this.store.dispatch(ShowLoading())),
       exhaustMap((provider) =>
@@ -31,12 +31,12 @@ export class AuthEffects {
 
             this.cache.setItem(CacheKey.USER, normalizedUser);
 
-            return AuthActions.LoginSuccess(normalizedUser);
+            return LoginActions.LoginSuccess(normalizedUser);
           }),
           catchError(({ message }) => {
             this.store.dispatch(HideLoading());
 
-            return of(AuthActions.LoginFail({ message }));
+            return of(LoginActions.LoginFail({ message }));
           })
         )
       )
@@ -46,7 +46,7 @@ export class AuthEffects {
   loginSuccess$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(AuthActions.LoginSuccess),
+        ofType(LoginActions.LoginSuccess),
         tap(() =>
           this.ngZone
             // https://github.com/angular/angular/issues/25837
@@ -60,19 +60,19 @@ export class AuthEffects {
 
   logout$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(AuthActions.Logout),
+      ofType(LoginActions.Logout),
       tap(() => this.store.dispatch(ShowLoading())),
       exhaustMap(() =>
         this.authentication.logout().pipe(
           map(() => {
             localStorage.removeItem('user');
 
-            return AuthActions.LogoutSuccess();
+            return LoginActions.LogoutSuccess();
           }),
           catchError(({ message }) => {
             this.store.dispatch(HideLoading());
 
-            return of(AuthActions.LogoutFail({ message }));
+            return of(LoginActions.LogoutFail({ message }));
           })
         )
       )
@@ -82,7 +82,7 @@ export class AuthEffects {
   logoutSuccess$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(AuthActions.LogoutSuccess),
+        ofType(LoginActions.LogoutSuccess),
         tap(() =>
           this.ngZone
             // https://github.com/angular/angular/issues/25837

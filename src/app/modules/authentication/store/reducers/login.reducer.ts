@@ -1,9 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
 
 import User, { GoogleUserDTO } from '@core/models/user';
-import { AuthActions } from '../actions';
+import { LoginActions } from '../actions';
 
-export const authFeatureKey = 'auth';
+export const loginFeatureKey = 'login';
 
 export interface State {
   user: User<GoogleUserDTO>; // TODO make User generic
@@ -19,18 +19,13 @@ const initialState: State = {
 export const reducer = createReducer(
   initialState,
 
-  on(AuthActions.LoginSuccess, (state, user) => ({
+  on(LoginActions.LoginSuccess, (state, user) => ({
     ...state,
     user
   })),
 
-  on(AuthActions.LoginFail, (state, { message }) => ({
+  on(LoginActions.LoginFail, (state, { message }) => ({
     ...state,
     errorMessage: message
   }))
 );
-
-export const selectUserFn = (state: State): State['user'] => state?.user;
-export const selectLoggedInFn = (state: State): boolean => !!state?.user;
-export const selectLoggedInErrorFn = (state: State): State['errorMessage'] =>
-  state?.errorMessage;

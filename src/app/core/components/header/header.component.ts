@@ -24,7 +24,7 @@ import {
 } from '@modules/tools/store/selectors';
 import { ButtonSize } from '@shared/components/button/button.component';
 import { AuthenticationService } from '@modules/authentication/services/authentication.service';
-import { Logout } from '@shared/store/actions/auth.actions';
+import { Logout } from '@modules/authentication/store/actions/login.actions';
 
 @Component({
   selector: 'app-header',
