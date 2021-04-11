@@ -1,33 +1,22 @@
 import firebase from 'firebase/app';
 
 export enum LoginProvider {
-  GOOGLE
+  GOOGLE = 1,
+  FACEBOOK = 2
 }
 
-export type GoogleUserDTO = firebase.auth.UserCredential;
+export type UserDTO = firebase.auth.UserCredential;
 
-type UserDTO<T> = {
-  [key in keyof T]?: T[key];
-};
-
-export default class User<T> {
+export default class User {
   name?: string | null;
   email?: string | null;
   photo?: string | null;
   accessToken?: string | null;
 
-  constructor(dto: UserDTO<T>, provider: LoginProvider) {
-    switch (provider) {
-      case LoginProvider.GOOGLE:
-        this.name = (dto as UserDTO<GoogleUserDTO>)?.user?.displayName;
-        this.email = (dto as UserDTO<GoogleUserDTO>)?.user?.email;
-        this.photo = (dto as UserDTO<GoogleUserDTO>)?.user?.photoURL;
-        this.accessToken = ((dto as UserDTO<GoogleUserDTO>)
-          ?.credential as any)?.accessToken;
-        break;
-
-      default:
-        break;
-    }
+  constructor(dto: UserDTO) {
+    this.name = dto.user?.displayName;
+    this.email = dto.user?.email;
+    this.photo = dto.user?.photoURL;
+    this.accessToken = (dto?.credential as any)?.accessToken;
   }
 }

@@ -6,17 +6,16 @@
       </mat-card-header>
     </mat-toolbar>
     <mat-card-content></mat-card-content>
-    <mat-card-actions class="flex">
+    <mat-card-actions class="flex flex-row align-items-center justify-content-between">
       <app-button 
         color="primary"
-        (clicked)="login(LoginProvider.GOOGLE)"
-        >
-        <ng-template #customTemplate>
-          <div class="login-container__button-wrapper flex flex-row align-items-center justify-content-between w-100">
-            <img class="login-container__button-wrapper__icon" src="assets/icons/google-icon.svg" />
-            <span class="login-container__button-wrapper__text mx-1">{{'GENERAL_BUTTONS_LOGIN' | translate}}</span>
-          </div>
-        </ng-template>
+        text="Google"
+        (clicked)="login(LoginProvider.GOOGLE)">
+      </app-button>
+      <app-button 
+        color="primary"
+        text="Facebook"
+        (clicked)="login(LoginProvider.FACEBOOK)">
       </app-button>
     </mat-card-actions>
   </mat-card>

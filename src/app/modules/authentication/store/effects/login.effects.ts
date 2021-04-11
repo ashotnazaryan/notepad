@@ -6,7 +6,7 @@ import { catchError, exhaustMap, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs/internal/observable/of';
 
 import { ROUTES } from '@core/constants';
-import User, { GoogleUserDTO } from '@core/models/user';
+import User from '@core/models/user';
 import {
   HideLoading,
   ShowLoading
@@ -27,7 +27,7 @@ export class LoginEffects {
       exhaustMap((provider) =>
         this.authentication.login(provider).pipe(
           map((user) => {
-            const normalizedUser = new User<GoogleUserDTO>(user, provider);
+            const normalizedUser = new User(user);
 
             this.cache.setItem(CacheKey.USER, normalizedUser);
 
@@ -86,7 +86,11 @@ export class LoginEffects {
         tap(() =>
           this.ngZone
             // https://github.com/angular/angular/issues/25837
-            .run(() => this.router.navigate([`${ROUTES.authentication.route}`]))
+            .run(() =>
+              this.router.navigateByUrl(
+                `${ROUTES.authentication.route}/${ROUTES.authentication.sub_routes?.login.route}`
+              )
+            )
             .then()
         ),
         tap(() => this.store.dispatch(HideLoading()))

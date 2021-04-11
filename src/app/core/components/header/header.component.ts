@@ -11,7 +11,7 @@ import * as moment from 'moment';
 
 import { MENU_ITEMS } from '@core/constants';
 import { ModulePage } from '@core/models';
-import User, { GoogleUserDTO } from '@core/models/user';
+import User from '@core/models/user';
 import { LANGUAGES } from '@shared/constants';
 import * as fromRoot from '@shared/store/reducers';
 import * as fromAuth from '@shared/store/reducers';
@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     .pipe(takeUntil(this.unsubscribe$));
 
   totalCount$: Observable<number> = of(0);
-  user$: Observable<User<GoogleUserDTO>> = of(this.authentication.user);
+  user$: Observable<User> = of(this.authentication.user);
   readonly ButtonSize = ButtonSize;
 
   constructor(

@@ -13,6 +13,14 @@
       max-width: 95%;
     }
   }
+
+  &__content {
+    &__user-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+  }
 }
 
 // TODO remove to component styles

@@ -4,7 +4,7 @@ import 'firebase/auth';
 import { Observable } from 'rxjs/internal/Observable';
 import { from } from 'rxjs/internal/observable/from';
 
-import User, { GoogleUserDTO, LoginProvider } from '@core/models/user';
+import User, { LoginProvider } from '@core/models/user';
 import { CacheService } from '@shared/services/cache.service';
 import { CacheKey } from '@shared/models';
 
@@ -15,12 +15,12 @@ export class AuthenticationService {
   constructor(private cache: CacheService) {}
 
   get loggedIn(): boolean {
-    const user = this.cache.getItem<User<GoogleUserDTO>>(CacheKey.USER);
+    const user = this.cache.getItem<User>(CacheKey.USER);
 
     return !!user?.accessToken;
   }
 
-  get user(): User<GoogleUserDTO> {
+  get user(): User {
     return JSON.parse(localStorage.getItem('user') || '{}');
   }
 
@@ -40,6 +40,9 @@ export class AuthenticationService {
     switch (provider) {
       case LoginProvider.GOOGLE:
         return new firebase.auth.GoogleAuthProvider();
+
+      case LoginProvider.FACEBOOK:
+        return new firebase.auth.FacebookAuthProvider();
 
       default:
         return new firebase.auth.GoogleAuthProvider();

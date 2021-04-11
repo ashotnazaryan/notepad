@@ -6,6 +6,7 @@ import { filter, takeUntil } from 'rxjs/operators';
 import { LoginProvider } from '@core/models';
 import { NotificationService } from '@shared/services';
 import { NotificationType } from '@shared/components/notification/notification.component';
+import { ButtonSize } from '@shared/components/button/button.component';
 import * as fromAuth from '@modules/authentication/store/reducers';
 import { Login } from '@modules/authentication/store/actions/login.actions';
 import { selectLoggedInError } from '@modules/authentication/store/selectors';
@@ -18,6 +19,7 @@ import { selectLoggedInError } from '@modules/authentication/store/selectors';
 export class LoginComponent implements OnInit {
   private unsubscribe$ = new Subject();
   readonly LoginProvider = LoginProvider;
+  readonly ButtonSize = ButtonSize;
 
   constructor(
     private store: Store<fromAuth.State>,

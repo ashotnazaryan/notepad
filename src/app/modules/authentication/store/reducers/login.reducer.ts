@@ -1,12 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
 
-import User, { GoogleUserDTO } from '@core/models/user';
+import User from '@core/models/user';
 import { LoginActions } from '../actions';
 
 export const loginFeatureKey = 'login';
 
 export interface State {
-  user: User<GoogleUserDTO>; // TODO make User generic
+  user: User;
   errorMessage?: string;
 }
 
