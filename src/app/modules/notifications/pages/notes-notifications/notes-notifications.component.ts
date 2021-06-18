@@ -4,8 +4,8 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Subject } from 'rxjs/internal/Subject';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 
-import { selectNotes } from '@modules/tools/store/selectors';
-import * as fromTools from '@modules/tools/store/reducers';
+import { selectNotes } from '@shared/store/selectors';
+import * as fromTools from '@shared/store/reducers';
 import { Note } from '@modules/tools/pages/notes/models/note';
 
 @Component({

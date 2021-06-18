@@ -1,6 +1,6 @@
 import { createSelector } from '@ngrx/store';
 
-import { State, groceryFeatureKey } from '../reducers/grocery.reducer';
+import { State } from '../reducers/tools.reducer';
 import { selectToolsState } from '../reducers';
 
 const selectChosenGroceryListFn = (state: State): State['chosenGroceryList'] =>
@@ -14,21 +14,27 @@ const selectSelectedGroceryListFn = (
   state: State
 ): State['selectedGroceryList'] => state?.selectedGroceryList;
 
-export const selectGroceryState = createSelector(selectToolsState, (state) => {
-  return state && state[groceryFeatureKey];
-});
+const selectNotesFn = (state: State): State['notes'] => state?.notes;
+const selectNotesCountFn = (state: State): State['notesCount'] => state?.notesCount;
 
 export const selectChosenGroceryList = createSelector(
-  selectGroceryState,
+  selectToolsState,
   selectChosenGroceryListFn
 );
 
 export const selectSelectedGroceryList = createSelector(
-  selectGroceryState,
+  selectToolsState,
   selectSelectedGroceryListFn
 );
 
 export const selectChosenGroceriesCount = createSelector(
-  selectGroceryState,
+  selectToolsState,
   selectChosenGroceriesCountFn
+);
+
+export const selectNotes = createSelector(selectToolsState, selectNotesFn);
+
+export const selectNotesCount = createSelector(
+  selectToolsState,
+  selectNotesCountFn
 );

@@ -10,9 +10,9 @@ import * as moment from 'moment';
 import { FileService, NotificationService } from '@shared/services';
 import { NotificationType } from '@shared/components/notification/notification.component';
 import { KeyName } from '@shared/models';
-import * as fromTools from '@modules/tools/store/reducers';
-import { NotesActions } from '@modules/tools/store/actions';
-import { selectNotes } from '@modules/tools/store/selectors';
+import * as fromTools from '@shared/store/reducers';
+import { ToolsActions } from '@shared/store/actions';
+import { selectNotes } from '@shared/store/selectors';
 import { Note } from './models/note';
 import { paperTypes } from './constants/paper-types';
 
@@ -87,7 +87,7 @@ export class NotesComponent implements OnInit, OnDestroy {
 
     this.notes = [...this.notes, data];
 
-    this.store.dispatch(NotesActions.SetNotes({ notes: this.notes }));
+    this.store.dispatch(ToolsActions.SetNotes({ notes: this.notes }));
     this.notification.showNotification(
       'NOTIFICATIONS_ADDED_NOTES',
       NotificationType.success

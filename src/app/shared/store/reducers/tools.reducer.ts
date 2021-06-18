@@ -2,26 +2,31 @@ import { createReducer, on } from '@ngrx/store';
 import { unionBy } from 'lodash';
 
 import { Grocery } from '@shared/models';
-import { GroceryActions } from '../actions';
+import { Note } from '@modules/tools/pages/notes/models/note';
+import { ToolsActions } from '../actions';
 
-export const groceryFeatureKey = 'grocery';
+export const toolsFeatureKey = 'tools';
 
 export interface State {
   chosenGroceryList: Array<Grocery>;
   chosenGroceriesCount: number;
   selectedGroceryList: Array<Grocery>;
+  notes: Array<Note>;
+  notesCount: number;
 }
 
 const initialState: State = {
   chosenGroceryList: [],
   chosenGroceriesCount: 0,
-  selectedGroceryList: []
+  selectedGroceryList: [],
+  notes: [],
+  notesCount: 0
 };
 
 export const reducer = createReducer(
   initialState,
 
-  on(GroceryActions.SetChosenGroceryList, (state, { chosenGroceryList }) => ({
+  on(ToolsActions.SetChosenGroceryList, (state, { chosenGroceryList }) => ({
     ...state,
     chosenGroceryList: unionBy(
       chosenGroceryList,
@@ -31,7 +36,7 @@ export const reducer = createReducer(
   })),
 
   on(
-    GroceryActions.SetChosenGroceriesCount,
+    ToolsActions.SetChosenGroceriesCount,
     (state, { chosenGroceriesCount }) => ({
       ...state,
       chosenGroceriesCount
@@ -39,10 +44,20 @@ export const reducer = createReducer(
   ),
 
   on(
-    GroceryActions.SetSelectedGroceryList,
+    ToolsActions.SetSelectedGroceryList,
     (state, { selectedGroceryList }) => ({
       ...state,
       selectedGroceryList
     })
-  )
+  ),
+
+  on(ToolsActions.SetNotes, (state, { notes }) => ({
+    ...state,
+    notes
+  })),
+
+  on(ToolsActions.SetNotesCount, (state, { notesCount }) => ({
+    ...state,
+    notesCount
+  }))
 );

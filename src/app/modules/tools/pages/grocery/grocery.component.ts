@@ -12,12 +12,9 @@ import { Grocery } from '@shared/models';
 import { NotificationType } from '@shared/components/notification/notification.component';
 import { ButtonSize } from '@shared/components/button/button.component';
 import { NotificationService } from '@shared/services';
-import * as fromGrocery from '@modules/tools/store/reducers';
-import {
-  SetChosenGroceryList,
-  SetSelectedGroceryList
-} from '@modules/tools/store/actions/grocery.actions';
-import { selectSelectedGroceryList } from '@modules/tools/store/selectors';
+import * as fromGrocery from '@shared/store/reducers';
+import { ToolsActions } from '@shared/store/actions';
+import { selectSelectedGroceryList } from '@shared/store/selectors';
 import { groceryItems } from './constants/items';
 import {
   GroceryDialogComponent,
@@ -78,7 +75,7 @@ export class GroceryComponent implements OnInit {
         : this.groceries.filter(({ key }) => key !== newItem.key);
 
       this.store.dispatch(
-        SetSelectedGroceryList({ selectedGroceryList: this.groceries })
+        ToolsActions.SetSelectedGroceryList({ selectedGroceryList: this.groceries })
       );
     });
   };
@@ -90,7 +87,7 @@ export class GroceryComponent implements OnInit {
   updateSelectedGroceries = (item: Grocery): void => {
     this.groceries = this.groceries.filter(({ key }) => key !== item.key);
     this.store.dispatch(
-      SetSelectedGroceryList({ selectedGroceryList: this.groceries })
+      ToolsActions.SetSelectedGroceryList({ selectedGroceryList: this.groceries })
     );
   };
 
@@ -104,7 +101,7 @@ export class GroceryComponent implements OnInit {
   removeAll = (): void => {
     this.groceries = [];
     this.store.dispatch(
-      SetSelectedGroceryList({ selectedGroceryList: this.groceries })
+      ToolsActions.SetSelectedGroceryList({ selectedGroceryList: this.groceries })
     );
   };
 
@@ -123,10 +120,10 @@ export class GroceryComponent implements OnInit {
       (a, b) => a.key === b.key
     );
     this.store.dispatch(
-      SetChosenGroceryList({ chosenGroceryList: chosenGroceries })
+      ToolsActions.SetChosenGroceryList({ chosenGroceryList: chosenGroceries })
     );
     this.store.dispatch(
-      SetSelectedGroceryList({ selectedGroceryList: this.groceries })
+      ToolsActions.SetSelectedGroceryList({ selectedGroceryList: this.groceries })
     );
     this.notification.showNotification(
       'NOTIFICATIONS_ADDED_GROCERY',
@@ -151,7 +148,7 @@ export class GroceryComponent implements OnInit {
     this.groceries = [...this.groceries, newItem];
 
     this.store.dispatch(
-      SetSelectedGroceryList({ selectedGroceryList: this.groceries })
+      ToolsActions.SetSelectedGroceryList({ selectedGroceryList: this.groceries })
     );
     this.customItem.reset();
   };

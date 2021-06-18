@@ -21,8 +21,8 @@ import { from } from 'rxjs/internal/observable/from';
 
 import { Grocery } from '@shared/models';
 import { loadImage } from '@shared/utils';
-import * as fromTools from '@modules/tools/store/reducers';
-import { selectSelectedGroceryList } from '@modules/tools/store/selectors';
+import * as fromTools from '@shared/store/reducers';
+import { selectSelectedGroceryList } from '@shared/store/selectors';
 
 export interface GroceryDialogData {
   title: string;

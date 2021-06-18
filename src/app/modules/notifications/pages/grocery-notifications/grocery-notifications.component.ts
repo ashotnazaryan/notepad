@@ -4,8 +4,8 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Subject } from 'rxjs/internal/Subject';
 import { takeUntil } from 'rxjs/operators';
 
-import * as fromTools from '@modules/tools/store/reducers';
-import { selectChosenGroceryList } from '@modules/tools/store/selectors';
+import * as fromTools from '@shared/store/reducers';
+import { selectChosenGroceryList } from '@shared/store/selectors';
 import { Grocery } from '@shared/models';
 
 @Component({

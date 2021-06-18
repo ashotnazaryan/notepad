@@ -11,11 +11,13 @@ import { environment } from '@environments/environment';
 import * as fromModulePage from './module-page.reducer';
 import * as fromLanguage from './language.reducer';
 import * as fromLoading from './loading.reducer';
+import * as fromTools from './tools.reducer';
 
 export interface State {
   [fromModulePage.modulePageFeatureKey]: fromModulePage.State;
   [fromLanguage.languageFeatureKey]: fromLanguage.State;
   [fromLoading.loadingFeatureKey]: fromLoading.State;
+  [fromTools.toolsFeatureKey]: fromTools.State;
 }
 
 export const ROOT_REDUCERS = new InjectionToken<
@@ -24,7 +26,8 @@ export const ROOT_REDUCERS = new InjectionToken<
   factory: () => ({
     [fromModulePage.modulePageFeatureKey]: fromModulePage.reducer,
     [fromLanguage.languageFeatureKey]: fromLanguage.reducer,
-    [fromLoading.loadingFeatureKey]: fromLoading.reducer
+    [fromLoading.loadingFeatureKey]: fromLoading.reducer,
+    [fromTools.toolsFeatureKey]: fromTools.reducer
   })
 });
 
@@ -60,3 +63,8 @@ export const selectLoadingState = createFeatureSelector<
   State,
   fromLoading.State
 >(fromLoading.loadingFeatureKey);
+
+export const selectToolsState = createFeatureSelector<
+  State,
+  fromTools.State
+>(fromTools.toolsFeatureKey);
