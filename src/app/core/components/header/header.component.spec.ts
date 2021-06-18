@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatMenuModule } from '@angular/material/menu';
 import { RouterTestingModule } from '@angular/router/testing';
 import { StoreModule } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { MaterialModule } from '@shared/material/material.module';
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
@@ -14,9 +14,9 @@ describe('HeaderComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
+        MaterialModule,
         StoreModule.forRoot({}, {}),
-        TranslateModule.forRoot(),
-        MatMenuModule
+        TranslateModule.forRoot()
       ],
       declarations: [HeaderComponent]
     }).compileComponents();

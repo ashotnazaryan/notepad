@@ -11,16 +11,16 @@ import {
   providedIn: 'root'
 })
 export class NotificationService {
-  constructor(private snackBar: MatSnackBar) {}
+  constructor(private snackBar: MatSnackBar) { }
 
   showNotification = (
-    type: NotificationData['type'] = NotificationType.error,
-    message: NotificationData['message'] = 'NOTIFICATIONS_COMMON_SOMETHING_WENT_WRONG'
+    message: NotificationData['message'] = 'NOTIFICATIONS_COMMON_SOMETHING_WENT_WRONG',
+    type: NotificationData['type'] = NotificationType.error
   ): void => {
     const options: NotificationOptions = {
       data: {
-        type,
-        message
+        message,
+        type
       }
     };
 

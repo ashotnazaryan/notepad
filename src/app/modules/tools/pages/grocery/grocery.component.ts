@@ -47,7 +47,7 @@ export class GroceryComponent implements OnInit {
     private translate: TranslateService,
     private store: Store<fromGrocery.State>,
     private notification: NotificationService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.groceries$.subscribe((groceries) => {
@@ -112,10 +112,7 @@ export class GroceryComponent implements OnInit {
     const chosenGroceries = this.groceries.filter(({ checked }) => checked);
 
     if (!chosenGroceries.length) {
-      this.notification.showNotification(
-        NotificationType.error,
-        'NOTIFICATIONS_EMPTY_GROCERY_LIST'
-      );
+      this.notification.showNotification('NOTIFICATIONS_EMPTY_GROCERY_LIST');
 
       return;
     }
@@ -132,8 +129,8 @@ export class GroceryComponent implements OnInit {
       SetSelectedGroceryList({ selectedGroceryList: this.groceries })
     );
     this.notification.showNotification(
-      NotificationType.success,
-      'NOTIFICATIONS_ADDED_GROCERY'
+      'NOTIFICATIONS_ADDED_GROCERY',
+      NotificationType.success
     );
   };
 

@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
         filter((message) => !!message)
       )
       .subscribe((message) => {
-        this.notification.showNotification(NotificationType.error, message);
+        this.notification.showNotification(message);
       });
   }
 

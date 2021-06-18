@@ -90,7 +90,7 @@ export class WeatherComponent implements OnInit, OnDestroy {
   };
 
   private handleError = ({ message }: { message: string }): void => {
-    this.notification.showNotification(NotificationType.error, message);
+    this.notification.showNotification(message);
   };
 
   ngOnDestroy(): void {

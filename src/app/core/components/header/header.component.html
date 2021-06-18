@@ -33,7 +33,7 @@
       </div>
       <div class="header-container__content flex flex-row flex-wrap flex-grow-1 justify-content-end align-items-center">
         <app-clock [timeFormat]="clockFormat" class="ellipsis-text"></app-clock>
-        <!-- TODO move to component -->
+        <!-- TODO move to а component -->
         <app-button
           icon="language"
           color="primary"
@@ -50,12 +50,12 @@
           class="mx-2"
           icon="notifications_active"
           color="primary"
-          [size]="ButtonSize.icon"
-          [matMenuTriggerFor]="notifications"
-          [matTooltip]="'GENERAL_TOOLTIPS_NOTIFICATIONS' | translate"
           matTooltipPosition="left"
           matBadgeSize="small"
           matBadgeColor="accent"
+          [size]="ButtonSize.icon"
+          [matMenuTriggerFor]="notifications"
+          [matTooltip]="'GENERAL_TOOLTIPS_NOTIFICATIONS' | translate"
           [matBadge]="totalCount$ | async"
           [matBadgeHidden]="!(totalCount$ | async)">
         </app-button>

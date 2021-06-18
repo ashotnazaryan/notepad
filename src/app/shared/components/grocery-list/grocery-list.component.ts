@@ -25,9 +25,8 @@ export class GroceryListComponent implements OnInit {
   @Input() data: Array<Grocery> = [];
   @Input() editable = true;
 
-  @Output() readonly itemChecked: EventEmitter<
-    Array<Grocery>
-  > = new EventEmitter();
+  @Output() readonly itemChecked: EventEmitter<Array<Grocery>> =
+    new EventEmitter();
   @Output() readonly itemRemoved: EventEmitter<Grocery> = new EventEmitter();
   @Output() readonly allChecked: EventEmitter<boolean> = new EventEmitter();
   @Output() readonly allRemoved: EventEmitter<void> = new EventEmitter();
@@ -89,7 +88,7 @@ export class GroceryListComponent implements OnInit {
   };
 
   private initFormControls = (): void => {
-    const formArray = this.data.map((item) => this.createNewItem(item));
+    const formArray = this.data?.map((item) => this.createNewItem(item)) || [];
 
     this.groceriesArr = new FormArray(formArray);
 
@@ -138,13 +137,13 @@ export class GroceryListComponent implements OnInit {
 
     this.form.get('selectAll')?.setValue(this.allCheck);
 
-    if (newItems.length) {
+    if (newItems?.length) {
       newItems.forEach((item) => this.addItem(item));
 
       return;
     }
 
-    if (removedItems.length) {
+    if (removedItems?.length) {
       removedItems.forEach((item) => {
         const index = findIndex(this.groceriesArr.value, item); // NOTE Because this.groceriesArr changes after the removeItem
 

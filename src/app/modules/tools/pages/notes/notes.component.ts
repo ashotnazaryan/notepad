@@ -54,10 +54,7 @@ export class NotesComponent implements OnInit, OnDestroy {
     const data = this.form.value?.paper;
 
     if (!data) {
-      this.notification.showNotification(
-        NotificationType.error,
-        'NOTIFICATIONS_SAVE_EMPTY_NOTES'
-      );
+      this.notification.showNotification('NOTIFICATIONS_SAVE_EMPTY_NOTES');
 
       return;
     }
@@ -71,7 +68,7 @@ export class NotesComponent implements OnInit, OnDestroy {
         this.form.setValue({ paper: data });
       },
       (error) => {
-        this.notification.showNotification(NotificationType.error, error);
+        this.notification.showNotification(error);
       }
     );
   };
@@ -83,10 +80,7 @@ export class NotesComponent implements OnInit, OnDestroy {
     };
 
     if (!data.text) {
-      this.notification.showNotification(
-        NotificationType.error,
-        'NOTIFICATIONS_REMIND_EMPTY_NOTES'
-      );
+      this.notification.showNotification('NOTIFICATIONS_REMIND_EMPTY_NOTES');
 
       return;
     }
@@ -95,8 +89,8 @@ export class NotesComponent implements OnInit, OnDestroy {
 
     this.store.dispatch(NotesActions.SetNotes({ notes: this.notes }));
     this.notification.showNotification(
-      NotificationType.success,
-      'NOTIFICATIONS_ADDED_NOTES'
+      'NOTIFICATIONS_ADDED_NOTES',
+      NotificationType.success
     );
     this.clear();
   };

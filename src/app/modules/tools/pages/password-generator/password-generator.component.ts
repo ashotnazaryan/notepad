@@ -42,15 +42,8 @@ export class PasswordGeneratorComponent implements OnInit {
 
   generate = (): void => {
     const formValue: GeneratorOptions = this.form.value;
-
-    const {
-      length,
-      numbers,
-      symbols,
-      uppercase,
-      excludeSimilarCharacters
-    } = formValue;
-
+    const { length, numbers, symbols, uppercase, excludeSimilarCharacters } =
+      formValue;
     const options: GeneratorOptions = {
       length,
       numbers,
@@ -58,7 +51,6 @@ export class PasswordGeneratorComponent implements OnInit {
       uppercase,
       excludeSimilarCharacters
     };
-
     const password = generator.generate(options);
 
     this.form.get('password')?.setValue(password);
@@ -70,18 +62,15 @@ export class PasswordGeneratorComponent implements OnInit {
 
   handleCopy = (copied: boolean): void => {
     if (!this.form.get('password')?.value) {
-      this.notification.showNotification(
-        NotificationType.error,
-        'NOTIFICATIONS_EMPTY_GENERATED_PASSWORD'
-      );
+      this.notification.showNotification('NOTIFICATIONS_EMPTY_GENERATED_PASSWORD');
 
       return;
     }
 
     if (copied) {
       this.notification.showNotification(
-        NotificationType.success,
-        'NOTIFICATIONS_COPIED_CLIPBOARD'
+        'NOTIFICATIONS_COPIED_CLIPBOARD',
+        NotificationType.success
       );
     }
   };
