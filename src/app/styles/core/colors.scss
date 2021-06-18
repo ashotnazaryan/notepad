@@ -1,3 +1,4 @@
+@use '~@angular/material' as mat;
 @import '~@angular/material/theming';
 
-$primary: mat-color($notepad-primary, 800);
+$primary: mat.get-color-from-palette($notepad-primary, 800);
