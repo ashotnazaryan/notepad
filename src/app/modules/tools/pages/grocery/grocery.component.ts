@@ -111,7 +111,7 @@ export class GroceryComponent implements OnInit {
   remind = (): void => {
     const chosenGroceries = this.groceries.filter(({ checked }) => checked);
 
-    if (!chosenGroceries.length) {
+    if (!chosenGroceries?.length) {
       this.notification.showNotification('NOTIFICATIONS_EMPTY_GROCERY_LIST');
 
       return;

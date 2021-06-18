@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { MaterialModule } from '@shared/material/material.module';
 import { WeatherWidgetComponent } from './weather-widget.component';
 
 describe('WeatherWidgetComponent', () => {
@@ -9,7 +10,7 @@ describe('WeatherWidgetComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslateModule.forRoot()],
+      imports: [TranslateModule.forRoot(), MaterialModule],
       declarations: [WeatherWidgetComponent]
     }).compileComponents();
   });

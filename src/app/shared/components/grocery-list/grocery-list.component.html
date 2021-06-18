@@ -1,5 +1,5 @@
 <div class="grocery-list-container">
-  <ng-container *ngIf="data.length; else noData">
+  <ng-container *ngIf="data?.length; else noData">
     <form [formGroup]="form">
       <div
         *ngIf="editable"

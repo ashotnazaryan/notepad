@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { SharedModule } from '@shared/shared.module';
 import { GroceryListComponent } from './grocery-list.component';
 
 describe('GroceryListComponent', () => {
@@ -10,7 +11,7 @@ describe('GroceryListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, TranslateModule.forRoot()],
+      imports: [ReactiveFormsModule, TranslateModule.forRoot(), SharedModule],
       declarations: [GroceryListComponent]
     }).compileComponents();
   });

@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslateModule } from '@ngx-translate/core';
 
+import { SharedModule } from '@shared/shared.module';
 import { UploadButtonComponent } from './upload-button.component';
 
 describe('UploadButtonComponent', () => {
@@ -8,6 +10,7 @@ describe('UploadButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [SharedModule, TranslateModule.forRoot()],
       declarations: [UploadButtonComponent]
     }).compileComponents();
   });

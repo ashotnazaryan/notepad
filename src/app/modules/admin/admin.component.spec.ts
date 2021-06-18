@@ -1,5 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { StoreModule } from '@ngrx/store';
+import { TranslateModule } from '@ngx-translate/core';
 
+import { MaterialModule } from '@shared/material/material.module';
+import { HeaderComponent } from '@core/components/header/header.component';
 import { AdminComponent } from './admin.component';
 
 describe('AdminComponent', () => {
@@ -8,7 +13,13 @@ describe('AdminComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AdminComponent]
+      imports: [
+        RouterTestingModule,
+        StoreModule.forRoot({}, {}),
+        TranslateModule.forRoot(),
+        MaterialModule
+      ],
+      declarations: [AdminComponent, HeaderComponent]
     }).compileComponents();
   });
 

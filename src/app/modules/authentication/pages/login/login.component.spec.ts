@@ -1,12 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import {
-  MatSnackBarModule,
-  MatSnackBarRef,
-  MAT_SNACK_BAR_DATA
-} from '@angular/material/snack-bar';
+import { MatSnackBarRef, MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 import { StoreModule } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { SharedModule } from '@shared/shared.module';
 import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {
@@ -18,7 +15,7 @@ describe('LoginComponent', () => {
       imports: [
         StoreModule.forRoot({}, {}),
         TranslateModule.forRoot(),
-        MatSnackBarModule
+        SharedModule
       ],
       declarations: [LoginComponent],
       providers: [

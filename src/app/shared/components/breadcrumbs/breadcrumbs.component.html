@@ -1,5 +1,5 @@
 <div class="breadcrumbs-container flex flex-row align-items-center">
-  <span class="breadcrumbs-container__text ellipsis-text">{{item.module | translate}}</span>
+  <span class="breadcrumbs-container__text ellipsis-text">{{(item?.module || '') | translate}}</span>
   <mat-icon>keyboard_arrow_right</mat-icon>
-  <span class="breadcrumbs-container__text ellipsis-text">{{item.page | translate}}</span>
+  <span class="breadcrumbs-container__text ellipsis-text">{{(item?.page || '') | translate}}</span>
 </div>

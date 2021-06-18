@@ -1,10 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import {
-  MatSnackBarRef,
-  MAT_SNACK_BAR_DATA
-} from '@angular/material/snack-bar';
+import { MatSnackBarRef, MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { SharedModule } from '@shared/shared.module';
 import { NotificationComponent } from './notification.component';
 
 describe('NotificationComponent', () => {
@@ -13,7 +11,7 @@ describe('NotificationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TranslateModule.forRoot()],
+      imports: [TranslateModule.forRoot(), SharedModule],
       declarations: [NotificationComponent],
       providers: [
         {

@@ -1,11 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { of } from 'rxjs/internal/observable/of';
 
+import { SharedModule } from '@shared/shared.module';
 import { GroceryComponent } from './grocery.component';
 
 // TODO move to the shared mock
@@ -24,9 +25,10 @@ describe('GroceryComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
+        BrowserAnimationsModule,
         TranslateModule.forRoot(),
         StoreModule.forRoot({}, {}),
-        MatSnackBarModule
+        SharedModule
       ],
       declarations: [GroceryComponent],
       providers: [{ provide: MatDialog, useClass: MatDialogMock }]

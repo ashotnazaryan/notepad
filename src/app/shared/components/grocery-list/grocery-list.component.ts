@@ -47,7 +47,7 @@ export class GroceryListComponent implements OnInit {
   get allCheck(): boolean {
     const groceries = this.groceriesArr.value as Array<Grocery>;
 
-    return !!groceries.length && groceries.every(({ checked }) => checked);
+    return !!groceries?.length && groceries.every(({ checked }) => checked);
   }
 
   constructor(private formBuilder: FormBuilder) {}

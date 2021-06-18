@@ -3,7 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { StoreModule } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { MaterialModule } from '@shared/material/material.module';
+import { SharedModule } from '@shared/shared.module';
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
@@ -14,9 +14,9 @@ describe('HeaderComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        MaterialModule,
         StoreModule.forRoot({}, {}),
-        TranslateModule.forRoot()
+        TranslateModule.forRoot(),
+        SharedModule
       ],
       declarations: [HeaderComponent]
     }).compileComponents();
