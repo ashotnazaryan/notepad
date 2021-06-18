@@ -11,16 +11,21 @@ import * as moment from 'moment';
 
 import { MENU_ITEMS } from '@core/constants';
 import { ModulePage } from '@core/models';
-import User, { GoogleUserDTO } from '@core/models/user';
+import User from '@core/models/user';
 import { LANGUAGES } from '@shared/constants';
 import * as fromRoot from '@shared/store/reducers';
 import * as fromAuth from '@shared/store/reducers';
 import * as fromTools from '@modules/tools/store/reducers';
-import { Language } from '@shared/models';
 import { SetLanguage } from '@shared/store/actions/language.actions';
+import { Language } from '@shared/models';
+import {
+  selectChosenGroceriesCount,
+  selectNotesCount
+} from '@modules/tools/store/selectors';
 import { ButtonSize } from '@shared/components/button/button.component';
 import { AuthenticationService } from '@modules/authentication/services/authentication.service';
-import { Logout } from '@shared/store/actions/auth.actions';
+import { Logout } from '@modules/authentication/store/actions/login.actions';
+import { selectLanguage, selectModulePage } from '@shared/store/selectors';
 
 @Component({
   selector: 'app-header',
@@ -34,15 +39,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
   menuItems = MENU_ITEMS;
 
   modulePage$: Observable<ModulePage> = this.store
-    .select(fromRoot.selectModulePage)
+    .select(selectModulePage)
     .pipe(takeUntil(this.unsubscribe$));
 
   currentLanguage$: Observable<Language> = this.store
-    .select(fromRoot.selectLanguage)
+    .select(selectLanguage)
     .pipe(takeUntil(this.unsubscribe$));
 
   totalCount$: Observable<number> = of(0);
-  user$: Observable<User<GoogleUserDTO>> = of(this.authentication.user);
+  user$: Observable<User> = of(this.authentication.user);
   readonly ButtonSize = ButtonSize;
 
   constructor(
@@ -68,8 +73,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private setNotificationsCount = (): void => {
     const notifications$ = [
-      this.store.pipe(select(fromTools.selectChosenGroceriesCount)),
-      this.store.pipe(select(fromTools.selectNotesCount))
+      this.store.pipe(select(selectChosenGroceriesCount)),
+      this.store.pipe(select(selectNotesCount))
     ];
 
     this.totalCount$ = combineLatest(notifications$).pipe(

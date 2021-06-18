@@ -27,6 +27,7 @@ import {
   ShowLoading
 } from '@shared/store/actions/loading.actions';
 import { WeatherService } from './services/weather.service';
+import { selectLanguage, selectLoading } from '@shared/store/selectors';
 
 @Component({
   selector: 'app-weather',
@@ -39,7 +40,7 @@ export class WeatherComponent implements OnInit, OnDestroy {
   weather?: ClientWeather;
 
   loading$: Observable<boolean> = this.store
-    .select(fromRoot.selectLoading)
+    .select(selectLoading)
     .pipe(takeUntil(this.unsubscribe$));
 
   readonly WeatherViewMode = WeatherViewMode;
@@ -63,7 +64,7 @@ export class WeatherComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.unsubscribe$),
         tap(() => this.store.dispatch(ShowLoading())),
-        withLatestFrom(this.store.select(fromRoot.selectLanguage)),
+        withLatestFrom(this.store.select(selectLanguage)),
         switchMap(([data, { key }]: [ClientLocation, Language]) =>
           this.weatherService.getWeather(data, key, this.forecastHours)
         ),

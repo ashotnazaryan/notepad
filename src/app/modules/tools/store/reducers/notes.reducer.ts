@@ -28,7 +28,3 @@ export const reducer = createReducer(
     count
   }))
 );
-
-export const selectNotesFn = (state: State): State['notes'] => state?.notes;
-export const selectNotesCountFn = (state: State): State['count'] =>
-  state?.count;

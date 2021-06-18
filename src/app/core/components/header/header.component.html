@@ -74,17 +74,22 @@
             </span>
           </button>
         </mat-menu>
-        <app-button
-          icon="fingerprint"
-          iconPosition="right"
-          color="primary"
-          [size]="ButtonSize.small"
-          [text]="(user$ | async)?.name!"
-          [matMenuTriggerFor]="user">
-        </app-button>
-        <mat-menu #user="matMenu">
-          <button mat-menu-item (click)="logout()">{{'GENERAL_BUTTONS_LOGOUT' | translate}}</button>
-        </mat-menu>
+        <ng-container *ngIf="user$ | async as user">
+          <!-- TODO create avatar component -->
+          <app-button
+            color="primary"
+            class="flex flex-row align-items-center"
+            [size]="ButtonSize.icon"
+            [text]="user.name!"
+            [matMenuTriggerFor]="userMenu">
+            <ng-template #customTemplate>
+              <img class="header-container__content__user-icon" [src]="user.photo" />
+            </ng-template>
+          </app-button>
+          <mat-menu #userMenu="matMenu">
+            <button mat-menu-item (click)="logout()">{{'GENERAL_BUTTONS_LOGOUT' | translate}}</button>
+          </mat-menu>
+        </ng-container>
       </div>
     </div>
   </mat-toolbar>

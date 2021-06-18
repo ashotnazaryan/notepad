@@ -23,6 +23,3 @@ export const reducer = createReducer(
     modulePage
   }))
 );
-
-export const selectModulePageFn = (state: State): State['modulePage'] =>
-  state?.modulePage;

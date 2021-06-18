@@ -13,11 +13,11 @@ import { NotificationType } from '@shared/components/notification/notification.c
 import { ButtonSize } from '@shared/components/button/button.component';
 import { NotificationService } from '@shared/services';
 import * as fromGrocery from '@modules/tools/store/reducers';
-import * as fromTools from '@modules/tools/store/reducers';
 import {
   SetChosenGroceryList,
   SetSelectedGroceryList
 } from '@modules/tools/store/actions/grocery.actions';
+import { selectSelectedGroceryList } from '@modules/tools/store/selectors';
 import { groceryItems } from './constants/items';
 import {
   GroceryDialogComponent,
@@ -35,7 +35,7 @@ export class GroceryComponent implements OnInit {
   groceries: Array<Grocery> = [];
 
   groceries$: Observable<Array<Grocery>> = this.store
-    .select(fromTools.selectSelectedGroceryList)
+    .select(selectSelectedGroceryList)
     .pipe(takeUntil(this.unsubscribe$));
 
   customItem = new FormControl('', Validators.required);

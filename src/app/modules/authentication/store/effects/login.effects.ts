@@ -6,36 +6,37 @@ import { catchError, exhaustMap, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs/internal/observable/of';
 
 import { ROUTES } from '@core/constants';
-import User, { GoogleUserDTO } from '@core/models/user';
+import User from '@core/models/user';
 import {
   HideLoading,
   ShowLoading
 } from '@shared/store/actions/loading.actions';
+import { CacheService } from '@shared/services/cache.service';
+import { CacheKey } from '@shared/models';
 import { AuthenticationService } from '@modules/authentication/services/authentication.service';
-import { AuthActions } from '../actions';
+import { LoginActions } from '../actions';
 import * as fromAuth from '../reducers';
 
 @Injectable()
-export class AuthEffects {
+export class LoginEffects {
   login$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(AuthActions.Login),
+      ofType(LoginActions.Login),
       map((action) => action.provider),
       tap(() => this.store.dispatch(ShowLoading())),
       exhaustMap((provider) =>
         this.authentication.login(provider).pipe(
           map((user) => {
-            const normalizedUser = new User<GoogleUserDTO>(user, provider);
-            const userStr = JSON.stringify(normalizedUser);
+            const normalizedUser = new User(user);
 
-            localStorage.setItem('user', userStr);
+            this.cache.setItem(CacheKey.USER, normalizedUser);
 
-            return AuthActions.LoginSuccess(normalizedUser);
+            return LoginActions.LoginSuccess(normalizedUser);
           }),
           catchError(({ message }) => {
             this.store.dispatch(HideLoading());
 
-            return of(AuthActions.LoginFail({ message }));
+            return of(LoginActions.LoginFail({ message }));
           })
         )
       )
@@ -45,7 +46,7 @@ export class AuthEffects {
   loginSuccess$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(AuthActions.LoginSuccess),
+        ofType(LoginActions.LoginSuccess),
         tap(() =>
           this.ngZone
             // https://github.com/angular/angular/issues/25837
@@ -59,19 +60,19 @@ export class AuthEffects {
 
   logout$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(AuthActions.Logout),
+      ofType(LoginActions.Logout),
       tap(() => this.store.dispatch(ShowLoading())),
       exhaustMap(() =>
         this.authentication.logout().pipe(
           map(() => {
             localStorage.removeItem('user');
 
-            return AuthActions.LogoutSuccess();
+            return LoginActions.LogoutSuccess();
           }),
           catchError(({ message }) => {
             this.store.dispatch(HideLoading());
 
-            return of(AuthActions.LogoutFail({ message }));
+            return of(LoginActions.LogoutFail({ message }));
           })
         )
       )
@@ -81,11 +82,15 @@ export class AuthEffects {
   logoutSuccess$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(AuthActions.LogoutSuccess),
+        ofType(LoginActions.LogoutSuccess),
         tap(() =>
           this.ngZone
             // https://github.com/angular/angular/issues/25837
-            .run(() => this.router.navigate([`${ROUTES.authentication.route}`]))
+            .run(() =>
+              this.router.navigateByUrl(
+                `${ROUTES.authentication.route}/${ROUTES.authentication.sub_routes?.login.route}`
+              )
+            )
             .then()
         ),
         tap(() => this.store.dispatch(HideLoading()))
@@ -98,6 +103,7 @@ export class AuthEffects {
     private store: Store<fromAuth.State>,
     private router: Router,
     private authentication: AuthenticationService,
+    private cache: CacheService,
     private ngZone: NgZone
   ) {}
 }

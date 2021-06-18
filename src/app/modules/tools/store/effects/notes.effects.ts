@@ -5,7 +5,7 @@ import { map, switchMap } from 'rxjs/operators';
 
 import { NotesActions } from '../actions';
 import * as fromTools from '../reducers';
-import { selectNotes } from '../reducers';
+import { selectNotes } from '../selectors/notes.selectors';
 
 @Injectable()
 export class NotesEffects {
