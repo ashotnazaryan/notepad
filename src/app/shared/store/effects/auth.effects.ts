@@ -5,8 +5,8 @@ import { Store } from '@ngrx/store';
 import { catchError, exhaustMap, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs/internal/observable/of';
 
-import { ROUTES } from '@core/constants';
-import User from '@core/models/user';
+import { ROUTES } from '@shared/constants';
+import User from '@shared/models/user';
 import {
   HideLoading,
   ShowLoading

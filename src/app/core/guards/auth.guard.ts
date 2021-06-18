@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, CanLoad, Router, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 
-import { ROUTES } from '@core/constants';
+import { ROUTES } from '@shared/constants';
 import { AuthenticationService } from '@modules/authentication/services/authentication.service';
 
 @Injectable({

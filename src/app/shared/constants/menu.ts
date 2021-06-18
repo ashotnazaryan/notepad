@@ -1,4 +1,4 @@
-import { Menu } from '@core/models';
+import { Menu } from '@shared/models';
 import { ROUTES } from './routes';
 
 export const MENU_ITEMS: { [key: string]: Array<Menu> } = {

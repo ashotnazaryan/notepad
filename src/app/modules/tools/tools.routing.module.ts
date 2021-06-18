@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ROUTES } from '@core/constants';
+import { ROUTES } from '@shared/constants';
 import { ToolsComponent } from './tools.component';
 import { NotesComponent } from './pages/notes/notes.component';
 import { GroceryComponent } from './pages/grocery/grocery.component';

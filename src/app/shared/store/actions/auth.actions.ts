@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
-import { LoginProvider } from '@core/models';
-import User from '@core/models/user';
+import { LoginProvider } from '@shared/models';
+import User from '@shared/models/user';
 
 export const Login = createAction(
   '[Auth] Login',

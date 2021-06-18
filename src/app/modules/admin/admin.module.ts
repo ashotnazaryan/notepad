@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { SharedModule } from '@shared/shared.module';
 import { AdminRoutingModule } from './admin.routing.module';
+import { HeaderComponent } from '@shared/components/header/header.component';
 import { AdminComponent } from './admin.component';
-import { HeaderComponent } from '@core/components/header/header.component';
 
 @NgModule({
   declarations: [AdminComponent, HeaderComponent],

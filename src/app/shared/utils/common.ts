@@ -3,8 +3,8 @@ import { Observable } from 'rxjs/internal/Observable';
 import { capitalize, get, identity } from 'lodash';
 import * as moment from 'moment';
 
-import { ROUTES } from '@core/constants';
-import { ModulePage } from '@core/models';
+import { ROUTES } from '@shared/constants';
+import { ModulePage } from '@shared/models';
 import Weather, { ClientWeather, WEATHER_ICONS } from '@shared/models/location';
 
 export const getModulePage = (event: Event): ModulePage => {

@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs/internal/Subject';
 import { filter, takeUntil } from 'rxjs/operators';
 
-import { LoginProvider } from '@core/models';
+import { LoginProvider } from '@shared/models';
 import { NotificationService } from '@shared/services';
 import { ButtonSize } from '@shared/components/button/button.component';
 import * as fromAuth from '@shared/store/reducers';

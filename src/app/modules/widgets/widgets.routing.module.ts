@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ROUTES } from '@core/constants';
+import { ROUTES } from '@shared/constants';
 import { WidgetsComponent } from './widgets.component';
 import { TimeComponent } from './pages/time/time.component';
 import { WeatherComponent } from './pages/weather/weather.component';

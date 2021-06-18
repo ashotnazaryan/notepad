@@ -1,4 +1,4 @@
-import { AppRoute } from '@core/models';
+import { AppRoute } from '@shared/models';
 
 export const ROUTES: AppRoute = {
   authentication: {

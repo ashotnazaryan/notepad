@@ -9,9 +9,9 @@ import { combineLatest } from 'rxjs/internal/observable/combineLatest';
 import { map, takeUntil, tap } from 'rxjs/operators';
 import * as moment from 'moment';
 
-import { MENU_ITEMS } from '@core/constants';
-import { ModulePage } from '@core/models';
-import User from '@core/models/user';
+import { MENU_ITEMS } from '@shared/constants';
+import { ModulePage } from '@shared/models';
+import User from '@shared/models/user';
 import { LANGUAGES } from '@shared/constants';
 import * as fromRoot from '@shared/store/reducers';
 import * as fromAuth from '@shared/store/reducers';

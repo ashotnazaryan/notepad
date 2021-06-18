@@ -4,7 +4,7 @@ import { StoreModule } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { MaterialModule } from '@shared/material/material.module';
-import { HeaderComponent } from '@core/components/header/header.component';
+import { HeaderComponent } from '@shared/components/header/header.component';
 import { AdminComponent } from './admin.component';
 
 describe('AdminComponent', () => {

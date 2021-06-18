@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { ModulePage } from '@core/models';
+import { ModulePage } from '@shared/models';
 import { ModulePageActions } from '@shared/store/actions';
 
 export const modulePageFeatureKey = 'module-page';

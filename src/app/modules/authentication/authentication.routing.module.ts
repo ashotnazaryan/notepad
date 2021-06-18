@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ROUTES } from '@core/constants';
+import { ROUTES } from '@shared/constants';
 import { AuthenticationComponent } from './authentication.component';
 import { LoginComponent } from './pages/login/login.component';
 

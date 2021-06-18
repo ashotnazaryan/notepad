@@ -4,7 +4,7 @@ import 'firebase/auth';
 import { Observable } from 'rxjs/internal/Observable';
 import { from } from 'rxjs/internal/observable/from';
 
-import User, { LoginProvider } from '@core/models/user';
+import User, { LoginProvider } from '@shared/models/user';
 import { CacheService } from '@shared/services/cache.service';
 import { CacheKey } from '@shared/models';
 
