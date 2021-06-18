@@ -2,7 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { unionBy } from 'lodash';
 
 import { Grocery } from '@shared/models';
-import { Note } from '@modules/tools/pages/notes/models/note';
+import { Note } from '@shared/models';
 import { ToolsActions } from '../actions';
 
 export const toolsFeatureKey = 'tools';

@@ -1,9 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
 
 import User from '@core/models/user';
-import { LoginActions } from '../actions';
+import { AuthActions } from '../actions';
 
-export const loginFeatureKey = 'login';
+export const authFeatureKey = 'auth';
 
 export interface State {
   user: User;
@@ -19,12 +19,12 @@ const initialState: State = {
 export const reducer = createReducer(
   initialState,
 
-  on(LoginActions.LoginSuccess, (state, user) => ({
+  on(AuthActions.LoginSuccess, (state, user) => ({
     ...state,
     user
   })),
 
-  on(LoginActions.LoginFail, (state, { message }) => ({
+  on(AuthActions.LoginFail, (state, { message }) => ({
     ...state,
     errorMessage: message
   }))

@@ -5,11 +5,10 @@ import { filter, takeUntil } from 'rxjs/operators';
 
 import { LoginProvider } from '@core/models';
 import { NotificationService } from '@shared/services';
-import { NotificationType } from '@shared/components/notification/notification.component';
 import { ButtonSize } from '@shared/components/button/button.component';
-import * as fromAuth from '@modules/authentication/store/reducers';
-import { Login } from '@modules/authentication/store/actions/login.actions';
-import { selectLoggedInError } from '@modules/authentication/store/selectors';
+import * as fromAuth from '@shared/store/reducers';
+import { AuthActions } from '@shared/store/actions';
+import { selectLoggedInError } from '@shared/store/selectors';
 
 @Component({
   selector: 'app-login',
@@ -39,7 +38,7 @@ export class LoginComponent implements OnInit {
   }
 
   login = (provider: LoginProvider): void => {
-    this.store.dispatch(Login({ provider }));
+    this.store.dispatch(AuthActions.Login({ provider }));
   };
 
   ngOnDestroy(): void {

@@ -13,7 +13,7 @@ import { KeyName } from '@shared/models';
 import * as fromTools from '@shared/store/reducers';
 import { ToolsActions } from '@shared/store/actions';
 import { selectNotes } from '@shared/store/selectors';
-import { Note } from './models/note';
+import { Note } from '@shared/models/note';
 import { paperTypes } from './constants/paper-types';
 
 @Component({

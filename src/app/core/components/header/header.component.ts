@@ -24,7 +24,7 @@ import {
 } from '@shared/store/selectors';
 import { ButtonSize } from '@shared/components/button/button.component';
 import { AuthenticationService } from '@modules/authentication/services/authentication.service';
-import { Logout } from '@modules/authentication/store/actions/login.actions';
+import { AuthActions } from '@shared/store/actions';
 import { selectLanguage, selectModulePage } from '@shared/store/selectors';
 
 @Component({
@@ -67,7 +67,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   };
 
   logout = (): void => {
-    this.store.dispatch(Logout());
+    this.store.dispatch(AuthActions.Logout());
   };
 
   private setNotificationsCount = (): void => {

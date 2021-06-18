@@ -12,12 +12,14 @@ import * as fromModulePage from './module-page.reducer';
 import * as fromLanguage from './language.reducer';
 import * as fromLoading from './loading.reducer';
 import * as fromTools from './tools.reducer';
+import * as fromAuth from './auth.reducer';
 
 export interface State {
   [fromModulePage.modulePageFeatureKey]: fromModulePage.State;
   [fromLanguage.languageFeatureKey]: fromLanguage.State;
   [fromLoading.loadingFeatureKey]: fromLoading.State;
   [fromTools.toolsFeatureKey]: fromTools.State;
+  [fromAuth.authFeatureKey]: fromAuth.State;
 }
 
 export const ROOT_REDUCERS = new InjectionToken<
@@ -27,7 +29,8 @@ export const ROOT_REDUCERS = new InjectionToken<
     [fromModulePage.modulePageFeatureKey]: fromModulePage.reducer,
     [fromLanguage.languageFeatureKey]: fromLanguage.reducer,
     [fromLoading.loadingFeatureKey]: fromLoading.reducer,
-    [fromTools.toolsFeatureKey]: fromTools.reducer
+    [fromTools.toolsFeatureKey]: fromTools.reducer,
+    [fromAuth.authFeatureKey]: fromAuth.reducer
   })
 });
 
@@ -68,3 +71,8 @@ export const selectToolsState = createFeatureSelector<
   State,
   fromTools.State
 >(fromTools.toolsFeatureKey);
+
+export const selectAuthState = createFeatureSelector<
+  State,
+  fromAuth.State
+>(fromAuth.authFeatureKey);

@@ -10,6 +10,7 @@ import { CoreModule } from '@core/core.module';
 import { SharedModule } from '@shared/shared.module';
 import { ROOT_REDUCERS, metaReducers } from '@shared/store/reducers';
 import { ToolsEffects } from '@shared/store/effects';
+import { AuthEffects } from '@shared/store/effects/auth.effects';
 import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.component';
@@ -36,7 +37,7 @@ import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.c
       logOnly: environment.production,
       autoPause: true
     }),
-    EffectsModule.forRoot([ToolsEffects])
+    EffectsModule.forRoot([ToolsEffects, AuthEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

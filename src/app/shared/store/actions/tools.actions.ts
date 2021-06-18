@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
 import { Grocery } from '@shared/models';
-import { Note } from '@modules/tools/pages/notes/models/note';
+import { Note } from '@shared/models';
 
 export const SetChosenGroceryList = createAction(
   '[Groceries] Set chosen grocery list',

@@ -6,7 +6,7 @@ import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 
 import { selectNotes } from '@shared/store/selectors';
 import * as fromTools from '@shared/store/reducers';
-import { Note } from '@modules/tools/pages/notes/models/note';
+import { Note } from '@shared/models';
 
 @Component({
   selector: 'app-notes-notifications',
