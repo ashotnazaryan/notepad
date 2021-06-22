@@ -8,9 +8,8 @@ import { Observable } from 'rxjs/internal/Observable';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import { differenceWith, lowerCase } from 'lodash';
 
-import { Grocery } from '@shared/models';
+import { Grocery, ButtonSize } from '@shared/models';
 import { NotificationType } from '@shared/components/notification/notification.component';
-import { ButtonSize } from '@shared/components/button/button.component';
 import { NotificationService } from '@shared/services';
 import * as fromGrocery from '@shared/store/reducers';
 import { ToolsActions } from '@shared/store/actions';
@@ -44,7 +43,7 @@ export class GroceryComponent implements OnInit {
     private translate: TranslateService,
     private store: Store<fromGrocery.State>,
     private notification: NotificationService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.groceries$.subscribe((groceries) => {
@@ -75,7 +74,9 @@ export class GroceryComponent implements OnInit {
         : this.groceries.filter(({ key }) => key !== newItem.key);
 
       this.store.dispatch(
-        ToolsActions.SetSelectedGroceryList({ selectedGroceryList: this.groceries })
+        ToolsActions.SetSelectedGroceryList({
+          selectedGroceryList: this.groceries
+        })
       );
     });
   };
@@ -87,7 +88,9 @@ export class GroceryComponent implements OnInit {
   updateSelectedGroceries = (item: Grocery): void => {
     this.groceries = this.groceries.filter(({ key }) => key !== item.key);
     this.store.dispatch(
-      ToolsActions.SetSelectedGroceryList({ selectedGroceryList: this.groceries })
+      ToolsActions.SetSelectedGroceryList({
+        selectedGroceryList: this.groceries
+      })
     );
   };
 
@@ -101,7 +104,9 @@ export class GroceryComponent implements OnInit {
   removeAll = (): void => {
     this.groceries = [];
     this.store.dispatch(
-      ToolsActions.SetSelectedGroceryList({ selectedGroceryList: this.groceries })
+      ToolsActions.SetSelectedGroceryList({
+        selectedGroceryList: this.groceries
+      })
     );
   };
 
@@ -123,7 +128,9 @@ export class GroceryComponent implements OnInit {
       ToolsActions.SetChosenGroceryList({ chosenGroceryList: chosenGroceries })
     );
     this.store.dispatch(
-      ToolsActions.SetSelectedGroceryList({ selectedGroceryList: this.groceries })
+      ToolsActions.SetSelectedGroceryList({
+        selectedGroceryList: this.groceries
+      })
     );
     this.notification.showNotification(
       'NOTIFICATIONS_ADDED_GROCERY',
@@ -148,7 +155,9 @@ export class GroceryComponent implements OnInit {
     this.groceries = [...this.groceries, newItem];
 
     this.store.dispatch(
-      ToolsActions.SetSelectedGroceryList({ selectedGroceryList: this.groceries })
+      ToolsActions.SetSelectedGroceryList({
+        selectedGroceryList: this.groceries
+      })
     );
     this.customItem.reset();
   };

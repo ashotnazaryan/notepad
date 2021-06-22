@@ -42,4 +42,4 @@ import { PageNotFoundComponent } from './modules/page-not-found/page-not-found.c
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

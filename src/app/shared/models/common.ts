@@ -17,3 +17,9 @@ export enum ClockSize {
 export enum CacheKey {
   USER = 'user'
 }
+
+export enum ButtonSize {
+  icon,
+  small,
+  large
+}

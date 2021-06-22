@@ -8,11 +8,7 @@ import {
   TemplateRef
 } from '@angular/core';
 
-export enum ButtonSize {
-  icon,
-  small,
-  large
-}
+import { ButtonSize } from '@shared/models';
 
 @Component({
   selector: 'app-button',

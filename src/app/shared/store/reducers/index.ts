@@ -67,12 +67,10 @@ export const selectLoadingState = createFeatureSelector<
   fromLoading.State
 >(fromLoading.loadingFeatureKey);
 
-export const selectToolsState = createFeatureSelector<
-  State,
-  fromTools.State
->(fromTools.toolsFeatureKey);
+export const selectToolsState = createFeatureSelector<State, fromTools.State>(
+  fromTools.toolsFeatureKey
+);
 
-export const selectAuthState = createFeatureSelector<
-  State,
-  fromAuth.State
->(fromAuth.authFeatureKey);
+export const selectAuthState = createFeatureSelector<State, fromAuth.State>(
+  fromAuth.authFeatureKey
+);

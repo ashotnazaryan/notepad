@@ -5,7 +5,7 @@ import {
   MatSnackBarConfig
 } from '@angular/material/snack-bar';
 
-import { ButtonSize } from '@shared/components/button/button.component';
+import { ButtonSize } from '@shared/models';
 
 export enum NotificationType {
   success,

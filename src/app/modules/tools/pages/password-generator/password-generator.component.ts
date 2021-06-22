@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSliderChange } from '@angular/material/slider';
 import * as generator from 'generate-password-browser';
 
-import { ButtonSize } from '@shared/components/button/button.component';
+import { ButtonSize } from '@shared/models';
 import { NotificationType } from '@shared/components/notification/notification.component';
 import { NotificationService } from '@shared/services';
 
@@ -62,7 +62,9 @@ export class PasswordGeneratorComponent implements OnInit {
 
   handleCopy = (copied: boolean): void => {
     if (!this.form.get('password')?.value) {
-      this.notification.showNotification('NOTIFICATIONS_EMPTY_GENERATED_PASSWORD');
+      this.notification.showNotification(
+        'NOTIFICATIONS_EMPTY_GENERATED_PASSWORD'
+      );
 
       return;
     }

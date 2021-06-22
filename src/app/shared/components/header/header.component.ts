@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs/internal/Observable';
@@ -9,20 +8,17 @@ import { combineLatest } from 'rxjs/internal/observable/combineLatest';
 import { map, takeUntil, tap } from 'rxjs/operators';
 import * as moment from 'moment';
 
-import { MENU_ITEMS } from '@shared/constants';
-import { ModulePage } from '@shared/models';
+import { MENU_ITEMS, LANGUAGES } from '@shared/constants';
+import { ModulePage, Language, ButtonSize } from '@shared/models';
 import User from '@shared/models/user';
-import { LANGUAGES } from '@shared/constants';
 import * as fromRoot from '@shared/store/reducers';
 import * as fromAuth from '@shared/store/reducers';
 import * as fromTools from '@shared/store/reducers';
 import { SetLanguage } from '@shared/store/actions/language.actions';
-import { Language } from '@shared/models';
 import {
   selectChosenGroceriesCount,
   selectNotesCount
 } from '@shared/store/selectors';
-import { ButtonSize } from '@shared/components/button/button.component';
 import { AuthenticationService } from '@modules/authentication/services/authentication.service';
 import { AuthActions } from '@shared/store/actions';
 import { selectLanguage, selectModulePage } from '@shared/store/selectors';
